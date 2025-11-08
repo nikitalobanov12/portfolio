@@ -1,7 +1,7 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import ThemeToggle from '@/components/theme-toggle.tsx';
 import { getCollection, getEntryBySlug } from 'astro:content';
+import { intro } from '@/lib/data';
 
 const { slug } = Astro.params;
 const entry = slug ? await getEntryBySlug('notes', slug) : null;
@@ -18,30 +18,41 @@ export async function getStaticPaths() {
 }
 ---
 <Layout title={`${entry.data.title} · Notes`} description={entry.data.description}>
-	<header class='sticky top-0 z-30 border-b border-border/60 bg-background/80 backdrop-blur'>
-		<div class='container flex items-center justify-between py-4 text-sm'>
-			<a href='/notes' class='flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground'>
-				<img src='/logo.svg' alt='Nikita Lobanov logo' class='h-6 w-6' loading='lazy' />
-				<span class='font-mono text-xs tracking-[0.3em]'>NOTES</span>
-			</a>
-			<ThemeToggle client:load />
+	<!-- Top Navigation -->
+	<nav class='sticky top-0 z-50 border-b border-border/40 bg-background/95 backdrop-blur'>
+		<div class='mx-auto max-w-3xl px-6 py-4'>
+			<div class='flex items-center justify-between'>
+				<a href='/' class='font-medium text-foreground transition-colors hover:text-muted-foreground'>{intro.name}</a>
+				<a href='/notes' class='text-sm text-muted-foreground transition-colors hover:text-foreground'>notes</a>
+			</div>
 		</div>
-	</header>
-	<main class='container space-y-6 py-16'>
-		<div class='space-y-2'>
-			<p class='text-xs uppercase tracking-[0.18em] text-muted-foreground/70'>{entry.data.publishDate.toLocaleDateString()}</p>
-			<h1 class='text-3xl font-mono tracking-tight md:text-4xl'>{entry.data.title}</h1>
-			<p class='text-muted-foreground'>{entry.data.description}</p>
-			{entry.data.tags && entry.data.tags.length > 0 && (
-				<ul class='flex flex-wrap gap-2 pt-2 text-xs text-muted-foreground'>
-					{entry.data.tags.map(tag => (
-						<li key={tag} class='rounded-full border border-border/60 px-3 py-1'>#{tag}</li>
-					))}
-				</ul>
-			)}
+	</nav>
+	<main class='min-h-screen bg-background'>
+		<div class='mx-auto max-w-3xl px-6 py-16 md:py-24'>
+			<article class='space-y-8'>
+				<header class='space-y-4'>
+					<div class='flex items-center gap-3 text-xs text-muted-foreground/70'>
+						<span>{entry.data.publishDate.toLocaleDateString()}</span>
+						{entry.data.tags && entry.data.tags.length > 0 && (
+							<>
+								<span>·</span>
+								<div class='flex flex-wrap gap-2'>
+									{entry.data.tags.map(tag => (
+										<span key={tag}>#{tag}</span>
+									))}
+								</div>
+							</>
+						)}
+					</div>
+					<h1 class='text-3xl font-medium tracking-tight md:text-4xl'>{entry.data.title}</h1>
+					{entry.data.description && (
+						<p class='text-muted-foreground leading-relaxed'>{entry.data.description}</p>
+					)}
+				</header>
+				<div class='prose prose-sm max-w-none text-muted-foreground'>
+					<Content />
+				</div>
+			</article>
 		</div>
-		<article class='space-y-4 text-sm leading-relaxed text-muted-foreground'>
-			<Content />
-		</article>
 	</main>
 </Layout>

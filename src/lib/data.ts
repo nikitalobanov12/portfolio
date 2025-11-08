@@ -1,119 +1,51 @@
-export const about = {
-  summary:
-    "I’m a 20 year old CS undergrad from Vancouver, BC. I built my first PC at 10 & I've been tinkering with technology ever since, I like discovering new things, & I'm always looking for interesting things to do.\n\nI primarily work with Go, TypeScript, Python, and Postgres, I daily drive Linux which has helped me get comfortable in the terminal & understand cloud deployment ",
-  tools: ["Arch Linux", "Wayland", "Neovim", "tmux", "Ghostty"],
-  currently: [
-    "Learning about optimizing vector embeddings",
-    "Reading Operating Systems: Three Easy Pieces",
-    "Editing my dotfiles",
-  ],
+export const intro = {
+  name: "Nikita Lobanov",
+  // title: "Full Stack Developer",
+  description:
+    "I'm a 21 year old full stack developer from Vancouver, BC. \n I'm very curious about things that are interesting :)",
 };
 
 export const projects = [
   {
-    title: "WriteShare",
-    descriptionPlain: "Google Docs-style markdown editor with real-time sync.",
-    whyBuilt:
-      "I wanted to explore real time features as well as build something with Golang, I started by building out a markdown parser in Go & turned that into a full-stack app",
-    reflection:
-      "Learned where collaborative editing actually bottlenecks and how to budget latency.",
-    techStack: [
-      "Go",
-      "gRPC",
-      "WebSockets",
-      "Yjs",
-      "Redis",
-      "PostgreSQL",
-      "Docker",
-      "AWS ECS",
-    ],
-    github: "https://github.com/nikitalobanov12/writeshare",
+    title: "Panday 🚧 In Progress 🚧",
+    url: "https://www.github.com/panday-team/panday",
+    liveUrl: "https://panday.vercel.app",
+    description:
+      "Visual career roadmaps showing trades workers exactly what's required to advance from apprentice to Red Seal certification, personalized to their current level and entry path",
   },
   {
-    title: "DayFlow",
-    descriptionPlain:
-      "Personal productivity app that grew to 300+ daily users.",
-    whyBuilt:
-      "Started from frustration with existing calendar apps & task managers, decided to build my own with the features that I want",
-    reflection:
-      "Explored AI-assisted workflows, Tauri for cross-platform & native desktop app, & Google Calendar integration.",
-    techStack: [
-      "Tauri",
-      "React",
-      "TypeScript",
-      "Supabase",
-      "PostgreSQL",
-      "Google Gemini AI",
-      "Bun",
-    ],
-    github: "https://github.com/nikitalobanov12/dayflow",
+    title: "Writeshare",
+    url: "https://github.com/nikitalobanov12/writeshare",
+    liveUrl: "https://writeshare.nikitalobanov.com",
+    description:
+      "Real-time collaborative markdown editor, For me this was a way to learn about Websockets and real time interactive features, as well as learning more about dockerizing applications and hosting on AWS",
+  },
+  {
+    title: "Dayflow",
+    url: "https://github.com/nikitalobanov12/dayflow",
+    liveUrl: "https://dayflow.ca",
+    description:
+      "Productivity app with calendar integration and AI task scheduling. Takes your long term & short term goals and breaks them up into actionable steps & uses ai to fill your to do list to keep you on track",
   },
   {
     title: "Circles",
-    descriptionPlain:
-      "Photo sharing for small groups with roles and clean uploads.",
-    whyBuilt:
-      "I wanted a private space that felt closer to Google Drive with friends than another social feed.",
-    reflection:
-      "Spent time optimizing performance, learning how social media feeds work, and building the foundation of full-stack development beyond a simple CRUD app.",
-    techStack: [
-      "Next.js",
-      "TypeScript",
-      "Prisma",
-      "PostgreSQL",
-      "Redis",
-      "Vercel",
-      "AWS S3",
-    ],
-    github: "https://github.com/nikitalobanov12/circle",
+    url: "https://github.com/nikitalobanov12/circle",
+    liveUrl: "https://circles.nikitalobanov.com",
+    description:
+      "Private community photo sharing app, like google drive combined with instagram. For me this was a good learning experience about the fundamentals of a web app & I learned a lot from building this",
   },
 ];
 
-export const stack = {
-  icons: [
-    "go",
-    "ts",
-    "cpp",
-    "python",
-    "neovim",
-    "docker",
-    "postgres",
-    "redis",
-    "arch",
-    "terraform",
-    "aws",
-    "bash",
-    "github",
-    "linux",
-    "nextjs",
-    "nodejs",
-    "tailwind",
-    "vitest",
-  ],
-  categories: [
-    {
-      label: "Languages & Frameworks",
-      items: ["Go", "TypeScript", "Python", "Next.js", "Tailwind CSS", "C++"],
-    },
-    {
-      label: "Data & Infrastructure",
-      items: ["PostgreSQL", "Redis", "Docker", "Vercel", "Terraform", "AWS"],
-    },
-    {
-      label: "Workflow & Tooling",
-      items: ["Arch Linux", "Neovim", "zsh (bash)", "GitHub CI/CD"],
-    },
-    {
-      label: "Testing",
-      items: ["Vitest, Jest, Playwright, Go testing"],
-    },
-  ],
-  exploring: [
-    "Operating Systems",
-    "Hugging Face AI tasks",
-    "vector embeddings",
-  ],
-};
+export const experience = [
+  {
+    title: "Software Engineer Intern",
+    company: "Seaspan Corp",
+    url: "https://www.seaspancorp.com",
+    description:
+      "Worked on internal tooling for company that manages cargo ships, more detail on LinkedIn if you care",
+  },
+  // Add more experiences as needed
+];
 
 export const contacts = {
   github: "https://github.com/nikitalobanov12",
