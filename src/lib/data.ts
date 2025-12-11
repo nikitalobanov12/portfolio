@@ -2,16 +2,16 @@ export const intro = {
   name: "Nikita Lobanov",
   // title: "Full Stack Developer",
   description:
-    "I'm a 21 year old full stack developer from Vancouver, BC. \n I'm very curious about things that are interesting :)\nMy projects are either me trying to solve a problem in my day to day life or for learning concepts",
+    "I'm a 21 year old full stack developer from Vancouver, BC. \n My projects are either me trying to solve a problem in my day to day life or for learning concepts",
 };
 
 export const projects = [
   {
-    title: "Panday 🚧 In Progress 🚧",
+    title: "Panday",
     url: "https://www.github.com/panday-team/panday",
-    liveUrl: "https://panday.vercel.app",
+    liveUrl: "https://panday.app",
     description:
-      "Visual career roadmaps showing trades workers exactly what's required to advance from apprentice to Red Seal certification, personalized to their current level and entry path",
+      "RAG-powered career guidance platform for skilled trades certification, using LlamaIndex and SentenceTransformers to help apprentices navigate regulatory requirements. Built with React Flow for visual career roadmaps, using a D3-force engine to auto-calculate node layouts. Led development as part of BCIT ConnectHer Showcase (2nd Place Winner).",
   },
   {
     title: "Writeshare",
@@ -25,14 +25,14 @@ export const projects = [
     url: "https://github.com/nikitalobanov12/dayflow",
     liveUrl: "https://dayflow.ca",
     description:
-      "Productivity app with calendar integration and AI task scheduling. Takes your long term & short term goals and breaks them up into actionable steps & uses ai to fill your to do list to keep you on track",
+      "Local-first AI planner with offline-first architecture using SQLite and last-write-wins conflict resolution, supporting 300+ daily active users. Integrates Google Gemini AI to transform natural language into structured calendar events with Zod schema validation.",
   },
   {
     title: "Circles",
     url: "https://github.com/nikitalobanov12/circle",
     liveUrl: "https://circles.nikitalobanov.com",
     description:
-      "Private community photo sharing app, like google drive combined with instagram. For me this was a good learning experience about the fundamentals of a web app & I learned a lot from building this",
+      "Collaborative social cloud drive combining photo storage, real-time group messaging via WebSockets, and live location sharing. Led a team of three to build this platform, implementing a tokenized design system translated from Figma mockups.",
   },
   {
     title: "H2L Design Studio",
