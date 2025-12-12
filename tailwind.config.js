@@ -15,8 +15,8 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				sans: ['Inter', 'system-ui', 'sans-serif'],
 				mono: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'monospace'],
+				sans: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'monospace'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
@@ -48,11 +48,20 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))',
 				},
+				// Gruvbox terminal colors
+				terminal: {
+					green: 'hsl(var(--terminal-green))',
+					yellow: 'hsl(var(--terminal-yellow))',
+					blue: 'hsl(var(--terminal-blue))',
+					purple: 'hsl(var(--terminal-purple))',
+					aqua: 'hsl(var(--terminal-aqua))',
+					orange: 'hsl(var(--terminal-orange))',
+				},
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
-				md: 'calc(var(--radius) - 4px)',
-				sm: 'calc(var(--radius) - 6px)',
+				md: 'calc(var(--radius))',
+				sm: 'calc(var(--radius))',
 			},
 		},
 	},

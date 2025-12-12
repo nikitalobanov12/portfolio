@@ -1,53 +1,71 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+	/* Gruvbox Light */
 	:root {
-		--background: 220 13% 97%;
-		--foreground: 220 18% 12%;
-		--card: 220 13% 95%;
-		--card-foreground: 220 18% 15%;
-		--popover: 220 13% 95%;
-		--popover-foreground: 220 18% 15%;
-		--primary: 198 93% 52%;
-		--primary-foreground: 210 40% 98%;
-		--secondary: 220 10% 88%;
-		--secondary-foreground: 220 18% 12%;
-		--muted: 215 12% 85%;
-		--muted-foreground: 220 14% 35%;
-		--accent: 198 93% 52%;
-		--accent-foreground: 210 40% 98%;
-		--destructive: 0 72% 50%;
-		--destructive-foreground: 210 40% 98%;
-		--border: 220 12% 82%;
-		--input: 220 12% 78%;
-		--ring: 198 93% 52%;
-		--radius: 0.6rem;
+		--background: 48 30% 94%; /* #fbf1c7 */
+		--foreground: 0 0% 16%; /* #282828 */
+		--card: 44 28% 88%; /* #ebdbb2 */
+		--card-foreground: 0 0% 16%;
+		--popover: 44 28% 88%;
+		--popover-foreground: 0 0% 16%;
+		--primary: 104 35% 34%; /* #98971a - gruvbox green */
+		--primary-foreground: 48 30% 94%;
+		--secondary: 44 28% 82%;
+		--secondary-foreground: 0 0% 16%;
+		--muted: 44 22% 80%;
+		--muted-foreground: 24 10% 40%;
+		--accent: 27 75% 49%; /* #d65d0e - gruvbox orange */
+		--accent-foreground: 48 30% 94%;
+		--destructive: 6 96% 46%; /* #cc241d - gruvbox red */
+		--destructive-foreground: 48 30% 94%;
+		--border: 40 18% 70%;
+		--input: 40 18% 70%;
+		--ring: 104 35% 34%;
+		--radius: 0;
+
+		/* Terminal-specific colors */
+		--terminal-green: 104 35% 34%;
+		--terminal-yellow: 42 95% 50%;
+		--terminal-blue: 211 54% 45%;
+		--terminal-purple: 323 42% 45%;
+		--terminal-aqua: 157 40% 40%;
+		--terminal-orange: 27 75% 49%;
 	}
 
+	/* Gruvbox Dark */
 	.dark {
-		--background: 0 0% 16%;
-		--foreground: 39 30% 82%;
-		--card: 0 0% 20%;
-		--card-foreground: 39 30% 82%;
+		--background: 0 0% 16%; /* #282828 */
+		--foreground: 44 28% 82%; /* #ebdbb2 */
+		--card: 0 0% 20%; /* #3c3836 */
+		--card-foreground: 44 28% 82%;
 		--popover: 0 0% 20%;
-		--popover-foreground: 39 30% 82%;
-		--primary: 180 25% 52%;
+		--popover-foreground: 44 28% 82%;
+		--primary: 61 66% 55%; /* #b8bb26 - gruvbox bright green */
 		--primary-foreground: 0 0% 16%;
-		--secondary: 20 7% 23%;
-		--secondary-foreground: 39 30% 82%;
-		--muted: 18 10% 30%;
-		--muted-foreground: 39 17% 70%;
-		--accent: 140 29% 62%;
+		--secondary: 20 7% 26%;
+		--secondary-foreground: 44 28% 82%;
+		--muted: 20 7% 30%;
+		--muted-foreground: 39 17% 60%;
+		--accent: 27 98% 56%; /* #fe8019 - gruvbox bright orange */
 		--accent-foreground: 0 0% 16%;
-		--destructive: 4 89% 60%;
-		--destructive-foreground: 39 30% 82%;
-		--border: 22 10% 38%;
-		--input: 22 10% 38%;
-		--ring: 180 25% 52%;
+		--destructive: 6 96% 59%; /* #fb4934 - gruvbox bright red */
+		--destructive-foreground: 44 28% 82%;
+		--border: 24 9% 32%;
+		--input: 24 9% 32%;
+		--ring: 61 66% 55%;
+
+		/* Terminal-specific colors */
+		--terminal-green: 61 66% 55%;
+		--terminal-yellow: 42 95% 58%;
+		--terminal-blue: 175 59% 57%;
+		--terminal-purple: 323 50% 66%;
+		--terminal-aqua: 157 52% 58%;
+		--terminal-orange: 27 98% 56%;
 	}
 
 	* {
@@ -60,48 +78,103 @@
 	}
 
 	body {
-		@apply bg-background text-foreground font-sans antialiased;
+		@apply bg-background text-foreground font-mono antialiased;
 	}
 
-	h1,
-	h2,
-	h3,
-	h4 {
-		@apply font-sans tracking-tight text-foreground;
+	/* All text should be monospace for terminal feel */
+	h1, h2, h3, h4, h5, h6, p, span, a, li, div {
+		font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
 	}
 
 	::selection {
-		background-color: hsl(var(--primary) / 0.2);
-		color: hsl(var(--primary-foreground));
+		background-color: hsl(var(--primary) / 0.3);
+		color: hsl(var(--foreground));
 	}
 
-	article h1,
-	article h2,
-	article h3 {
-		@apply font-mono text-foreground;
+	/* Terminal cursor blink animation */
+	@keyframes blink {
+		0%, 50% { opacity: 1; }
+		51%, 100% { opacity: 0; }
 	}
 
-	article h1 {
-		@apply text-3xl;
+	.cursor-blink {
+		animation: blink 1s step-end infinite;
 	}
 
-	article h2 {
-		@apply text-2xl mt-6;
+	/* Typewriter effect */
+	@keyframes typewriter {
+		from { width: 0; }
+		to { width: 100%; }
 	}
 
-	article h3 {
-		@apply text-xl mt-4;
+	.typewriter {
+		overflow: hidden;
+		white-space: nowrap;
+		animation: typewriter 1s steps(40) forwards;
 	}
 
-	article p,
-	article ul,
-	article ol {
-		@apply text-muted-foreground;
+	/* Scanline effect for extra terminal feel (subtle) */
+	.scanlines::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: repeating-linear-gradient(
+			0deg,
+			transparent,
+			transparent 1px,
+			hsl(var(--foreground) / 0.03) 1px,
+			hsl(var(--foreground) / 0.03) 2px
+		);
+		pointer-events: none;
+		z-index: 10;
 	}
 }
 
 @layer utilities {
 	.text-balance {
 		text-wrap: balance;
+	}
+
+	/* Terminal prompt symbol */
+	.prompt::before {
+		content: '>';
+		@apply text-primary mr-2;
+	}
+
+	/* Terminal comment style */
+	.comment {
+		@apply text-muted-foreground;
+	}
+
+	.comment::before {
+		content: '# ';
+	}
+
+	/* Terminal colors */
+	.terminal-green {
+		color: hsl(var(--terminal-green));
+	}
+
+	.terminal-yellow {
+		color: hsl(var(--terminal-yellow));
+	}
+
+	.terminal-blue {
+		color: hsl(var(--terminal-blue));
+	}
+
+	.terminal-purple {
+		color: hsl(var(--terminal-purple));
+	}
+
+	.terminal-aqua {
+		color: hsl(var(--terminal-aqua));
+	}
+
+	.terminal-orange {
+		color: hsl(var(--terminal-orange));
 	}
 }

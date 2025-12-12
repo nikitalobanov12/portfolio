@@ -1,71 +1,83 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import { Github, Linkedin, Mail, ExternalLink } from 'lucide-react';
 import { intro, projects, experience, contacts } from '@/lib/data';
 import { ProjectCard } from '@/components/ProjectCard';
+import ThemeToggle from '@/components/theme-toggle';
 ---
 
-<Layout title='Nikita Lobanov'>
-	<!-- Top Navigation -->
-	<nav class='sticky top-0 z-50 border-b border-border/40 bg-background/95 backdrop-blur'>
-		<div class='mx-auto max-w-3xl px-6 py-4'>
-			<div class='flex items-center justify-between'>
-				<a href='/' class='font-medium text-foreground transition-colors hover:text-muted-foreground'>{intro.name}</a>
-				<a href='/notes' class='text-sm text-muted-foreground transition-colors hover:text-foreground'>notes</a>
+<Layout title='nikita@portfolio:~'>
+	<!-- Terminal Window -->
+	<div class='min-h-screen bg-background'>
+		<!-- Terminal Title Bar -->
+		<nav class='sticky top-0 z-50 border-b border-border bg-card'>
+			<div class='mx-auto max-w-4xl px-6 py-3'>
+				<div class='flex items-center justify-between'>
+					<div class='flex items-center gap-2'>
+						<div class='flex gap-1.5'>
+							<span class='h-3 w-3 rounded-full bg-destructive'></span>
+							<span class='h-3 w-3 rounded-full bg-terminal-yellow'></span>
+							<span class='h-3 w-3 rounded-full bg-terminal-green'></span>
+						</div>
+						<span class='ml-4 text-sm text-muted-foreground'>nikita@portfolio:~</span>
+					</div>
+					<div class='flex items-center gap-4'>
+						<ThemeToggle client:load />
+					</div>
+				</div>
 			</div>
-		</div>
-	</nav>
+		</nav>
 
-	<main class='min-h-screen bg-background'>
-		<div class='mx-auto max-w-3xl px-6 py-16 md:py-24'>
-			<!-- About Section -->
-			<section id='about' class='mb-20'>
-				<div class='space-y-6'>
-					<h1 class='text-4xl font-medium text-foreground md:text-5xl'>
-            {intro.name}
-					</h1>
+		<main class='mx-auto max-w-4xl px-6 py-12'>
+			<!-- Intro Section - Like a terminal session -->
+			<section id='about' class='mb-16'>
+				<div class='space-y-4'>
+					<!-- Directory line -->
+					<div class='flex items-center gap-2 text-muted-foreground'>
+						<span class='text-terminal-aqua'>~/about</span>
+					</div>
+					
+					<!-- Prompt with name -->
+					<div class='flex items-start gap-2'>
+						<span class='text-primary'>❯</span>
+						<h1 class='text-2xl text-foreground'>{intro.name}</h1>
+					</div>
+
+					<!-- Description as comment -->
 					{intro.description && (
-						<p class='text-muted-foreground leading-relaxed whitespace-pre-line'>
-							{intro.description}
-						</p>
+						<div class='pl-5 space-y-1'>
+							{intro.description.split('\n').map((line: string) => (
+								<p class='text-muted-foreground'>
+									<span class='text-muted-foreground/60'>#</span> {line.trim()}
+								</p>
+							))}
+						</div>
 					)}
 
-					<!-- Social links -->
-					<div class='flex items-center gap-4 pt-2'>
-						<a
-							href={contacts.github}
-							target='_blank'
-							rel='noreferrer'
-							class='text-muted-foreground transition-colors hover:text-foreground'
-							aria-label='GitHub'
-						>
-							<Github size={20} />
-						</a>
-						<a
-							href={contacts.linkedin}
-							target='_blank'
-							rel='noreferrer'
-							class='text-muted-foreground transition-colors hover:text-foreground'
-							aria-label='LinkedIn'
-						>
-							<Linkedin size={20} />
-						</a>
-						<a
-							href={`mailto:${contacts.email}`}
-							class='flex items-center gap-1.5 text-muted-foreground transition-colors hover:text-foreground'
-							aria-label='Email'
-						>
-							<Mail size={20} />
-							<span class='text-sm'>nikita@nikitalobanov.com</span>
-						</a>
+					<!-- Links as exports -->
+					<div class='pt-4 space-y-2 pl-5'>
+						<p class='text-muted-foreground'>
+							<span class='text-terminal-purple'>export</span> <span class='text-terminal-aqua'>GITHUB</span>=<a href={contacts.github} target='_blank' rel='noreferrer' class='text-terminal-green hover:underline'>"{contacts.github}"</a>
+						</p>
+						<p class='text-muted-foreground'>
+							<span class='text-terminal-purple'>export</span> <span class='text-terminal-aqua'>LINKEDIN</span>=<a href={contacts.linkedin} target='_blank' rel='noreferrer' class='text-terminal-green hover:underline'>"{contacts.linkedin}"</a>
+						</p>
+						<p class='text-muted-foreground'>
+							<span class='text-terminal-purple'>export</span> <span class='text-terminal-aqua'>EMAIL</span>=<a href={`mailto:${contacts.email}`} class='text-terminal-green hover:underline'>"{contacts.email}"</a>
+						</p>
 					</div>
 				</div>
 			</section>
 
 			<!-- Projects Section -->
-			<section id='projects' class='mb-20'>
-				<h2 class='mb-6 text-sm font-medium uppercase tracking-wider text-muted-foreground'>projects</h2>
-				<div class='space-y-4'>
+			<section id='projects' class='mb-16'>
+				<div class='flex items-center gap-2 text-muted-foreground mb-6'>
+					<span class='text-terminal-aqua'>~/projects</span>
+				</div>
+				<div class='flex items-center gap-2 mb-4'>
+					<span class='text-primary'>❯</span>
+					<span class='text-foreground'>ls -la</span>
+				</div>
+				<div class='space-y-3 pl-5'>
 					{projects.map(project => (
 						<ProjectCard client:load project={project} />
 					))}
@@ -73,28 +85,30 @@ import { ProjectCard } from '@/components/ProjectCard';
 			</section>
 
 			<!-- Experience Section -->
-			<section id='experience' class='mb-20'>
-				<h2 class='mb-6 text-sm font-medium uppercase tracking-wider text-muted-foreground'>experience</h2>
-				<div class='space-y-4'>
+			<section id='experience' class='mb-16'>
+				<div class='flex items-center gap-2 text-muted-foreground mb-6'>
+					<span class='text-terminal-aqua'>~/experience</span>
+				</div>
+				<div class='flex items-center gap-2 mb-4'>
+					<span class='text-primary'>❯</span>
+					<span class='text-foreground'>cat work.log</span>
+				</div>
+				<div class='space-y-4 pl-5'>
 					{experience.map(exp => (
 						<a
 							href={exp.url}
 							target='_blank'
 							rel='noreferrer'
-							class='group block rounded-md border border-border/50 p-5 transition-all hover:border-border'
+							class='group block border-l-2 border-border pl-4 py-2 transition-all hover:border-primary'
 						>
-							<div class='space-y-2'>
+							<div class='space-y-1'>
 								<div class='flex items-center gap-2'>
-									<h3 class='font-medium text-foreground group-hover:text-primary transition-colors'>
-										{exp.title}
-									</h3>
-									<ExternalLink size={14} className='text-muted-foreground/50 group-hover:text-primary transition-colors' />
+									<span class='text-terminal-yellow'>{exp.title}</span>
+									<span class='text-muted-foreground'>@</span>
+									<span class='text-terminal-aqua'>{exp.company}</span>
 								</div>
-								<p class='text-sm text-muted-foreground/80'>
-									{exp.company}
-								</p>
-								<p class='text-sm text-muted-foreground leading-relaxed whitespace-pre-line'>
-									{exp.description}
+								<p class='text-sm text-muted-foreground'>
+									<span class='text-muted-foreground/60'>#</span> {exp.description}
 								</p>
 							</div>
 						</a>
@@ -103,11 +117,15 @@ import { ProjectCard } from '@/components/ProjectCard';
 			</section>
 
 			<!-- Footer -->
-			<footer class='border-t border-border/40 pt-8 text-center text-xs text-muted-foreground'>
-				<p>© {new Date().getFullYear()} {intro.name}</p>
+			<footer class='border-t border-border pt-8'>
+				<div class='flex items-center gap-2 text-muted-foreground'>
+					<span class='text-primary'>❯</span>
+					<span class='text-muted-foreground/60'># {new Date().getFullYear()} {intro.name}</span>
+					<span class='text-primary cursor-blink'>_</span>
+				</div>
 			</footer>
-		</div>
-	</main>
+		</main>
+	</div>
 </Layout>
 
 <style>

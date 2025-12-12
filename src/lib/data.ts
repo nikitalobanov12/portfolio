@@ -1,7 +1,7 @@
 export const intro = {
   name: "Nikita Lobanov",
-  // title: "Full Stack Developer",
-  description: "I'm a 21 year old full stack developer from Vancouver, BC.",
+  description:
+    "I'm a 21 year old full stack developer from Vancouver, BC.\nI like Linux, terminal tools, vim keybinds on apps, and backend development",
 };
 
 export const projects = [
@@ -10,29 +10,27 @@ export const projects = [
     url: "https://www.github.com/panday-team/panday",
     liveUrl: "https://panday.app",
     description:
-      "AI-powered career roadmap platform for skilled trades. Led a team of 8 for my capstone project - we built a RAG system that turns confusing government regulations into visual, interactive career paths.",
-    techStack: ["Next.js 15", "Go", "PostgreSQL", "pgvector", "Redis"],
+      "An AI career guidance platform for skilled trades workers. I led a team of 8 people to build this for my capstone project.",
+    techStack: [
+      "Next.js",
+      "Go",
+      "Python",
+      "PostgreSQL",
+      "pgvector",
+      "Redis",
+      "Bun",
+    ],
     images: ["/projects/panday-1.png", "/projects/panday-2.png"],
     details: [
-      "This was my capstone project and my first time leading a team of 8 people (5 devs, 3 designers). The hardest part wasn't the code - it was learning how to delegate, run code reviews, and keep everyone aligned on the architecture.",
-      "The most interesting technical rabbit hole was building the RAG pipeline. We used pgvector for semantic search and I spent way too many hours tuning HNSW index parameters (m=16, ef_construction=64) to get sub-second queries on 1536-dimensional embeddings.",
-      "I wrote a Redis proxy in Go because Vercel's serverless environment uses HTTP-based Redis (Upstash) but our local Docker setup needed TCP. It was my first real Go project and I learned a lot about how Redis protocol actually works under the hood.",
-      "The graph visualization was a fun challenge - React Flow for rendering, but I built a custom D3-force physics engine to auto-layout the nodes. Had to optimize collision detection from O(n²) to O(n) using spatial partitioning because it was destroying performance with 100+ nodes.",
-      "Ended up with 515 tests because I was paranoid about the RAG pipeline breaking. Mocking LLM responses in tests taught me a lot about designing testable AI systems.",
-    ],
-  },
-  {
-    title: "Writeshare",
-    url: "https://github.com/nikitalobanov12/writeshare",
-    liveUrl: "https://writeshare.nikitalobanov.com",
-    description:
-      "Real-time collaborative markdown editor. Built this to finally understand how WebSockets work and to learn Docker + AWS deployment.",
-    techStack: ["React", "Node.js", "WebSockets", "AWS", "Docker"],
-    images: ["/projects/writeshare-1.png"],
-    details: [
-      "I built this because I wanted to understand how Google Docs-style real-time collaboration actually works. Turns out WebSockets are simpler than I thought, but handling conflicts when two people edit the same line is surprisingly tricky.",
-      "This was my first time containerizing an app with Docker and deploying to AWS. Spent a weekend just figuring out EC2, security groups, and why my app wasn't accessible from the internet (forgot to open the port, classic).",
-      "The markdown preview was fun - used a library for parsing but had to figure out how to sync the scroll position between the editor and preview panes.",
+      "This was my capstone project where I led a team of 8 people (5 developers and 3 designers). The hardest part wasn't writing code. It was learning how to split up work, give good feedback in code reviews, and make sure everyone understood how the system fit together.",
+      "The main feature is a RAG (Retrieval Augmented Generation) pipeline that takes confusing government regulations about trade certifications and turns them into simple visual career paths. We stored all the text as vector embeddings in PostgreSQL using pgvector, so when someone asks a question, we can find the most relevant info really fast.",
+      "For embeddings, I originally planned to run sentence-transformers on an EC2 server. But after doing the math, I switched to OpenAI's embedding models instead. For our use case, paying per API call was actually cheaper than keeping an EC2 instance running 24/7 with a model loaded in memory. We still use Python scripts to generate and update the embeddings in batch.",
+      "I spent a lot of time tuning the vector search settings to get it working quickly. With 1536-dimensional embeddings (that's how OpenAI represents text), I had to pick the right index parameters so searches would finish in under a second.",
+      "I also wrote a Redis proxy in Go. This was my first real Go project. We needed it because Vercel (where we deployed) uses a special HTTP-based Redis, but our local Docker setup uses regular TCP Redis. The proxy translates between them so our code works the same in both places.",
+      "The career paths show up as interactive graphs. I used React Flow to draw them, but I wrote my own layout algorithm using physics simulation. When you have 100+ nodes, you need to be smart about how you check for collisions or it gets really slow.",
+      "Since we had non-technical designers on the team, I set up Husky for git hooks. I configured it to give helpful guidance when someone runs into merge conflicts or tries to push broken code. It would show them step by step instructions on how to fix common git issues. This saved a lot of time because I wasn't constantly helping people resolve conflicts.",
+      "I also wrote detailed documentation for everything because of the mixed technical levels on the team. This actually helped us move faster, not slower. New team members could get up to speed quickly, and we didn't have to repeat explanations in meetings.",
+      "We ended up with 515 automated tests. I was worried about the AI parts breaking in weird ways, so I learned how to mock LLM responses in tests. It taught me a lot about how to build AI features that you can actually test reliably.",
     ],
   },
   {
@@ -40,16 +38,16 @@ export const projects = [
     url: "https://github.com/nikitalobanov12/dayflow",
     liveUrl: "https://dayflow.ca",
     description:
-      "Local-first AI task planner that grew to 300+ users. I built this because I was frustrated with existing planners - I wanted AI to actually schedule my tasks, not just list them.",
+      "A desktop task planner with AI that actually schedules your tasks for you. It grew to over 300 users.",
     techStack: ["React 19", "Tauri 2.0", "Supabase", "SQLite"],
     images: ["/projects/dayflow-1.png", "/projects/dayflow-2.png"],
     details: [
-      "Started this because every task app I tried felt dumb - I wanted to type 'finish the report by Friday' and have it actually appear on my calendar. So I integrated Gemini AI for natural language parsing and it's genuinely useful now.",
-      "The 'local-first' architecture was a rabbit hole. I wanted the app to work offline, so I used SQLite locally and sync to Supabase. Implementing last-write-wins conflict resolution taught me why CRDTs exist (and why they're complex).",
-      "Built it with Tauri 2.0 so it runs as a native app on Windows, Mac, and Linux from the same codebase. The platform abstraction layer was interesting - had to handle things like window controls that only exist on desktop.",
-      "Learned about optimistic UI the hard way. Users expect instant feedback, so I implemented React 19's useOptimistic hook - updates appear immediately while the actual database write happens in the background.",
-      "Added Stripe subscriptions with a freemium model. The webhook handling was educational - you have to handle like 7 different event types and they can arrive out of order. Idempotency keys became my friend.",
-      "The Google Calendar OAuth flow was painful. Had to do server-side token exchange via Supabase Edge Functions because you can't expose client secrets in a desktop app. Token refresh logic is surprisingly annoying to get right.",
+      "I was frustrated with every task app I tried. I wanted to type something like 'finish the report by Friday' and have it show up on my calendar automatically. So I connected Gemini AI to parse natural language into actual scheduled tasks. It works really well now and I use it every day.",
+      "The app works offline because it stores everything in a local SQLite database. When you're back online, it syncs to Supabase in the cloud. Figuring out what to do when the same task gets edited in both places was hard. I ended up using a simple 'last edit wins' approach, but now I understand why some apps use fancier solutions.",
+      "I built it with Tauri so it runs as a native app on Windows, Mac, and Linux from one codebase. Each platform has little differences (like where the window close button goes), so I had to write some code to handle each one.",
+      "I learned about 'optimistic UI' the hard way. Users expect things to happen instantly when they click. So now when you create a task, it shows up right away, and the actual save to the database happens in the background using React 19's useOptimistic hook.",
+      "I added Stripe for payments with a free tier and paid tier. Handling payment webhooks was more complex than I expected. Stripe sends you events when things happen (payment succeeded, subscription cancelled, etc.) and they can arrive out of order. You have to handle like 7 different event types and make sure you don't process the same one twice.",
+      "Connecting to Google Calendar was painful. You need to do some of the login steps on a server because you can't put secret keys in a desktop app that users download. So I set up Supabase Edge Functions to handle the secure parts. Getting the access tokens to refresh properly took a while to figure out.",
     ],
   },
   {
@@ -57,14 +55,14 @@ export const projects = [
     url: "https://github.com/nikitalobanov12/circle",
     liveUrl: "https://circles.nikitalobanov.com",
     description:
-      "A 'social cloud drive' for friend groups - combines photo sharing, group chat, and live location. Built this with two friends as a school project.",
+      "A private social app for friend groups with photo sharing, group chat, and live location. I built this with two friends as a school project.",
     techStack: ["Next.js", "Prisma", "PostgreSQL", "S3"],
     images: ["/projects/circles-1.png", "/projects/circles-2.png"],
     details: [
-      "We wanted something between Instagram and Google Drive - a private space where friend groups could share photos, chat, and see each other's locations. No algorithms, no ads, just your actual friends.",
-      "First time working with S3 for file storage. Learned about presigned URLs, multipart uploads for large files, and why you should never put user uploads in your main bucket.",
-      "The real-time chat was my first WebSocket implementation. Had to figure out how to handle users going offline, message ordering, and typing indicators.",
-      "We started from a Figma design and I turned it into a component library with consistent spacing/typography tokens. Made it way easier to build new features without things looking inconsistent.",
+      "We wanted something between Instagram and Google Drive. A private space where you and your friends can share photos, chat, and see where everyone is. No algorithm trying to show you ads, just your actual friends.",
+      "This was my first time using Amazon S3 for file storage. I learned about presigned URLs (so users can upload directly to S3), multipart uploads for big files, and why you should keep user uploads in a separate bucket from your main app files.",
+      "The real-time chat was my first WebSocket project. I had to figure out what happens when someone's internet cuts out, how to make sure messages show up in the right order, and how to show 'typing...' indicators.",
+      "We started with designs in Figma and I turned them into reusable React components. Having consistent spacing and font sizes from the start made it way easier to build new features without everything looking messy.",
     ],
   },
   {
@@ -72,12 +70,12 @@ export const projects = [
     url: "https://github.com/nikitalobanov12/H2L-Design-Studio",
     liveUrl: "https://h2ldesignstudio.com",
     description:
-      "Portfolio website for a local freelance designer. One of my first real web projects - learned the basics here.",
+      "A portfolio website for a local freelance designer. This was one of my first real web projects where I learned the basics.",
     techStack: ["HTML", "CSS", "JavaScript"],
     images: ["/projects/h2l-1.png"],
     details: [
-      "This was one of my first web dev projects, built for a local designer who needed a portfolio site. Nothing fancy - just HTML, CSS, and vanilla JS.",
-      "Looking back at this code is humbling. No frameworks, no build tools, just files in a folder. But it taught me the fundamentals and it still works!",
+      "This was one of my first web projects. A local designer needed a simple portfolio site to show their work, and I built it for them.",
+      "Looking back at the code now is a good reminder of how far I've come. No frameworks, no build tools, just HTML, CSS, and plain JavaScript files in a folder. But it taught me the basics and the site still works today.",
     ],
   },
 ];
@@ -88,9 +86,8 @@ export const experience = [
     company: "Seaspan Corp",
     url: "https://www.seaspancorp.com",
     description:
-      "Worked on internal tooling for company that manages cargo ships, more info on LinkedIn if interested",
+      "Worked on internal tools for a company that manages cargo ships. More details on LinkedIn.",
   },
-  // Add more experiences as needed
 ];
 
 export const contacts = {
