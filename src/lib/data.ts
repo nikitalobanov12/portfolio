@@ -1,7 +1,7 @@
 export const intro = {
   name: "Nikita Lobanov",
   description:
-    "I'm a 21 year old full stack developer from Vancouver, BC.\nI like Linux, terminal tools, vim keybinds on apps, and backend development",
+    "I'm a 21 year old full stack developer from Vancouver, BC \nI mostly build with Typescript or Go \nI like Linux, terminal tools, vim keybinds on apps, and backend development",
 };
 
 export const projects = [
@@ -56,8 +56,8 @@ export const projects = [
     liveUrl: "https://circles.nikitalobanov.com",
     description:
       "A private social app for friend groups with photo sharing, group chat, and live location. I built this with two friends as a school project.",
-    techStack: ["Next.js", "Prisma", "PostgreSQL", "S3"],
-    images: ["/projects/circles-1.png", "/projects/circles-2.png"],
+    techStack: ["Next.js", "Prisma", "PostgreSQL", "S3", "Redis"],
+    images: ["/projects/circles-1.png"],
     details: [
       "We wanted something between Instagram and Google Drive. A private space where you and your friends can share photos, chat, and see where everyone is. No algorithm trying to show you ads, just your actual friends.",
       "This was my first time using Amazon S3 for file storage. I learned about presigned URLs (so users can upload directly to S3), multipart uploads for big files, and why you should keep user uploads in a separate bucket from your main app files.",

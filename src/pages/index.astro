@@ -2,31 +2,11 @@
 import Layout from '@/layouts/Layout.astro';
 import { intro, projects, experience, contacts } from '@/lib/data';
 import { ProjectCard } from '@/components/ProjectCard';
-import ThemeToggle from '@/components/theme-toggle';
 ---
 
 <Layout title='nikita@portfolio:~'>
 	<!-- Terminal Window -->
 	<div class='min-h-screen bg-background'>
-		<!-- Terminal Title Bar -->
-		<nav class='sticky top-0 z-50 border-b border-border bg-card'>
-			<div class='mx-auto max-w-4xl px-6 py-3'>
-				<div class='flex items-center justify-between'>
-					<div class='flex items-center gap-2'>
-						<div class='flex gap-1.5'>
-							<span class='h-3 w-3 rounded-full bg-destructive'></span>
-							<span class='h-3 w-3 rounded-full bg-terminal-yellow'></span>
-							<span class='h-3 w-3 rounded-full bg-terminal-green'></span>
-						</div>
-						<span class='ml-4 text-sm text-muted-foreground'>nikita@portfolio:~</span>
-					</div>
-					<div class='flex items-center gap-4'>
-						<ThemeToggle client:load />
-					</div>
-				</div>
-			</div>
-		</nav>
-
 		<main class='mx-auto max-w-4xl px-6 py-12'>
 			<!-- Intro Section - Like a terminal session -->
 			<section id='about' class='mb-16'>
@@ -64,6 +44,9 @@ import ThemeToggle from '@/components/theme-toggle';
 						<p class='text-muted-foreground'>
 							<span class='text-terminal-purple'>export</span> <span class='text-terminal-aqua'>EMAIL</span>=<a href={`mailto:${contacts.email}`} class='text-terminal-green hover:underline'>"{contacts.email}"</a>
 						</p>
+						<!-- <p class='text-muted-foreground'> -->
+							<!-- <span class='text-terminal-purple'>export</span> <span class='text-terminal-aqua'>FREE_RAM</span>=<a href={`https://downloadmoreram.com/`} class='text-terminal-green hover:underline'>"downloadmoreram.com"</a> -->
+						<!-- </p> -->
 					</div>
 				</div>
 			</section>
@@ -123,6 +106,7 @@ import ThemeToggle from '@/components/theme-toggle';
 					<span class='text-muted-foreground/60'># {new Date().getFullYear()} {intro.name}</span>
 					<span class='text-primary cursor-blink'>_</span>
 				</div>
+				<p class='text-xs text-muted-foreground/50 mt-4'>styled with the gruvbox theme</p>
 			</footer>
 		</main>
 	</div>
