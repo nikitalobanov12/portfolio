@@ -1,7 +1,8 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import { Github, Linkedin, Mail, ExternalLink, Code } from 'lucide-react';
+import { Github, Linkedin, Mail, ExternalLink } from 'lucide-react';
 import { intro, projects, experience, contacts } from '@/lib/data';
+import { ProjectCard } from '@/components/ProjectCard';
 ---
 
 <Layout title='Nikita Lobanov'>
@@ -23,9 +24,6 @@ import { intro, projects, experience, contacts } from '@/lib/data';
 					<h1 class='text-4xl font-medium text-foreground md:text-5xl'>
             {intro.name}
 					</h1>
-					<p class='text-lg text-muted-foreground'>
-						{intro.title}
-					</p>
 					{intro.description && (
 						<p class='text-muted-foreground leading-relaxed whitespace-pre-line'>
 							{intro.description}
@@ -69,38 +67,7 @@ import { intro, projects, experience, contacts } from '@/lib/data';
 				<h2 class='mb-6 text-sm font-medium uppercase tracking-wider text-muted-foreground'>projects</h2>
 				<div class='space-y-4'>
 					{projects.map(project => (
-						<div class='rounded-md border border-border/50 p-5 transition-all hover:border-border'>
-							<div class='space-y-3'>
-								<h3 class='font-medium text-foreground'>
-									{project.title}
-								</h3>
-								<p class='text-sm text-muted-foreground leading-relaxed whitespace-pre-line'>
-									{project.description}
-								</p>
-								<div class='flex items-center gap-4 text-sm'>
-									{project.liveUrl && (
-										<a
-											href={project.liveUrl}
-											target='_blank'
-											rel='noreferrer'
-											class='flex items-center gap-1.5 text-primary transition-colors hover:text-primary/80'
-										>
-											<ExternalLink size={14} />
-											<span>live</span>
-										</a>
-									)}
-									<a
-										href={project.url}
-										target='_blank'
-										rel='noreferrer'
-										class='flex items-center gap-1.5 text-muted-foreground transition-colors hover:text-foreground'
-									>
-										<Github size={14} />
-										<span>github</span>
-									</a>
-								</div>
-							</div>
-						</div>
+						<ProjectCard client:load project={project} />
 					))}
 				</div>
 			</section>
@@ -121,7 +88,7 @@ import { intro, projects, experience, contacts } from '@/lib/data';
 									<h3 class='font-medium text-foreground group-hover:text-primary transition-colors'>
 										{exp.title}
 									</h3>
-									<ExternalLink size={14} class='text-muted-foreground/50 group-hover:text-primary transition-colors' />
+									<ExternalLink size={14} className='text-muted-foreground/50 group-hover:text-primary transition-colors' />
 								</div>
 								<p class='text-sm text-muted-foreground/80'>
 									{exp.company}
