@@ -21,6 +21,7 @@ export interface Experience {
   company: string;
   url: string;
   duration: string;
+  description: string;
   techStack: string[];
   highlights: ExperienceHighlight[];
 }
@@ -94,6 +95,7 @@ export const experience: Experience[] = [
     company: "Seaspan Corp",
     url: "https://www.seaspancorp.com",
     duration: "May '24 - Aug '24",
+    description: "Built internal tools for the IT department. Worked on a telemetry dashboard for maritime operators and a microservice for automating accounting file ingestion.",
     techStack: ["React", "Spring Boot", "Oracle", "Docker"],
     highlights: [
       {
@@ -120,6 +122,7 @@ export const experience: Experience[] = [
     company: "Affistash",
     url: "https://affistash.com",
     duration: "Mar '23 - Apr '24",
+    description: "Full stack developer at an influencer marketing startup. Focused on backend performance, API infrastructure, and scaling the analytics engine.",
     techStack: ["Node.js", "Redis", "Lua"],
     highlights: [
       {

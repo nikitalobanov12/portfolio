@@ -34,6 +34,11 @@ export function ExperienceCard({ experience }: ExperienceCardProps) {
               </span>
             </div>
 
+            {/* Description */}
+            <p className="text-sm text-muted-foreground line-clamp-2">
+              {experience.description}
+            </p>
+
             {/* Tech Stack Tags */}
             <div className="flex flex-wrap gap-1.5">
               {experience.techStack.map((tech) => (
@@ -45,33 +50,11 @@ export function ExperienceCard({ experience }: ExperienceCardProps) {
                 </span>
               ))}
             </div>
-
-            {/* Preview of first highlight */}
-            {experience.highlights.length > 0 && (
-              <p className="text-sm text-muted-foreground line-clamp-1">
-                <span className="text-primary font-medium">
-                  {experience.highlights[0].title}:
-                </span>{" "}
-                {experience.highlights[0].metric}
-              </p>
-            )}
           </div>
         </button>
       </DialogTrigger>
 
       <DialogContent className="max-w-2xl max-h-[85vh] overflow-y-auto bg-background border-border">
-        {/* Terminal window header */}
-        <div className="flex items-center gap-2 pb-4 border-b border-border">
-          <div className="flex gap-1.5">
-            <div className="w-3 h-3 rounded-full bg-muted-foreground/30" />
-            <div className="w-3 h-3 rounded-full bg-muted-foreground/30" />
-            <div className="w-3 h-3 rounded-full bg-muted-foreground/30" />
-          </div>
-          <span className="text-sm text-muted-foreground ml-2">
-            {experience.company.toLowerCase().replace(/\s+/g, "-")}
-          </span>
-        </div>
-
         <DialogHeader>
           <DialogTitle className="text-xl">
             <span className="text-foreground">{experience.title}</span>
@@ -88,6 +71,9 @@ export function ExperienceCard({ experience }: ExperienceCardProps) {
           <p className="text-sm text-muted-foreground">{experience.duration}</p>
         </DialogHeader>
 
+        {/* Description */}
+        <p className="text-muted-foreground">{experience.description}</p>
+
         {/* Tech Stack */}
         <div className="flex flex-wrap gap-2 py-4">
           {experience.techStack.map((tech) => (
@@ -102,6 +88,7 @@ export function ExperienceCard({ experience }: ExperienceCardProps) {
 
         {/* Highlights */}
         <div className="space-y-4">
+          <h3 className="text-sm text-muted-foreground/60 uppercase tracking-wide">Key Achievements</h3>
           <div className="space-y-3">
             {experience.highlights.map((highlight, index) => (
               <div
