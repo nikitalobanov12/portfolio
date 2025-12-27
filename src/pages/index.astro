@@ -1,109 +1,77 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import { intro, projects, experience, contacts } from '@/lib/data';
-import { ProjectCard } from '@/components/ProjectCard';
+import { engineer, projects, experience, contacts } from '@/lib/data';
+import { ProjectsList } from '@/components/ProjectsList';
+import { ExperienceCard } from '@/components/ExperienceCard';
 ---
 
 <Layout title='nikita@portfolio:~'>
-	<!-- Terminal Window -->
 	<div class='min-h-screen bg-background'>
 		<main class='mx-auto max-w-4xl px-6 py-12'>
-			<!-- Intro Section - Like a terminal session -->
-			<section id='about' class='mb-16'>
+			<!-- About Section -->
+			<section id='about' class='mb-20'>
 				<div class='space-y-4'>
-					<!-- Directory line -->
-					<div class='flex items-center gap-2 text-muted-foreground'>
-						<span class='text-terminal-aqua'>~/about</span>
+					<div class='flex items-center gap-2 text-muted-foreground mb-4'>
+						<span class='text-primary'>~/about</span>
 					</div>
 					
-					<!-- Prompt with name -->
-					<div class='flex items-start gap-2'>
-						<span class='text-primary'>❯</span>
-						<h1 class='text-2xl text-foreground'>{intro.name}</h1>
+					<h1 class='text-2xl text-foreground'>{engineer.name}</h1>
+
+					<div class='space-y-1'>
+						<p class='text-muted-foreground'>
+							<span class='text-muted-foreground/60'>#</span> {engineer.status}
+						</p>
+						<p class='text-muted-foreground'>
+							<span class='text-muted-foreground/60'>#</span> {engineer.specialization}
+						</p>
 					</div>
 
-					<!-- Description as comment -->
-					{intro.description && (
-						<div class='pl-5 space-y-1'>
-							{intro.description.split('\n').map((line: string) => (
-								<p class='text-muted-foreground'>
-									<span class='text-muted-foreground/60'>#</span> {line.trim()}
-								</p>
-							))}
-						</div>
-					)}
-
-					<!-- Links as exports -->
-					<div class='pt-4 space-y-2 pl-5'>
-						<p class='text-muted-foreground'>
-							<span class='text-terminal-purple'>export</span> <span class='text-terminal-aqua'>GITHUB</span>=<a href={contacts.github} target='_blank' rel='noreferrer' class='text-terminal-green hover:underline'>"{contacts.github}"</a>
-						</p>
-						<p class='text-muted-foreground'>
-							<span class='text-terminal-purple'>export</span> <span class='text-terminal-aqua'>LINKEDIN</span>=<a href={contacts.linkedin} target='_blank' rel='noreferrer' class='text-terminal-green hover:underline'>"{contacts.linkedin}"</a>
-						</p>
-						<p class='text-muted-foreground'>
-							<span class='text-terminal-purple'>export</span> <span class='text-terminal-aqua'>EMAIL</span>=<a href={`mailto:${contacts.email}`} class='text-terminal-green hover:underline'>"{contacts.email}"</a>
-						</p>
-						<!-- <p class='text-muted-foreground'> -->
-							<!-- <span class='text-terminal-purple'>export</span> <span class='text-terminal-aqua'>FREE_RAM</span>=<a href={`https://downloadmoreram.com/`} class='text-terminal-green hover:underline'>"downloadmoreram.com"</a> -->
-						<!-- </p> -->
+					<!-- Links -->
+					<div class='flex flex-wrap gap-4 pt-4'>
+						<a href={contacts.github} target='_blank' rel='noreferrer' class='text-primary hover:underline'>
+							github
+						</a>
+						<a href={contacts.linkedin} target='_blank' rel='noreferrer' class='text-primary hover:underline'>
+							linkedin
+						</a>
+						<a href={`mailto:${contacts.email}`} class='text-primary hover:underline'>
+							email
+						</a>
+						<a 
+							href='/resume.pdf' 
+							download='nikita_lobanov_resume.pdf'
+							class='text-primary hover:underline'
+						>
+							resume
+						</a>
 					</div>
-				</div>
-			</section>
-
-			<!-- Projects Section -->
-			<section id='projects' class='mb-16'>
-				<div class='flex items-center gap-2 text-muted-foreground mb-6'>
-					<span class='text-terminal-aqua'>~/projects</span>
-				</div>
-				<div class='flex items-center gap-2 mb-4'>
-					<span class='text-primary'>❯</span>
-					<span class='text-foreground'>ls -la</span>
-				</div>
-				<div class='space-y-3 pl-5'>
-					{projects.map(project => (
-						<ProjectCard client:load project={project} />
-					))}
 				</div>
 			</section>
 
 			<!-- Experience Section -->
-			<section id='experience' class='mb-16'>
+			<section id='experience' class='mb-20'>
 				<div class='flex items-center gap-2 text-muted-foreground mb-6'>
-					<span class='text-terminal-aqua'>~/experience</span>
+					<span class='text-primary'>~/experience</span>
 				</div>
-				<div class='flex items-center gap-2 mb-4'>
-					<span class='text-primary'>❯</span>
-					<span class='text-foreground'>cat work.log</span>
-				</div>
-				<div class='space-y-4 pl-5'>
+				<div class='space-y-4'>
 					{experience.map(exp => (
-						<a
-							href={exp.url}
-							target='_blank'
-							rel='noreferrer'
-							class='group block border-l-2 border-border pl-4 py-2 transition-all hover:border-primary'
-						>
-							<div class='space-y-1'>
-								<div class='flex items-center gap-2'>
-									<span class='text-terminal-yellow'>{exp.title}</span>
-									<span class='text-muted-foreground'>@</span>
-									<span class='text-terminal-aqua'>{exp.company}</span>
-								</div>
-								<p class='text-sm text-muted-foreground'>
-									<span class='text-muted-foreground/60'>#</span> {exp.description}
-								</p>
-							</div>
-						</a>
+						<ExperienceCard client:load experience={exp} />
 					))}
 				</div>
+			</section>
+
+			<!-- Projects Section -->
+			<section id='projects' class='mb-20'>
+				<div class='flex items-center gap-2 text-muted-foreground mb-6'>
+					<span class='text-primary'>~/projects</span>
+				</div>
+				<ProjectsList client:load projects={projects} />
 			</section>
 
 			<!-- Footer -->
 			<footer class='border-t border-border pt-8'>
 				<div class='flex items-center gap-2 text-muted-foreground'>
-					<span class='text-primary'>❯</span>
-					<span class='text-muted-foreground/60'># {new Date().getFullYear()} {intro.name}</span>
+					<span class='text-muted-foreground/60'># {new Date().getFullYear()} {engineer.name}</span>
 					<span class='text-primary cursor-blink'>_</span>
 				</div>
 				<p class='text-xs text-muted-foreground/50 mt-4'>styled with the gruvbox theme</p>

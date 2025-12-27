@@ -5,67 +5,67 @@
 @tailwind utilities;
 
 @layer base {
-	/* Gruvbox Light */
+	/* Material Gruvbox Light - Muted, minimal palette */
 	:root {
-		--background: 48 30% 94%; /* #fbf1c7 */
-		--foreground: 0 0% 16%; /* #282828 */
-		--card: 44 28% 88%; /* #ebdbb2 */
-		--card-foreground: 0 0% 16%;
-		--popover: 44 28% 88%;
-		--popover-foreground: 0 0% 16%;
-		--primary: 104 35% 34%; /* #98971a - gruvbox green */
-		--primary-foreground: 48 30% 94%;
-		--secondary: 44 28% 82%;
-		--secondary-foreground: 0 0% 16%;
-		--muted: 44 22% 80%;
-		--muted-foreground: 24 10% 40%;
-		--accent: 27 75% 49%; /* #d65d0e - gruvbox orange */
-		--accent-foreground: 48 30% 94%;
-		--destructive: 6 96% 46%; /* #cc241d - gruvbox red */
-		--destructive-foreground: 48 30% 94%;
-		--border: 40 18% 70%;
-		--input: 40 18% 70%;
-		--ring: 104 35% 34%;
-		--radius: 0;
+		--background: 40 23% 97%; /* Warm off-white */
+		--foreground: 20 6% 20%; /* Dark warm gray */
+		--card: 40 18% 93%;
+		--card-foreground: 20 6% 20%;
+		--popover: 40 18% 93%;
+		--popover-foreground: 20 6% 20%;
+		--primary: 80 25% 38%; /* Muted olive green */
+		--primary-foreground: 40 23% 97%;
+		--secondary: 40 15% 88%;
+		--secondary-foreground: 20 6% 20%;
+		--muted: 40 12% 85%;
+		--muted-foreground: 20 6% 45%;
+		--accent: 80 25% 38%;
+		--accent-foreground: 40 23% 97%;
+		--destructive: 0 50% 50%;
+		--destructive-foreground: 40 23% 97%;
+		--border: 40 12% 82%;
+		--input: 40 12% 82%;
+		--ring: 80 25% 38%;
+		--radius: 0.25rem;
 
-		/* Terminal-specific colors */
-		--terminal-green: 104 35% 34%;
-		--terminal-yellow: 42 95% 50%;
-		--terminal-blue: 211 54% 45%;
-		--terminal-purple: 323 42% 45%;
-		--terminal-aqua: 157 40% 40%;
-		--terminal-orange: 27 75% 49%;
+		/* Simplified terminal colors - just primary and muted variations */
+		--terminal-green: 80 25% 38%;
+		--terminal-yellow: 45 30% 45%;
+		--terminal-blue: 200 15% 45%;
+		--terminal-purple: 280 15% 50%;
+		--terminal-aqua: 170 20% 40%;
+		--terminal-orange: 30 40% 50%;
 	}
 
-	/* Gruvbox Dark */
+	/* Material Gruvbox Dark - Muted, minimal palette */
 	.dark {
-		--background: 0 0% 16%; /* #282828 */
-		--foreground: 44 28% 82%; /* #ebdbb2 */
-		--card: 0 0% 20%; /* #3c3836 */
-		--card-foreground: 44 28% 82%;
-		--popover: 0 0% 20%;
-		--popover-foreground: 44 28% 82%;
-		--primary: 61 66% 55%; /* #b8bb26 - gruvbox bright green */
-		--primary-foreground: 0 0% 16%;
-		--secondary: 20 7% 26%;
-		--secondary-foreground: 44 28% 82%;
-		--muted: 20 7% 30%;
-		--muted-foreground: 39 17% 60%;
-		--accent: 27 98% 56%; /* #fe8019 - gruvbox bright orange */
-		--accent-foreground: 0 0% 16%;
-		--destructive: 6 96% 59%; /* #fb4934 - gruvbox bright red */
-		--destructive-foreground: 44 28% 82%;
-		--border: 24 9% 32%;
-		--input: 24 9% 32%;
-		--ring: 61 66% 55%;
+		--background: 30 8% 12%; /* Dark warm gray */
+		--foreground: 40 15% 75%; /* Warm light gray */
+		--card: 30 8% 16%;
+		--card-foreground: 40 15% 75%;
+		--popover: 30 8% 16%;
+		--popover-foreground: 40 15% 75%;
+		--primary: 80 35% 55%; /* Brighter olive for dark mode */
+		--primary-foreground: 30 8% 12%;
+		--secondary: 30 6% 22%;
+		--secondary-foreground: 40 15% 75%;
+		--muted: 30 6% 25%;
+		--muted-foreground: 40 10% 55%;
+		--accent: 80 35% 55%;
+		--accent-foreground: 30 8% 12%;
+		--destructive: 0 50% 55%;
+		--destructive-foreground: 40 15% 75%;
+		--border: 30 6% 25%;
+		--input: 30 6% 25%;
+		--ring: 80 35% 55%;
 
-		/* Terminal-specific colors */
-		--terminal-green: 61 66% 55%;
-		--terminal-yellow: 42 95% 58%;
-		--terminal-blue: 175 59% 57%;
-		--terminal-purple: 323 50% 66%;
-		--terminal-aqua: 157 52% 58%;
-		--terminal-orange: 27 98% 56%;
+		/* Simplified terminal colors - muted versions */
+		--terminal-green: 80 35% 55%;
+		--terminal-yellow: 45 35% 55%;
+		--terminal-blue: 200 20% 55%;
+		--terminal-purple: 280 20% 60%;
+		--terminal-aqua: 170 25% 50%;
+		--terminal-orange: 30 45% 55%;
 	}
 
 	* {
