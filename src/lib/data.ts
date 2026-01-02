@@ -153,6 +153,124 @@ export const experience: Experience[] = [
 
 export const projects: Project[] = [
   {
+    title: "Stochi",
+    tagline: "Bio-optimization platform with pharmacokinetic modeling",
+    role: "Solo Developer",
+    architecture: ["Next.js 16", "Go Engine", "pgvector"],
+    url: "https://github.com/nikitalobanov12/stochi",
+    liveUrl: "https://stochi.app",
+    techStack: [
+      "Next.js 16",
+      "Go",
+      "PostgreSQL",
+      "pgvector",
+      "Drizzle",
+      "Transformers.js",
+      "Capacitor",
+    ],
+    images: [],
+    stats: {
+      database_tables: 17,
+      service_modules: 11,
+      server_actions: 13,
+    },
+    bullets: [
+      {
+        category: "Pharmacokinetics",
+        description:
+          "Go engine models absorption/elimination curves using first-order and Michaelis-Menten kinetics with Lambert W analytical solutions",
+      },
+      {
+        category: "Hybrid AI Search",
+        description:
+          "Client-side MiniLM transformer in web worker for sub-100ms fuzzy matching, server-side RAG with pgvector for research Q&A",
+      },
+      {
+        category: "Interaction Graph",
+        description:
+          "Detects timing conflicts, ratio imbalances (Zinc:Copper), and CYP450 enzyme interactions across logged supplements",
+      },
+    ],
+    techDocsHighlights: [
+      {
+        category: "AI/ML Systems",
+        items: [
+          {
+            achievement: "Zero-latency fuzzy search",
+            metric: "Sub-100ms in-browser",
+            method: "MiniLM-L6-v2 (23MB) via Transformers.js in web worker",
+          },
+          {
+            achievement: "Research-grounded Q&A",
+            metric: "1536-dim embeddings",
+            method: "RAG pipeline with Llama 3.1 8B + pgvector cosine similarity",
+          },
+          {
+            achievement: "Hybrid search parsing",
+            metric: "Instant dosage extraction",
+            method: "Regex for structured data, semantic model for supplement names",
+          },
+        ],
+      },
+      {
+        category: "Go Engine",
+        items: [
+          {
+            achievement: "Pharmacokinetic modeling",
+            metric: "First-order + Michaelis-Menten",
+            method: "Lambert W function for saturable absorption (Vit C, Mg, Fe)",
+          },
+          {
+            achievement: "Interaction detection",
+            metric: "3 interaction types",
+            method: "Graph traversal for inhibition, competition, and synergy",
+          },
+          {
+            achievement: "Ratio validation",
+            metric: "Elemental weight conversion",
+            method: "Compound → elemental calculation (e.g., Zinc Picolinate 21%)",
+          },
+        ],
+      },
+      {
+        category: "Database & Architecture",
+        items: [
+          {
+            achievement: "Domain modeling",
+            metric: "17 tables, 4 categories",
+            method: "Drizzle ORM with pgvector for knowledge embeddings",
+          },
+          {
+            achievement: "Dual-backend system",
+            metric: "Next.js + Go",
+            method: "Vercel for CRUD, Fly.io for compute-heavy kinetics",
+          },
+        ],
+      },
+      {
+        category: "Safety & Validation",
+        items: [
+          {
+            achievement: "Deterministic safety bounds",
+            metric: "NIH/FDA limits enforced",
+            method: "Hard limits (Zn 40mg, Fe 45mg) that AI cannot override",
+          },
+          {
+            achievement: "Context-aware bioavailability",
+            metric: "Meal context multipliers",
+            method: "Fat-soluble vitamins get 1.5-2x with meals",
+          },
+        ],
+      },
+    ],
+    description:
+      "A supplement tracking app that detects interactions, timing conflicts, and ratio imbalances using pharmacokinetic modeling.",
+    details: [
+      "I got frustrated with contradictory health information online, so I built something to tell me if my supplement stack has problems. The app knows rules like 'zinc and iron compete for absorption' and warns you when you're doing something suboptimal.",
+      "The Go backend models how supplements absorb and clear from your body over time, using actual pharmacokinetic equations. The frontend has a transformer model running in a web worker so you can fuzzy-search supplements without server round-trips.",
+    ],
+  },
+  {
     title: "Panday",
     tagline: "RAG platform with custom Go TCP/HTTP Proxy",
     role: "Tech Lead (Team of 8)",

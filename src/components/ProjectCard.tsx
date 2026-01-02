@@ -9,22 +9,18 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
-import { ProjectStats } from "@/components/ProjectStats";
 import type { Project } from "@/lib/data";
 
 interface ProjectCardProps {
   project: Project;
-  onOpenDocs?: () => void;
 }
 
-export function ProjectCard({ project, onOpenDocs }: ProjectCardProps) {
+export function ProjectCard({ project }: ProjectCardProps) {
   const [open, setOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const hasImages = project.images && project.images.length > 0;
   const hasMultipleImages = project.images && project.images.length > 1;
-  const hasStats = project.stats && Object.keys(project.stats).length > 0;
-  const hasBullets = project.bullets && project.bullets.length > 0;
   const hasTechDocs =
     project.techDocsHighlights && project.techDocsHighlights.length > 0;
 
@@ -79,16 +75,16 @@ export function ProjectCard({ project, onOpenDocs }: ProjectCardProps) {
           )}
 
           {/* Links */}
-          <div className="flex items-center gap-4 text-sm pt-1">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm pt-1">
             {project.liveUrl && (
               <a
                 href={project.liveUrl}
                 target="_blank"
                 rel="noreferrer"
                 onClick={(e) => e.stopPropagation()}
-                className="text-primary hover:underline"
+                className="text-primary hover:underline underline-offset-2"
               >
-                live
+                {project.liveUrl.replace("https://", "")}
               </a>
             )}
             <a
@@ -96,9 +92,9 @@ export function ProjectCard({ project, onOpenDocs }: ProjectCardProps) {
               target="_blank"
               rel="noreferrer"
               onClick={(e) => e.stopPropagation()}
-              className="text-muted-foreground hover:text-foreground hover:underline"
+              className="text-muted-foreground hover:text-foreground hover:underline underline-offset-2"
             >
-              github
+              {project.url.replace("https://www.", "").replace("https://", "")}
             </a>
           </div>
         </div>
@@ -190,54 +186,52 @@ export function ProjectCard({ project, onOpenDocs }: ProjectCardProps) {
             </div>
           )}
 
-          {/* Stats Code Block */}
-          {hasStats && (
-            <div className="mt-4">
-              <ProjectStats title={project.title} stats={project.stats} />
-            </div>
-          )}
-
           <DialogDescription asChild>
-            <div className="space-y-4 mt-4">
-              {/* Technical Bullets (new format) */}
-              {hasBullets && (
-                <div className="space-y-3">
-                  <div className="space-y-3 border-l-2 border-border pl-4">
-                    {project.bullets.map((bullet, index) => (
-                      <div key={index} className="space-y-1">
-                        <span className="text-xs px-2 py-0.5 bg-primary/10 text-primary rounded font-medium">
-                          {bullet.category}
-                        </span>
-                        <p className="text-sm text-muted-foreground leading-relaxed">
-                          {bullet.description}
-                        </p>
-                      </div>
-                    ))}
+            <div className="space-y-6 mt-4">
+              {/* Technical Achievements (inline from techDocsHighlights) */}
+              {hasTechDocs && project.techDocsHighlights!.map((category, categoryIndex) => (
+                <div key={categoryIndex} className="space-y-3">
+                  {/* Category header */}
+                  <h3 className="text-primary font-medium border-b border-border pb-2">
+                    {category.category}
+                  </h3>
+
+                  {/* Table-like display */}
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-sm">
+                      <thead>
+                        <tr className="text-left text-muted-foreground/60 border-b border-border">
+                          <th className="pb-2 pr-4 font-normal">Achievement</th>
+                          <th className="pb-2 pr-4 font-normal">Metric</th>
+                          <th className="pb-2 font-normal">Method</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-border/50">
+                        {category.items.map((item, itemIndex) => (
+                          <tr key={itemIndex} className="align-top">
+                            <td className="py-2 pr-4 text-foreground">
+                              {item.achievement}
+                            </td>
+                            <td className="py-2 pr-4 text-primary font-medium">
+                              {item.metric}
+                            </td>
+                            <td className="py-2 text-muted-foreground">
+                              {item.method}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
                   </div>
                 </div>
+              ))}
+
+              {/* Fallback to description if no tech docs */}
+              {!hasTechDocs && project.description && (
+                <p className="text-sm leading-relaxed text-muted-foreground">
+                  {project.description}
+                </p>
               )}
-
-              {/* Legacy details (for backward compatibility) */}
-              {!hasBullets &&
-                project.details &&
-                project.details.length > 0 && (
-                  <ul className="space-y-3 text-sm text-muted-foreground border-l-2 border-border pl-4">
-                    {project.details.map((detail, index) => (
-                      <li key={index} className="leading-relaxed">
-                        {detail}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-
-              {/* Fallback to description if no details or bullets */}
-              {!hasBullets &&
-                (!project.details || project.details.length === 0) &&
-                project.description && (
-                  <p className="text-sm leading-relaxed text-muted-foreground">
-                    {project.description}
-                  </p>
-                )}
             </div>
           </DialogDescription>
 
@@ -261,19 +255,6 @@ export function ProjectCard({ project, onOpenDocs }: ProjectCardProps) {
             >
               github
             </a>
-
-            {/* Man page link */}
-            {hasTechDocs && onOpenDocs && (
-              <button
-                onClick={() => {
-                  setOpen(false);
-                  onOpenDocs();
-                }}
-                className="text-muted-foreground hover:text-primary hover:underline font-mono"
-              >
-                [docs]
-              </button>
-            )}
           </div>
         </DialogContent>
       </Dialog>
