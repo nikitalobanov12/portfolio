@@ -28,8 +28,8 @@ DialogOverlay.displayName = DialogPrimitive.Overlay.displayName;
 
 const DialogContent = React.forwardRef<
 	React.ElementRef<typeof DialogPrimitive.Content>,
-	React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content>
->(({ className, children, ...props }, ref) => (
+	React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content> & { hideHeader?: boolean }
+>(({ className, children, hideHeader, ...props }, ref) => (
 	<DialogPortal>
 		<DialogOverlay />
 		<DialogPrimitive.Content
@@ -40,17 +40,6 @@ const DialogContent = React.forwardRef<
 			)}
 			{...props}
 		>
-			{/* Terminal title bar */}
-			<div className='flex-shrink-0 flex items-center justify-between border-b border-border bg-card px-4 py-2'>
-				<div className='flex items-center gap-2'>
-					<div className='flex gap-1.5'>
-						<DialogPrimitive.Close className='h-3 w-3 rounded-full bg-destructive transition-opacity hover:opacity-80' />
-						<span className='h-3 w-3 rounded-full bg-terminal-yellow'></span>
-						<span className='h-3 w-3 rounded-full bg-terminal-green'></span>
-					</div>
-				</div>
-				<span className='text-xs text-muted-foreground'>project</span>
-			</div>
 			{/* Content area with padding and scroll */}
 			<div className='flex-1 overflow-y-auto p-6 space-y-4'>
 				{children}

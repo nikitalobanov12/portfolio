@@ -21,8 +21,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
 
   const hasImages = project.images && project.images.length > 0;
   const hasMultipleImages = project.images && project.images.length > 1;
-  const hasTechDocs =
-    project.techDocsHighlights && project.techDocsHighlights.length > 0;
+  const hasTechnicalDetails = project.technicalDetails && project.technicalDetails.length > 0;
 
   const displayDescription = project.tagline || project.description || "";
 
@@ -48,17 +47,10 @@ export function ProjectCard({ project }: ProjectCardProps) {
         className="cursor-pointer group border-l-2 border-border pl-4 py-3 transition-all hover:border-primary hover:bg-card/50"
       >
         <div className="space-y-2">
-          {/* Project title with role badge */}
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="text-foreground font-medium group-hover:text-primary transition-colors">
-              {project.title}
-            </span>
-            {project.role && (
-              <span className="text-xs text-muted-foreground bg-muted px-1.5 py-0.5 rounded">
-                {project.role}
-              </span>
-            )}
-          </div>
+          {/* Project title */}
+          <span className="text-foreground font-medium group-hover:text-primary transition-colors">
+            {project.title}
+          </span>
 
           {/* Tagline/Description */}
           <p className="text-sm text-muted-foreground">{displayDescription}</p>
@@ -106,9 +98,16 @@ export function ProjectCard({ project }: ProjectCardProps) {
           {/* Terminal window header */}
           <div className="flex items-center gap-2 pb-4 border-b border-border">
             <div className="flex gap-1.5">
-              <div className="w-3 h-3 rounded-full bg-muted-foreground/30" />
-              <div className="w-3 h-3 rounded-full bg-muted-foreground/30" />
-              <div className="w-3 h-3 rounded-full bg-muted-foreground/30" />
+              <button
+                onClick={() => setOpen(false)}
+                className="w-3 h-3 rounded-full bg-red-500 hover:bg-red-600 flex items-center justify-center group transition-colors"
+              >
+                <span className="text-red-900 text-[8px] font-bold opacity-0 group-hover:opacity-100 transition-opacity">
+                  ×
+                </span>
+              </button>
+              <div className="w-3 h-3 rounded-full bg-yellow-500" />
+              <div className="w-3 h-3 rounded-full bg-green-500" />
             </div>
             <span className="text-sm text-muted-foreground ml-2">
               {project.title.toLowerCase().replace(/\s+/g, "-")}
@@ -116,13 +115,8 @@ export function ProjectCard({ project }: ProjectCardProps) {
           </div>
 
           <DialogHeader>
-            <DialogTitle className="text-xl text-foreground flex flex-wrap items-center gap-2">
+            <DialogTitle className="text-xl text-foreground">
               {project.title}
-              {project.role && (
-                <span className="text-sm font-normal text-muted-foreground bg-muted px-2 py-0.5 rounded">
-                  {project.role}
-                </span>
-              )}
             </DialogTitle>
 
             {/* Tagline */}
@@ -188,46 +182,29 @@ export function ProjectCard({ project }: ProjectCardProps) {
 
           <DialogDescription asChild>
             <div className="space-y-6 mt-4">
-              {/* Technical Achievements (inline from techDocsHighlights) */}
-              {hasTechDocs && project.techDocsHighlights!.map((category, categoryIndex) => (
-                <div key={categoryIndex} className="space-y-3">
-                  {/* Category header */}
-                  <h3 className="text-primary font-medium border-b border-border pb-2">
-                    {category.category}
+              {/* Summary */}
+              {project.summary && (
+                <p className="text-sm leading-relaxed text-muted-foreground">
+                  {project.summary}
+                </p>
+              )}
+
+              {/* Technical Details */}
+              {hasTechnicalDetails && (
+                <div className="space-y-4">
+                  <h3 className="text-sm font-medium text-foreground border-b border-border pb-2">
+                    Technical Details
                   </h3>
-
-                  {/* Table-like display */}
-                  <div className="overflow-x-auto">
-                    <table className="w-full text-sm">
-                      <thead>
-                        <tr className="text-left text-muted-foreground/60 border-b border-border">
-                          <th className="pb-2 pr-4 font-normal">Achievement</th>
-                          <th className="pb-2 pr-4 font-normal">Metric</th>
-                          <th className="pb-2 font-normal">Method</th>
-                        </tr>
-                      </thead>
-                      <tbody className="divide-y divide-border/50">
-                        {category.items.map((item, itemIndex) => (
-                          <tr key={itemIndex} className="align-top">
-                            <td className="py-2 pr-4 text-foreground">
-                              {item.achievement}
-                            </td>
-                            <td className="py-2 pr-4 text-primary font-medium">
-                              {item.metric}
-                            </td>
-                            <td className="py-2 text-muted-foreground">
-                              {item.method}
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
+                  {project.technicalDetails.map((paragraph, index) => (
+                    <p key={index} className="text-sm leading-relaxed text-muted-foreground">
+                      {paragraph}
+                    </p>
+                  ))}
                 </div>
-              ))}
+              )}
 
-              {/* Fallback to description if no tech docs */}
-              {!hasTechDocs && project.description && (
+              {/* Fallback to description if no summary */}
+              {!project.summary && project.description && (
                 <p className="text-sm leading-relaxed text-muted-foreground">
                   {project.description}
                 </p>
