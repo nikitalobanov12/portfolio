@@ -159,7 +159,7 @@ export const experience: Experience[] = [
 export const projects: Project[] = [
   {
     title: "Stochi",
-    tagline: "Bio-optimization platform with pharmacokinetic modeling",
+    tagline: "Supplement tracker that catches interactions and timing issues",
     url: "https://github.com/nikitalobanov12/stochi",
     liveUrl: "https://stochi.vercel.app",
     techStack: [
@@ -173,18 +173,18 @@ export const projects: Project[] = [
     ],
     images: [],
     summary:
-      "I got really into optimizing my health and kept running into contradictory information about supplements online. So I built something to tell me if my stack has problems—like when two supplements compete for absorption or when I'm taking them in the wrong ratio.",
+      "I got really into health optimization and kept finding contradictory info about supplements online. So I built something that tells me when my stack has issues, like if two things compete for absorption or if I'm taking them in the wrong ratio.",
     technicalDetails: [
-      "The app is split into a Next.js frontend on Vercel and a Go backend on Fly.io, both talking to a shared Postgres database. The frontend handles auth and CRUD, while Go handles the heavy computation—pharmacokinetic modeling would be painfully slow in JavaScript.",
-      "The Go engine models how supplements absorb and clear from your body using real pharmacokinetic equations. Most supplements follow first-order kinetics (exponential decay), but some like Vitamin C and Magnesium have saturable absorption that follows Michaelis-Menten kinetics. I solve these analytically using the Lambert W function rather than numerical approximation.",
-      "The interaction detection walks a graph of known supplement relationships. It checks three things: timing conflicts (zinc and iron compete for DMT1 transporters, so you shouldn't take them together), ratio imbalances (high zinc depletes copper, so you need to maintain an 8-15:1 ratio), and CYP450 enzyme interactions (some supplements affect how your liver metabolizes others).",
-      "For the knowledge base, I scraped research summaries from Examine.com, chunked them into ~800 token segments, and generated embeddings with OpenAI's text-embedding-3-small. These live in Postgres with pgvector. When you ask a question, Llama 3.1 rewrites it with medical terminology, we do a cosine similarity search, then Llama generates an answer grounded in the retrieved context.",
-      "The command bar needed to feel instant, so I run a small transformer (MiniLM-L6-v2, about 23MB) entirely in the browser via Transformers.js. It runs in a web worker so it doesn't block the UI. You get sub-100ms fuzzy matching on supplement names without any server round-trips—type 'mag' and it knows you mean magnesium.",
+      "The app has a Next.js frontend on Vercel and a Go backend on Fly.io. They share a Postgres database. I put the heavy math in Go because doing pharmacokinetic calculations in JavaScript would be way too slow.",
+      "The Go part figures out how supplements absorb and clear from your body. Most follow simple exponential decay, but things like Vitamin C and Magnesium saturate at high doses, so I had to use different equations for those. I solve them with the Lambert W function instead of just approximating.",
+      "For interactions, I have a graph of how supplements relate to each other. It checks timing conflicts (zinc and iron fight for the same transporter), ratio problems (too much zinc depletes copper), and liver enzyme stuff (some supplements mess with how you metabolize others).",
+      "I scraped research from Examine.com, broke it into chunks, and made embeddings with OpenAI. When you ask a question, Llama rewrites it with medical terms, we search for relevant chunks, then Llama writes an answer based on what it found. So you get answers backed by actual research instead of made up stuff.",
+      "The search bar runs a small AI model right in your browser using Transformers.js. It's in a web worker so it doesn't freeze anything. You can type 'mag' and it knows you mean magnesium, no server needed.",
     ],
   },
   {
     title: "Panday",
-    tagline: "Career navigation for skilled trades apprentices",
+    tagline: "Helps trades apprentices figure out their path to certification",
     url: "https://www.github.com/panday-team/panday",
     liveUrl: "https://panday.app",
     techStack: [
@@ -198,35 +198,35 @@ export const projects: Project[] = [
     ],
     images: ["/projects/panday-1.png", "/projects/panday-2.png"],
     summary:
-      "A capstone project built in collaboration with ConnectHer to help skilled trades apprentices—particularly women and underrepresented groups—navigate their path to Red Seal certification. Users complete a short onboarding to identify where they are in their apprenticeship, and the app generates a personalized interactive roadmap with curated info about training requirements, eligibility, and common roadblocks.",
+      "Built this for my capstone with ConnectHer, an org that helps women and underrepresented groups in trades. The app helps apprentices understand what they need to do to get their Red Seal. You tell it where you're at, and it shows you a roadmap with all the requirements, training info, and common issues people run into.",
     technicalDetails: [
-      "The core feature is an AI chat that lets users ask natural language questions about their journey. We built a RAG pipeline that chunks official BC program documentation, embeds it with OpenAI, and stores the vectors in PostgreSQL using pgvector with an HNSW index. Answers are grounded in the actual regulations and include cited sources so users can verify the information.",
-      "One interesting problem: we needed Redis for caching but deployed to Vercel, which is serverless. The standard Redis client uses TCP, but Upstash (serverless Redis) only exposes HTTP. Rather than rewrite all our caching code, I built a TCP-to-HTTP proxy in Go that intercepts Redis protocol commands and translates them to Upstash REST calls. The app thinks it's talking to Redis, but it's actually going through my proxy.",
-      "We cut OpenAI API costs by about 80% with a simple caching layer. Most users ask similar questions, so we cache both the query embeddings and the generated responses with a 5-minute TTL. Cache hits skip the expensive API calls entirely.",
-      "The interactive roadmap is built with React Flow. Users see their full apprenticeship journey as a node graph, with their current stage highlighted. The tricky part was collision detection for node positioning—the naive O(n²) approach was too slow with 100+ nodes. I switched to grid-based spatial partitioning, which brought it down to O(n) by only checking nodes in adjacent grid cells.",
-      "Leading a team of 8 (5 developers, 3 designers) was the hardest part. It wasn't the code—it was learning how to split up work effectively, give useful feedback in code reviews, and make sure everyone understood how the pieces fit together. We ended up with 515 passing tests across 26 files.",
+      "The main thing is an AI chat where you can ask questions about your apprenticeship. We took all the official BC program docs, chunked them up, made embeddings, and stored them in Postgres with pgvector. When you ask something, it finds the relevant parts and gives you an answer with sources you can check.",
+      "We had a funny problem where we needed Redis but were on Vercel which is serverless. Normal Redis uses TCP but Upstash only does HTTP. Instead of rewriting everything, I made a proxy in Go that translates between the two. The app thinks it's talking to Redis but it's actually going through my proxy.",
+      "We saved about 80% on OpenAI costs just by caching. People ask similar questions, so we cache the embeddings and responses for 5 minutes. If someone asks the same thing, we skip the API call.",
+      "The roadmap uses React Flow to show your whole journey as a graph. Getting the nodes to not overlap was tricky. The simple approach checks every node against every other node which gets slow fast. I switched to a grid system where you only check nearby nodes, which made it way faster.",
+      "Leading 8 people (5 devs, 3 designers) was honestly harder than the code. Figuring out how to split work, give good PR feedback, and keep everyone on the same page took a lot of learning. We ended up with 515 tests passing which I'm pretty proud of.",
     ],
   },
   {
     title: "Dayflow",
-    tagline: "Local-first AI planner with 0ms perceived latency",
+    tagline: "Task planner that feels instant",
     url: "https://github.com/nikitalobanov12/dayflow",
     liveUrl: "https://dayflow.ca",
     techStack: ["React 19", "Tauri 2.0", "Supabase", "SQLite", "Stripe"],
     images: [],
     summary:
-      "I was frustrated with every task app I tried—I wanted to type 'finish the report by Friday' and have it show up on my calendar automatically. So I built a desktop app that does exactly that, and it grew to over 300 active users.",
+      "I couldn't find a task app I liked. I wanted to type 'finish the report by Friday' and have it just show up on my calendar. So I built one that does that, and it got to 300+ users.",
     technicalDetails: [
-      "The app feels instant because of aggressive optimistic updates. When you create a task, the UI updates immediately while the sync happens in the background. I use React 19's useOptimistic hook for this—if the server request fails, the UI automatically rolls back to the previous state. This gives you 0ms perceived latency even on slow connections.",
-      "The AI scheduling uses Gemini 1.5 Flash via Supabase Edge Functions. When you type something like 'finish the report by Friday', it parses the natural language into structured task data—inferring priority, time estimates, and categories based on your existing tasks. It's timezone-aware and handles DST correctly.",
-      "I built it with Tauri 2.0, which lets you write a React frontend that compiles to native binaries for Windows, macOS, and Linux. The Rust backend handles platform-specific stuff like native window controls, system tray integration, and local notifications for reminders.",
-      "The caching layer uses a bounded LRU cache (25-50MB depending on available memory) with hit counting for eviction decisions. Hot data stays in memory, warm data goes to SQLite, cold data lives only in Supabase.",
-      "Monetization is through Stripe subscriptions. The Edge Functions handle 7+ webhook event types for the full subscription lifecycle—creation, renewal, cancellation, payment failures, etc.",
+      "The app feels instant because it doesn't wait for the server. When you do something, the UI updates right away and syncs in the background. If the sync fails, it rolls back automatically. React 19 has a hook for this that makes it pretty easy.",
+      "The AI part uses Gemini through Supabase Edge Functions. You type something like 'finish the report by Friday' and it figures out the priority, how long it'll take, and what category it belongs in based on your other tasks. It handles timezones and daylight saving correctly which was annoying to get right.",
+      "I used Tauri so I could write React but ship native apps for Windows, Mac, and Linux. The Rust part handles stuff like the system tray and native notifications.",
+      "There's a cache that keeps hot data in memory (25-50MB depending on your RAM), puts warm data in SQLite, and only goes to Supabase for cold data. It tracks what gets accessed a lot and keeps that stuff close.",
+      "I charge through Stripe. The backend handles all the webhook stuff for subscriptions, renewals, cancellations, failed payments, etc.",
     ],
   },
   {
     title: "Circles",
-    tagline: "Real-time social platform for friend groups",
+    tagline: "Private social app for friend groups",
     url: "https://github.com/nikitalobanov12/circle",
     liveUrl: "https://circles.nikitalobanov.com",
     techStack: [
@@ -241,26 +241,26 @@ export const projects: Project[] = [
     ],
     images: ["/projects/circles-1.png"],
     summary:
-      "A private social app for friend groups—something between Instagram and iMessage. You can share photos, chat in real-time, and see where everyone is. No algorithm, no ads, just your actual friends.",
+      "Somewhere between Instagram and iMessage. You can share photos, chat in real-time, and see where your friends are. No algorithm, no ads, just your actual friends.",
     technicalDetails: [
-      "Real-time messaging uses Pusher with a dual-channel architecture. Each user subscribes to their own channel for notifications (new messages, friend requests) plus a channel for each active conversation. This scales well because you only get updates for conversations you're currently viewing.",
-      "Messages update optimistically with a state machine: sending → sent → failed. If the server request fails, the message shows a retry button instead of disappearing. Typing indicators use a 2-second debounce on the send side and 3-second auto-expire on display, so they feel responsive without spamming the server.",
-      "We reduced API calls by 90% through batching and caching. Instead of fetching online status for each friend individually, we have a single endpoint that returns status for all friends at once. The caching is three layers: Redis for shared data (online status, unread counts), in-memory TTL cache for hot data, and Prisma Accelerate at the query level.",
-      "The database schema has 17 models with 40+ indexes. Some interesting patterns: the Follow model is self-referential (users follow users), the Activity model is polymorphic (can reference posts, comments, or likes), and we use composite indexes on common query patterns like 'all posts in a circle, ordered by date'.",
-      "Auth is NextAuth v5 with both OAuth (Google) and credentials providers. We auto-generate usernames from email addresses and handle the edge cases around duplicate usernames, email verification, and session management.",
+      "Real-time stuff uses Pusher. Each person has their own channel for notifications plus a channel for each conversation they're in. This way you only get updates for chats you're actually looking at.",
+      "Messages show up instantly before the server confirms them. They go through states: sending, sent, or failed. If something fails you get a retry button. Typing indicators have a 2 second delay before sending and disappear after 3 seconds so they're not annoying.",
+      "We cut API calls by 90% by batching things together. Instead of checking if each friend is online separately, one endpoint returns everyone's status at once. Caching is three layers: Redis for stuff everyone needs, in-memory for hot data, and Prisma Accelerate for queries.",
+      "The database has 17 tables with 40+ indexes. Some fun patterns: users can follow other users (self-referential), activities can point to posts or comments or likes (polymorphic), and we have indexes set up for common queries like 'all posts in this circle sorted by date'.",
+      "Auth is NextAuth with Google login and regular email/password. We auto-generate usernames from emails and handle all the edge cases like duplicate names and email verification.",
     ],
   },
   {
     title: "H2L Design Studio",
-    tagline: "Freelance designer portfolio",
+    tagline: "Portfolio site for a local designer",
     url: "https://github.com/nikitalobanov12/H2L-Design-Studio",
     liveUrl: "https://h2ldesignstudio.com",
     techStack: ["HTML", "CSS", "JavaScript"],
     images: ["/projects/h2l-1.png"],
     summary:
-      "One of my first web projects. A local designer needed a simple portfolio site, and I built it for them. No frameworks, no build tools—just HTML, CSS, and JavaScript files in a folder.",
+      "One of my first projects. A designer needed a portfolio and I made one. No frameworks, no build step, just HTML, CSS, and JavaScript.",
     technicalDetails: [
-      "Looking back at the code now is a good reminder of how far I've come. But it taught me the fundamentals: semantic HTML, CSS layouts before flexbox was everywhere, vanilla JavaScript DOM manipulation. The site still works today and the client is still using it.",
+      "Looking at this code now is funny. But it taught me the basics: proper HTML structure, CSS layouts before flexbox was everywhere, vanilla JS for interactions. The site still works and they still use it.",
     ],
   },
 ];
