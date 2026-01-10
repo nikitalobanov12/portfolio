@@ -26,6 +26,12 @@ import { ExperienceCard } from '@/components/ExperienceCard';
 						</p>
 					</div>
 
+					{engineer.introduction && (
+						<p class='text-foreground/80 leading-relaxed pt-2'>
+							{engineer.introduction}
+						</p>
+					)}
+
 					<!-- Links -->
 					<div class='flex flex-wrap gap-4 pt-4'>
 						<a href={contacts.github} target='_blank' rel='noreferrer' class='text-primary hover:underline'>

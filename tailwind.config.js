@@ -15,8 +15,8 @@ export default {
 		},
 		extend: {
 		fontFamily: {
-			mono: ['Geist Mono Variable', 'ui-monospace', 'SFMono-Regular', 'monospace'],
-			sans: ['Geist Variable', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+			mono: ['ui-monospace', 'SFMono-Regular', 'SF Mono', 'Menlo', 'Consolas', 'monospace'],
+			sans: ['Roboto Flex Variable', 'ui-sans-serif', 'system-ui', 'sans-serif'],
 		},
 			colors: {
 				border: 'hsl(var(--border))',

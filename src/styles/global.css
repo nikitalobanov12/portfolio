@@ -1,5 +1,4 @@
-@import '@fontsource-variable/geist';
-@import '@fontsource-variable/geist-mono';
+@import '@fontsource-variable/roboto-flex';
 
 @tailwind base;
 @tailwind components;
@@ -82,14 +81,14 @@
 		@apply bg-background text-foreground font-mono antialiased;
 	}
 
-	/* All text uses Geist for a clean modern feel */
+	/* All text uses Roboto Flex for a clean modern feel */
 	h1, h2, h3, h4, h5, h6, p, span, a, li, div {
-		font-family: 'Geist Variable', ui-sans-serif, system-ui, sans-serif;
+		font-family: 'Roboto Flex Variable', ui-sans-serif, system-ui, sans-serif;
 	}
 
-	/* Code blocks use Geist Mono */
+	/* Code blocks use system monospace */
 	code, pre, kbd, samp {
-		font-family: 'Geist Mono Variable', ui-monospace, SFMono-Regular, monospace;
+		font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
 	}
 
 	::selection {

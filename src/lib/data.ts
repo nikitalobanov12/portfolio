@@ -6,6 +6,7 @@ export interface Engineer {
   name: string;
   status: string;
   specialization: string;
+  introduction: string;
   stack: string[];
   current_focus: string;
 }
@@ -78,6 +79,7 @@ export const engineer: Engineer = {
   name: "Nikita Lobanov",
   status: "Canadian Citizen | CS @ BCIT (Grad 2026)",
   specialization: "Full Stack Developer",
+  introduction: "", // Add your introduction paragraph here
   stack: ["Go", "TypeScript", "Next.js", "AWS", "Tauri", "Postgres"],
   current_focus: "",
 };
