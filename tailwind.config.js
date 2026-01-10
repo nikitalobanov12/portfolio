@@ -14,10 +14,10 @@ export default {
 			},
 		},
 		extend: {
-			fontFamily: {
-				mono: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'monospace'],
-				sans: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'monospace'],
-			},
+		fontFamily: {
+			mono: ['Geist Mono Variable', 'ui-monospace', 'SFMono-Regular', 'monospace'],
+			sans: ['Geist Variable', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+		},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',

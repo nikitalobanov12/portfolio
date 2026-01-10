@@ -77,9 +77,9 @@ export interface Contacts {
 export const engineer: Engineer = {
   name: "Nikita Lobanov",
   status: "Canadian Citizen | CS @ BCIT (Grad 2026)",
-  specialization: "Full Stack Web Development",
+  specialization: "Full Stack Developer",
   stack: ["Go", "TypeScript", "Next.js", "AWS", "Tauri", "Postgres"],
-  current_focus: "Building Stochi (Bio-optimization platform)",
+  current_focus: "",
 };
 
 // Legacy export for backward compatibility
@@ -127,8 +127,8 @@ export const experience: Experience[] = [
     url: "https://affistash.com",
     duration: "Mar '23 - Apr '24",
     description:
-      "Full stack developer at an influencer marketing startup. Focused on backend performance, API infrastructure, and scaling the analytics engine.",
-    techStack: ["Node.js", "Redis", "Lua"],
+      " Joined a founding team of 3 to build and launch a B2B SaaS platform that automates partnerships between brands and affiliate marketers, building a Next.js full stack application integrated with Firebase and a Framer landing page.",
+    techStack: ["Node.js", "Firebase"],
     highlights: [
       {
         title: "Performance",
