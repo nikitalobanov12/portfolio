@@ -202,7 +202,7 @@ export const projects: Project[] = [
   {
     title: "Stochi",
     tagline:
-      "Bio-optimization platform for supplement tracking with AI-powered safety guardrails",
+      "Tracks supplements and warns about dangerous interactions, timing conflicts, and dosage limits",
     url: "https://github.com/nikitalobanov12/stochi",
     liveUrl: "https://stochi.vercel.app",
     techStack: [
@@ -227,7 +227,7 @@ export const projects: Project[] = [
   {
     title: "Panday",
     tagline:
-      "Interactive career roadmap platform for BC skilled trades apprentices",
+      "Career roadmap platform for BC trades apprentices with interactive visualizations and AI guidance",
     url: "https://www.github.com/panday-team/panday",
     liveUrl: "https://panday.app",
     techStack: [
@@ -251,7 +251,7 @@ export const projects: Project[] = [
   },
   {
     title: "Dayflow",
-    tagline: "Task planner that feels instant",
+    tagline: "Task manager that converts natural language into scheduled tasks",
     url: "https://github.com/nikitalobanov12/dayflow",
     liveUrl: "https://dayflow.ca",
     techStack: ["React 19", "Tauri 2.0", "Supabase", "SQLite", "Stripe"],
@@ -268,7 +268,7 @@ export const projects: Project[] = [
   },
   {
     title: "Circles",
-    tagline: "Private social app for friend groups",
+    tagline: "Private photo sharing and group chat for close friends without algorithms",
     url: "https://github.com/nikitalobanov12/circle",
     liveUrl: "https://circles.nikitalobanov.com",
     techStack: [
