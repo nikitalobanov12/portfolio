@@ -1,0 +1,138 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[left=0.45in, right=0.45in, top=0.4in, bottom=0.4in]{geometry}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage{pifont}
+
+\usepackage[default]{roboto} 
+\usepackage[T1]{fontenc}
+\linespread{0.9}
+
+\pagestyle{empty}
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+\titleformat{\section}{
+  \vspace{-5pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-4pt}]
+
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-1pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{1pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-6pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-6pt}
+}
+
+\newcommand{\resumeItemListStart}{\begin{itemize}[itemsep=2pt]}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-2pt}}
+
+\renewcommand\labelitemi{\ding{108}}
+
+\begin{document}
+
+\begin{center}
+    \textbf{\Huge Nikita Lobanov} \\ \vspace{4pt}
+    \footnotesize Canadian Citizen $|$ (778) 929-3925 $|$ \href{mailto:nikita@nikitalobanov.com}{\underline{nikita@nikitalobanov.com}} $|$ 
+    \href{https://nikitalobanov.com }{\underline{nikitalobanov.com}} $|$ 
+    \href{https://github.com/nikitalobanov12 }{\underline{github.com/nikitalobanov12}} $|$ 
+    \href{https://linkedin.com/in/nikitalobanov }{\underline{linkedin.com/in/nikitalobanov}}
+\end{center}
+
+\section{Education}
+  \begin{itemize}[leftmargin=0.15in, label={}]
+    \resumeSubheading
+      {British Columbia Institute of Technology}{Expected April 2026}
+      {Full Stack Web Development Diploma}{Vancouver, BC}
+      \resumeItemListStart
+        \resumeItem{Leadership \& Community: BCIT Computing Club Member, Peer Mentorship Program}
+      \resumeItemListEnd
+      \resumeSubheading
+      {Langara College}{September 2022 - April 2024}
+      {Associate of Science, Computer Science}{Vancouver, BC}
+  \end{itemize}
+
+\section{Experience}
+  \begin{itemize}[leftmargin=0.15in, label={}]
+
+    \resumeSubheading
+      {Vero Ventures}{Jan 2026 -- Present}
+      {Software Engineer Intern}{Vancouver, BC}
+      \resumeItemListStart
+        \resumeItem{Engineered a distributed Python web scraper using Playwright and AsyncIO to ingest 40,000+ insurance advisor leads from 6 major directories, implementing proxy rotation and rate limiting to build a lead list of insurance advisors.}
+       \resumeItem{Architected Terraform IaC for Cloudflare CI/CD with GitHub Actions, ephemeral previews, Playwright E2E, and SonarCloud for 10+ daily zero-downtime deploys.}
+      \resumeItemListEnd
+
+  \resumeSubheading
+      {Seaspan Corp}{May 2024 -- Aug 2024}
+      {Software Development Intern}{Vancouver, BC}
+      \resumeItemListStart
+        \resumeItem{Accelerated maritime anomaly detection 10x by building a real-time telemetry pipeline processing 500MB+ daily Oracle engine logs via WebSockets, aggregating vessel sensor data into time-series React dashboards for fleet operations teams.}
+        \resumeItem{Eliminated 160+ monthly manual hours by optimizing a Spring Boot microservice with circuit breakers to validate 1,400+ EDI/CSV freight manifests via Oracle ERP integration.}
+        \resumeItem{Cut SQL reporting latency by 99.8\% (4 min to under 500ms) by designing composite B-tree indexes and PostgreSQL materialized views on 50M+ row partitioned tables, enforcing strict RLS policies for multi-tenant maritime data access.}
+        \resumeItem{Hardened data ingestion resilience by developing a PL/SQL error-handling framework, reducing database write-failures by 15\% during peak ingestion and ensuring zero data loss for vessel telemetry.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {\href{https://affistash.com }{\textbf{\underline{Affistash}}}}{March 2023 -- April 2024}
+      {Full-Stack Developer (Contract)}{Remote}
+      \resumeItemListStart
+        \resumeItem{Joined a founding team of 3 to launch a B2B SaaS affiliate marketplace; architected core Node.js/Express infrastructure automating brand-partnership matching with Stripe integration for subscription management.}
+        \resumeItem{Engineered a distributed sliding-window rate limiter using Redis Lua scripts to enforce tiered API quotas (30 req/min standard, 100 req/min enterprise), maintaining 99.9\% availability during 10x traffic bursts from Product Hunt launches.}
+        \resumeItem{Scaled analytics search to support 1,000+ brand records with sub-50ms response times by implementing PostgreSQL full-text search with trigram indexes (pg\_trgm) and dynamic query builders, replacing inefficient regex filters causing request timeouts.}
+      \resumeItemListEnd
+
+  \end{itemize}
+
+\section{Projects}
+    \begin{itemize}[leftmargin=0.15in, label={}]
+
+      \resumeProjectHeading
+          {\textbf{\href{https://github.com/nikitalobanov12/stochi }{\underline{Stochi}}} $|$ \emph{Next.js 16, Go, PostgreSQL, pgvector, Web Workers}}{Dec 2025 -- Present}
+          \resumeItemListStart
+            \resumeItem{Built a bio-optimization platform using Next.js and Go microservices to track supplement pharmacokinetics, implementing 1,000+ absorption models with sub-millisecond latency calculation via dedicated Go service.}
+            \resumeItem{Engineered a zero-latency client-side search engine running quantized LLMs (Transformers.js) in Web Workers for fuzzy matching, eliminating server costs for 90\% of queries while enabling offline PWA support.}
+            \resumeItem{Designed a normalized PostgreSQL schema with pgvector extension for 1536-dimensional embeddings, implementing HNSW indexes for sub-second semantic search across research knowledge base with automatic safety guardrails.}
+            \resumeItem{Enforced toxicological safety across 1,000+ supplements by implementing deterministic guardrails with hard-coded FDA limits (Zinc 40mg, Iron 45mg) bounding all AI-generated suggestions and preventing dangerous dosage recommendations.}
+          \resumeItemListEnd
+
+     \resumeProjectHeading
+          {\textbf{\href{https://github.com/panday-team/panday }{\underline{Panday}}} $|$ \emph{Next.js, Go, PostgreSQL, Redis Streams}}{Sep -- Dec 2025}
+          \resumeItemListStart
+            \resumeItem{Led a cross-functional team of 4 developers and 4 designers to build an interactive career roadmap platform for BC skilled trades, featuring D3.js and React Flow visualizations guiding apprentices through levels 1-4 with AI-powered guidance.}
+            \resumeItem{Architected a Redis reverse proxy in Go translating HTTP to TCP to bridge serverless/local protocol mismatches, achieving 100\% dev/prod parity across environments.}
+            \resumeItem{Established GitHub Actions CI/CD pipelines with branch protection rules, enabling 4 junior developers to effectively contribute to the 54,000-line codebase and ship 515+ Vitest tests with zero production regressions.}
+            \resumeItem{Reduced roadmap collision detection complexity from $O(n^2)$ to $O(n)$ using grid-based spatial partitioning, supporting 100+ node interactive visualizations with deterministic D3-force physics layouts.}
+            \resumeItem{Shipped dual-mode voice transcription using Web Speech API with OpenAI Whisper fallback, optimizing 128kbps audio streams with adaptive timeout handling for hands-free career guidance.}
+          \resumeItemListEnd
+
+    \end{itemize}
+
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Languages}{: Go, TypeScript, Java, Python, SQL (PostgreSQL, Oracle), C, Lua} \\
+     \textbf{Infrastructure \& Systems}{: Terraform, Kubernetes, Docker, Linux (Arch, Red Hat, Debian), GitHub Actions, Redis} \\
+     \textbf{Backend}{: Node.js, Spring Boot, gRPC, WebSockets, PL/SQL, FastAPI} \\
+     \textbf{Frontend}{: React, Next.js, D3.js, React Flow, Tailwind CSS, Web Workers, Shadcn, Recharts} \\
+     \textbf{AI/ML \& Data}{: pgvector, RAG, Transformers.js, LLM Integration, Embeddings, HuggingFace Tasks} \\
+     \textbf{Cloud}{: AWS (S3, EC2, ECS, S3, RDS, Lambda), Cloudflare Workers, Vercel, Fly.io, Neon}
+    }}
+ \end{itemize}
+ \end{document}

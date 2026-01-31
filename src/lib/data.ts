@@ -77,11 +77,13 @@ export interface Contacts {
 
 export const engineer: Engineer = {
   name: "Nikita Lobanov",
-  status: "Canadian Citizen | CS @ BCIT (Grad 2026)",
-  specialization: "Full Stack Developer",
-  introduction: "", // Add your introduction paragraph here
-  stack: ["Go", "TypeScript", "Next.js", "AWS", "Tauri", "Postgres"],
-  current_focus: "",
+  status:
+    "Canadian Citizen | Full Stack Web Development @ BCIT (Grad April 2026)",
+  specialization: "Software Engineer",
+  introduction:
+    "I use Arch, Neovim, and a Lily58 btw. I like to build full stack apps to solve inconveniences I have. Currently learning how to ship production software at a small startup. Into distributed systems, automation, and making complex things feel simple.",
+  stack: ["Go", "TypeScript", "Python", "PostgreSQL", "AWS", "Terraform"],
+  current_focus: "Building web scrapers and CI/CD at Vero Ventures",
 };
 
 // Legacy export for backward compatibility
@@ -97,58 +99,96 @@ export const intro = {
 export const experience: Experience[] = [
   {
     title: "Software Engineer Intern",
+    company: "Vero Ventures",
+    url: "https://veroventures.com",
+    duration: "Jan 2026 -- Present",
+    description:
+      "Joining the founding team building InsurFlow, a SaaS platform for American life insurance advisors. Developing lead generation infrastructure and production CI/CD pipelines.",
+    techStack: [
+      "Next.js 16",
+      "Bun",
+      "Python",
+      "Playwright",
+      "Cloudflare Workers",
+      "Neon",
+      "GitHub Actions",
+    ],
+    highlights: [
+      {
+        title: "Lead Generation",
+        metric: "40,000+ leads ingested",
+        description:
+          "Built distributed Python web scraper using Playwright and AsyncIO to extract insurance advisor leads from 6 major directories for cold email marketing campaigns",
+      },
+      {
+        title: "CI/CD Architecture",
+        metric: "3 min to production",
+        description:
+          "Architected complete DevSecOps pipeline with Cloudflare Workers, Neon database branching, ephemeral preview environments, and automated quality gates (ESLint, Vitest, SonarCloud)",
+      },
+      {
+        title: "Cost Optimization",
+        metric: "100% environment isolation",
+        description:
+          "Implemented PR-based ephemeral Workers with isolated Neon database branches, auto-cleanup on merge, and security scanning (CodeQL, SAST) on every code change",
+      },
+    ],
+  },
+  {
+    title: "Software Engineer Intern",
     company: "Seaspan Corp",
     url: "https://www.seaspancorp.com",
-    duration: "May '24 - Aug '24",
+    duration: "May 2024 -- Aug 2024",
     description:
       "Built internal tools for the IT department. Worked on a telemetry dashboard for maritime operators and a microservice for automating accounting file ingestion.",
-    techStack: ["React", "Spring Boot", "Oracle", "Docker"],
+    techStack: ["React", "Spring Boot", "Oracle", "PL/SQL", "PostgreSQL"],
     highlights: [
       {
         title: "Visualization",
         metric: "10x faster anomaly detection",
         description:
-          "Architected real-time telemetry dashboard processing 500+ MB/daily logs",
+          "Architected real-time telemetry dashboard processing 500+ MB/daily logs via WebSockets",
       },
       {
         title: "Backend",
         metric: "160+ hours/month saved",
         description:
-          "Engineered Spring Boot microservice to ingest 1,400+ accounting files/month",
+          "Engineered Spring Boot microservice with circuit breakers to ingest 1,400+ EDI/CSV freight manifests",
       },
       {
         title: "Optimization",
-        metric: "Minutes → sub-seconds",
-        description: "Optimized SQL queries with materialized views",
+        metric: "4 min → under 500ms",
+        description:
+          "Designed composite B-tree indexes and PostgreSQL materialized views on 50M+ row tables",
       },
     ],
   },
   {
-    title: "Software Developer",
+    title: "Full-Stack Developer",
     company: "Affistash",
     url: "https://affistash.com",
-    duration: "Mar '23 - Apr '24",
+    duration: "March 2023 -- April 2024",
     description:
-      " Joined a founding team of 3 to build and launch a B2B SaaS platform that automates partnerships between brands and affiliate marketers, building a Next.js full stack application integrated with Firebase and a Framer landing page.",
-    techStack: ["Node.js", "Firebase"],
+      "Joined a founding team of 3 to build and launch a B2B SaaS platform that automates partnerships between brands and affiliate marketers, building a Next.js full stack application integrated with Firebase.",
+    techStack: ["Node.js", "Express", "Redis", "PostgreSQL"],
     highlights: [
       {
-        title: "Performance",
-        metric: "22% p95 latency ↓, 30% cost ↓",
-        description:
-          "Refactored sequential batch processing into concurrent Promise pools",
-      },
-      {
-        title: "Distributed Systems",
+        title: "Rate Limiting",
         metric: "99.9% availability",
         description:
-          "Engineered distributed sliding window rate limiter using Redis/Lua",
+          "Engineered distributed sliding-window rate limiter using Redis Lua scripts for tiered API quotas",
       },
       {
         title: "Search",
         metric: "sub-50ms response",
         description:
-          "Scaled analytics engine to 1,000+ brands with server-side faceted search",
+          "Scaled analytics engine to 1,000+ brands with PostgreSQL full-text search and trigram indexes",
+      },
+      {
+        title: "Performance",
+        metric: "22% p95 latency ↓",
+        description:
+          "Refactored sequential batch processing into concurrent Promise pools with 30% cost reduction",
       },
     ],
   },
@@ -161,7 +201,8 @@ export const experience: Experience[] = [
 export const projects: Project[] = [
   {
     title: "Stochi",
-    tagline: "Supplement tracker that catches interactions and timing issues",
+    tagline:
+      "Bio-optimization platform for supplement tracking with AI-powered safety guardrails",
     url: "https://github.com/nikitalobanov12/stochi",
     liveUrl: "https://stochi.vercel.app",
     techStack: [
@@ -169,44 +210,43 @@ export const projects: Project[] = [
       "Go",
       "PostgreSQL",
       "pgvector",
-      "Drizzle",
+      "Web Workers",
       "Transformers.js",
-      "Capacitor",
     ],
     images: [],
     summary:
-      "I got really into health optimization and kept finding contradictory info about supplements online. So I built something that tells me when my stack has issues, like if two things compete for absorption or if I'm taking them in the wrong ratio.",
+      "Built a bio-optimization platform to track supplement pharmacokinetics with 1,000+ absorption models and AI-powered research search using quantized LLMs in Web Workers.",
     technicalDetails: [
-      "The app has a Next.js frontend on Vercel and a Go backend on Fly.io. They share a Postgres database. I put the heavy math in Go because doing pharmacokinetic calculations in JavaScript would be way too slow.",
-      "The Go part figures out how supplements absorb and clear from your body. Most follow simple exponential decay, but things like Vitamin C and Magnesium saturate at high doses, so I had to use different equations for those. I solve them with the Lambert W function instead of just approximating.",
-      "For interactions, I have a graph of how supplements relate to each other. It checks timing conflicts (zinc and iron fight for the same transporter), ratio problems (too much zinc depletes copper), and liver enzyme stuff (some supplements mess with how you metabolize others).",
-      "I scraped research from Examine.com, broke it into chunks, and made embeddings with OpenAI. When you ask a question, Llama rewrites it with medical terms, we search for relevant chunks, then Llama writes an answer based on what it found. So you get answers backed by actual research instead of made up stuff.",
-      "The search bar runs a small AI model right in your browser using Transformers.js. It's in a web worker so it doesn't freeze anything. You can type 'mag' and it knows you mean magnesium, no server needed.",
+      "The app has a Next.js frontend on Vercel and a Go backend on Fly.io. They share a Postgres database with pgvector extension for 1536-dimensional embeddings and HNSW indexes for semantic search.",
+      "The Go microservice performs sub-millisecond pharmacokinetic calculations for 1,000+ supplements. Most follow exponential decay, but supplements like Vitamin C and Magnesium saturate at high doses, requiring different equations solved with the Lambert W function.",
+      "Implemented zero-latency client-side search engine running quantized LLMs (Transformers.js) in Web Workers for fuzzy matching, eliminating server costs for 90% of queries while enabling offline PWA support.",
+      "Enforced toxicological safety across 1,000+ supplements with deterministic guardrails and hard-coded FDA limits (Zinc 40mg, Iron 45mg) bounding all AI-generated suggestions.",
+      "Built RAG pipeline using Llama to rewrite medical queries, search relevant research chunks from scraped Examine.com data, and generate answers backed by actual research with automatic safety guardrails.",
     ],
   },
   {
     title: "Panday",
-    tagline: "Helps trades apprentices figure out their path to certification",
+    tagline:
+      "Interactive career roadmap platform for BC skilled trades apprentices",
     url: "https://www.github.com/panday-team/panday",
     liveUrl: "https://panday.app",
     techStack: [
       "Next.js",
       "Go",
-      "Python",
       "PostgreSQL",
-      "pgvector",
-      "Redis",
-      "Bun",
+      "Redis Streams",
+      "D3.js",
+      "React Flow",
     ],
     images: ["/projects/panday-1.png", "/projects/panday-2.png"],
     summary:
-      "Built this for my capstone with ConnectHer, an org that helps women and underrepresented groups in trades. The app helps apprentices understand what they need to do to get their Red Seal. You tell it where you're at, and it shows you a roadmap with all the requirements, training info, and common issues people run into.",
+      "Led a cross-functional team of 4 developers and 4 designers to build an interactive career roadmap platform for BC skilled trades, featuring D3.js visualizations and AI-powered guidance.",
     technicalDetails: [
-      "The main thing is an AI chat where you can ask questions about your apprenticeship. We took all the official BC program docs, chunked them up, made embeddings, and stored them in Postgres with pgvector. When you ask something, it finds the relevant parts and gives you an answer with sources you can check.",
-      "We had a funny problem where we needed Redis but were on Vercel which is serverless. Normal Redis uses TCP but Upstash only does HTTP. Instead of rewriting everything, I made a proxy in Go that translates between the two. The app thinks it's talking to Redis but it's actually going through my proxy.",
-      "We saved about 80% on OpenAI costs just by caching. People ask similar questions, so we cache the embeddings and responses for 5 minutes. If someone asks the same thing, we skip the API call.",
-      "The roadmap uses React Flow to show your whole journey as a graph. Getting the nodes to not overlap was tricky. The simple approach checks every node against every other node which gets slow fast. I switched to a grid system where you only check nearby nodes, which made it way faster.",
-      "Leading 8 people (5 devs, 3 designers) was honestly harder than the code. Figuring out how to split work, give good PR feedback, and keep everyone on the same page took a lot of learning. We ended up with 515 tests passing which I'm pretty proud of.",
+      "Architected a Redis reverse proxy in Go translating HTTP to TCP to bridge serverless/local protocol mismatches, achieving 100% dev/prod parity across environments using Redis Streams.",
+      "The main AI chat uses RAG with official BC program docs chunked and embedded in Postgres with pgvector. When users ask questions, it finds relevant parts and provides sourced answers.",
+      "Established GitHub Actions CI/CD pipelines with branch protection rules, enabling 4 junior developers to effectively contribute to the 54,000-line codebase and ship 515+ Vitest tests with zero production regressions.",
+      "Reduced roadmap collision detection complexity from O(n²) to O(n) using grid-based spatial partitioning, supporting 100+ node interactive visualizations with deterministic D3-force physics layouts.",
+      "Shipped dual-mode voice transcription using Web Speech API with OpenAI Whisper fallback, optimizing 128kbps audio streams with adaptive timeout handling for hands-free career guidance.",
     ],
   },
   {
