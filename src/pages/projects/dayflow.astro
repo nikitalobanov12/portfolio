@@ -1,0 +1,237 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { contacts } from '@/lib/data';
+
+// Project Data
+const project = {
+	title: "Dayflow",
+	tagline: "AI-powered task manager with natural language scheduling",
+	role: "Solo Developer & Designer",
+	duration: "6 months",
+	year: "2024-2025",
+	users: "300+",
+	liveUrl: "https://dayflow.ca",
+	githubUrl: "https://github.com/nikitalobanov12/dayflow",
+	techStack: [
+		"React 19",
+		"Tauri 2.0",
+		"Supabase",
+		"SQLite",
+		"Stripe",
+		"Google Calendar API",
+		"Gemini AI"
+	],
+	images: []
+};
+
+// Rationale sections following the assignment formula
+const rationale = {
+	problem: "Existing task management applications require excessive manual input to organize tasks, set priorities, and schedule work. Users spend more time managing their productivity tools than actually being productive, with no intelligent assistance to convert natural thoughts into actionable, scheduled items.",
+	challenge: "The application needed to feel instant despite complex AI operations, work seamlessly across web and desktop platforms from a single codebase, and handle the complexity of subscription monetization. Technical requirements included real-time sync, offline support, and integration with external calendars.",
+	solution: "Dayflow converts natural language like 'finish the report by Friday' into structured, scheduled tasks using Gemini AI. The React 19 frontend leverages useOptimistic for instant UI feedback, while Tauri 2.0 enables native desktop apps for Windows, Mac, and Linux. A three-tier caching system ensures hot data stays in memory while cold data syncs to Supabase."
+};
+
+// Technical highlights for showcase sections
+const highlights = [
+	{
+		title: "Natural Language Task Creation",
+		description: "Integrated Gemini AI through Supabase Edge Functions to parse free-form text into structured tasks. The system infers priority, time estimates, categories, and scheduling while learning from existing task patterns in each board.",
+		metric: "AI-powered parsing · pattern learning",
+		image: ""
+	},
+	{
+		title: "Cross-Platform Architecture",
+		description: "Built a single React codebase that ships to web and native desktop (Windows, macOS Universal, Linux) using Tauri 2.0. Platform detection abstracts native window controls with graceful web API fallbacks for features like always-on-top focus mode.",
+		metric: "3 platforms · single codebase",
+		image: ""
+	},
+	{
+		title: "Optimistic Updates & Caching",
+		description: "Implemented React 19's useOptimistic hook for zero-latency UI feedback with automatic rollback on errors. A three-tier cache keeps hot data in memory (25-50MB), warm data in SQLite, and cold data in Supabase with LRU eviction.",
+		metric: "0ms perceived latency · 3-tier cache",
+		image: ""
+	},
+	{
+		title: "Subscription Monetization",
+		description: "Built complete Stripe integration handling checkout sessions, webhook processing for 7+ event types, usage tracking for AI credits (30/month free tier), and customer portal access. Real-time subscription updates via Supabase channels.",
+		metric: "300+ users · Stripe webhooks",
+		image: ""
+	}
+];
+---
+
+<Layout title={`${project.title} | Nikita Lobanov`} description={rationale.problem}>
+	<div class="min-h-screen bg-background">
+		<!-- Navigation -->
+		<nav class="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+			<div class="mx-auto max-w-5xl px-6 py-4">
+				<div class="flex items-center justify-between">
+					<a href="/" class="text-primary hover:underline flex items-center gap-2">
+						<span class="text-muted-foreground">~/</span>
+						<span>back</span>
+					</a>
+					<div class="flex items-center gap-4 text-sm">
+						{project.liveUrl && (
+							<a href={project.liveUrl} target="_blank" rel="noreferrer" class="text-primary hover:underline">
+								live site
+							</a>
+						)}
+						{project.githubUrl && (
+							<a href={project.githubUrl} target="_blank" rel="noreferrer" class="text-muted-foreground hover:text-foreground hover:underline">
+								github
+							</a>
+						)}
+					</div>
+				</div>
+			</div>
+		</nav>
+
+		<main class="mx-auto max-w-5xl px-6 py-12">
+			<!-- Hero Section -->
+			<section class="mb-16">
+				<div class="flex items-center gap-2 text-muted-foreground mb-4">
+					<span class="text-primary">~/projects/{project.title.toLowerCase()}</span>
+				</div>
+				
+				<h1 class="text-3xl md:text-4xl text-foreground mb-3">{project.title}</h1>
+				<p class="text-lg text-muted-foreground mb-6">{project.tagline}</p>
+				
+				<!-- Project Meta -->
+				<div class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground mb-8">
+					<span><span class="text-muted-foreground/60">#</span> Role: {project.role}</span>
+					<span><span class="text-muted-foreground/60">#</span> Duration: {project.duration}</span>
+					<span><span class="text-muted-foreground/60">#</span> Year: {project.year}</span>
+					<span><span class="text-muted-foreground/60">#</span> Users: {project.users}</span>
+				</div>
+
+				<!-- Tech Stack -->
+				<div class="flex flex-wrap gap-2 mb-8">
+					{project.techStack.map((tech) => (
+						<span class="text-xs px-2 py-1 bg-muted rounded text-muted-foreground">
+							{tech}
+						</span>
+					))}
+				</div>
+
+			</section>
+
+			<!-- Rationale Section -->
+			<section class="mb-16">
+				<div class="flex items-center gap-2 text-muted-foreground mb-6">
+					<span class="text-primary">~/rationale</span>
+				</div>
+
+				<div class="space-y-6">
+					<div class="border-l-2 border-border pl-4 py-2">
+						<p class="text-foreground/90 leading-relaxed">
+							{rationale.problem}
+						</p>
+					</div>
+
+					<div class="border-l-2 border-border pl-4 py-2">
+						<p class="text-foreground/90 leading-relaxed">
+							{rationale.challenge}
+						</p>
+					</div>
+
+					<div class="border-l-2 border-primary pl-4 py-2">
+						<p class="text-foreground/90 leading-relaxed">
+							{rationale.solution}
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- Technical Highlights -->
+			<section class="mb-16">
+				<div class="flex items-center gap-2 text-muted-foreground mb-6">
+					<span class="text-primary">~/highlights</span>
+				</div>
+
+				<div class="grid gap-8">
+					{highlights.map((highlight, index) => (
+						<div class="group">
+							<div class="flex items-start justify-between gap-4 mb-3">
+								<div>
+									<h3 class="text-lg text-foreground group-hover:text-primary transition-colors">
+										{highlight.title}
+									</h3>
+									<span class="text-xs text-primary font-mono">{highlight.metric}</span>
+								</div>
+								<span class="text-xs text-muted-foreground/60 font-mono">
+									0{index + 1}
+								</span>
+							</div>
+							
+							<p class="text-muted-foreground leading-relaxed">
+								{highlight.description}
+							</p>
+						</div>
+					))}
+				</div>
+			</section>
+
+			<!-- Links Section -->
+			<section class="mb-16">
+				<div class="flex items-center gap-2 text-muted-foreground mb-6">
+					<span class="text-primary">~/links</span>
+				</div>
+
+				<div class="flex flex-wrap gap-4">
+					{project.liveUrl && (
+						<a 
+							href={project.liveUrl} 
+							target="_blank" 
+							rel="noreferrer"
+							class="inline-flex items-center gap-2 px-4 py-2 border border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-colors rounded"
+						>
+							<span>View Live Site</span>
+							<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+							</svg>
+						</a>
+					)}
+					{project.githubUrl && (
+						<a 
+							href={project.githubUrl} 
+							target="_blank" 
+							rel="noreferrer"
+							class="inline-flex items-center gap-2 px-4 py-2 border border-border text-muted-foreground hover:text-foreground hover:border-foreground transition-colors rounded"
+						>
+							<span>View Source Code</span>
+							<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+								<path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+							</svg>
+						</a>
+					)}
+				</div>
+			</section>
+
+			<!-- Footer Navigation -->
+			<footer class="border-t border-border pt-8">
+				<div class="flex items-center justify-between">
+					<a href="/" class="text-primary hover:underline">
+						<span class="text-muted-foreground/60">~/</span> back to portfolio
+					</a>
+					<div class="flex items-center gap-4 text-sm">
+						<a href={contacts.github} target="_blank" rel="noreferrer" class="text-muted-foreground hover:text-foreground">
+							github
+						</a>
+						<a href={contacts.linkedin} target="_blank" rel="noreferrer" class="text-muted-foreground hover:text-foreground">
+							linkedin
+						</a>
+						<a href={`mailto:${contacts.email}`} class="text-muted-foreground hover:text-foreground">
+							email
+						</a>
+					</div>
+				</div>
+			</footer>
+		</main>
+	</div>
+</Layout>
+
+<style>
+	html {
+		scroll-behavior: smooth;
+	}
+</style>

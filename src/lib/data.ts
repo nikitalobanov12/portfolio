@@ -54,6 +54,8 @@ export interface Project {
   images: string[];
   summary: string;
   technicalDetails: string[];
+  // Link to detailed project page (e.g., "/projects/panday")
+  detailPage?: string;
   // Legacy fields for backward compatibility
   content?: string[];
   role?: string;
@@ -205,6 +207,7 @@ export const projects: Project[] = [
       "Tracks supplements and warns about dangerous interactions, timing conflicts, and dosage limits",
     url: "https://github.com/nikitalobanov12/stochi",
     liveUrl: "https://stochi.vercel.app",
+    detailPage: "/projects/stochi",
     techStack: [
       "Next.js 16",
       "Go",
@@ -230,6 +233,7 @@ export const projects: Project[] = [
       "Career roadmap platform for BC trades apprentices with interactive visualizations and AI guidance",
     url: "https://www.github.com/panday-team/panday",
     liveUrl: "https://panday.app",
+    detailPage: "/projects/panday",
     techStack: [
       "Next.js",
       "Go",
@@ -254,6 +258,7 @@ export const projects: Project[] = [
     tagline: "Task manager that converts natural language into scheduled tasks",
     url: "https://github.com/nikitalobanov12/dayflow",
     liveUrl: "https://dayflow.ca",
+    detailPage: "/projects/dayflow",
     techStack: ["React 19", "Tauri 2.0", "Supabase", "SQLite", "Stripe"],
     images: [],
     summary:
@@ -271,6 +276,7 @@ export const projects: Project[] = [
     tagline: "Private photo sharing and group chat for close friends without algorithms",
     url: "https://github.com/nikitalobanov12/circle",
     liveUrl: "https://circles.nikitalobanov.com",
+    detailPage: "/projects/circles",
     techStack: [
       "Next.js",
       "NextAuth v5",
@@ -297,6 +303,7 @@ export const projects: Project[] = [
     tagline: "Portfolio site for a local designer",
     url: "https://github.com/nikitalobanov12/H2L-Design-Studio",
     liveUrl: "https://h2ldesignstudio.com",
+    detailPage: "/projects/h2l",
     techStack: ["HTML", "CSS", "JavaScript"],
     images: ["/projects/h2l-1.png"],
     summary:

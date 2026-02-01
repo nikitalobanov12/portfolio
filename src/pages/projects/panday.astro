@@ -1,0 +1,283 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { contacts } from '@/lib/data';
+
+// Project Data
+const project = {
+	title: "Panday",
+	tagline: "Career roadmap platform for BC trades apprentices",
+	role: "Technical Lead & Full-Stack Developer",
+	team: "4 developers, 4 designers",
+	duration: "4 months",
+	year: "2025",
+	liveUrl: "https://panday.app",
+	githubUrl: "https://github.com/panday-team/panday",
+	techStack: [
+		"Next.js 15",
+		"React 19",
+		"Go",
+		"PostgreSQL",
+		"pgvector",
+		"Redis Streams",
+		"D3.js",
+		"React Flow",
+		"Vitest"
+	],
+	images: [
+		"/projects/panday-1.png",
+		"/projects/panday-2.png"
+	]
+};
+
+// Rationale sections following the assignment formula
+const rationale = {
+	problem: "British Columbia faces a critical shortage of skilled tradespeople, yet aspiring apprentices struggle to navigate the complex certification pathways. Existing resources are fragmented across government websites, making it difficult to understand prerequisites, timelines, and career progression options.",
+	challenge: "The platform needed to transform dense regulatory information into an intuitive, interactive experience. Technical requirements included visualizing interconnected career paths with hundreds of nodes, implementing AI-powered guidance that references official documentation, and ensuring the system could scale to support thousands of concurrent users.",
+	solution: "Panday presents BC trades pathways as interactive visual roadmaps built with D3.js and React Flow. A RAG-powered AI assistant answers questions using official program documentation, while voice transcription enables hands-free navigation. The architecture leverages Redis Streams for real-time features and pgvector for semantic search across embedded documents."
+};
+
+// Technical highlights for showcase sections
+const highlights = [
+	{
+		title: "Interactive Career Roadmaps",
+		description: "Built a visual navigation system supporting 100+ interconnected career nodes with collision detection optimized from O(n²) to O(n) using grid-based spatial partitioning. The D3-force physics simulation runs 300 iterations to generate deterministic layouts.",
+		metric: "100+ nodes · O(n) collision detection",
+		image: "/projects/panday-roadmap.png"
+	},
+	{
+		title: "RAG-Powered AI Assistant",
+		description: "Implemented semantic search across official BC program documentation using pgvector with 1536-dimensional embeddings and HNSW indexing. The system caches query results with a 5-minute TTL, reducing embedding API calls by 80%.",
+		metric: "80% API cost reduction · sub-second queries",
+		image: "/projects/panday-chat.png"
+	},
+	{
+		title: "Team Leadership & CI/CD",
+		description: "Led a cross-functional team of 4 developers and 4 designers. Established GitHub Actions CI/CD pipelines with branch protection rules, enabling junior developers to contribute to the 54,000-line codebase with 515+ Vitest tests and zero production regressions.",
+		metric: "515+ tests · 54,000 lines · 8-person team",
+		image: "/projects/panday-2.png"
+	}
+];
+---
+
+<Layout title={`${project.title} | Nikita Lobanov`} description={rationale.problem}>
+	<div class="min-h-screen bg-background">
+		<!-- Navigation -->
+		<nav class="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+			<div class="mx-auto max-w-5xl px-6 py-4">
+				<div class="flex items-center justify-between">
+					<a href="/" class="text-primary hover:underline flex items-center gap-2">
+						<span class="text-muted-foreground">~/</span>
+						<span>back</span>
+					</a>
+					<div class="flex items-center gap-4 text-sm">
+						{project.liveUrl && (
+							<a href={project.liveUrl} target="_blank" rel="noreferrer" class="text-primary hover:underline">
+								live site
+							</a>
+						)}
+						{project.githubUrl && (
+							<a href={project.githubUrl} target="_blank" rel="noreferrer" class="text-muted-foreground hover:text-foreground hover:underline">
+								github
+							</a>
+						)}
+					</div>
+				</div>
+			</div>
+		</nav>
+
+		<main class="mx-auto max-w-5xl px-6 py-12">
+			<!-- Hero Section -->
+			<section class="mb-16">
+				<div class="flex items-center gap-2 text-muted-foreground mb-4">
+					<span class="text-primary">~/projects/{project.title.toLowerCase()}</span>
+				</div>
+				
+				<h1 class="text-3xl md:text-4xl text-foreground mb-3">{project.title}</h1>
+				<p class="text-lg text-muted-foreground mb-6">{project.tagline}</p>
+				
+				<!-- Project Meta -->
+				<div class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground mb-8">
+					<span><span class="text-muted-foreground/60">#</span> Role: {project.role}</span>
+					<span><span class="text-muted-foreground/60">#</span> Team: {project.team}</span>
+					<span><span class="text-muted-foreground/60">#</span> Duration: {project.duration}</span>
+					<span><span class="text-muted-foreground/60">#</span> Year: {project.year}</span>
+				</div>
+
+				<!-- Tech Stack -->
+				<div class="flex flex-wrap gap-2 mb-8">
+					{project.techStack.map((tech) => (
+						<span class="text-xs px-2 py-1 bg-muted rounded text-muted-foreground">
+							{tech}
+						</span>
+					))}
+				</div>
+
+				<!-- Hero Image -->
+				{project.images[0] && (
+					<div class="relative rounded border border-border overflow-hidden bg-card">
+						<img 
+							src={project.images[0]} 
+							alt={`${project.title} main screenshot`}
+							class="w-full h-auto"
+						/>
+					</div>
+				)}
+			</section>
+
+			<!-- Rationale Section -->
+			<section class="mb-16">
+				<div class="flex items-center gap-2 text-muted-foreground mb-6">
+					<span class="text-primary">~/rationale</span>
+				</div>
+
+				<div class="space-y-6">
+					<!-- Problem/Context -->
+					<div class="border-l-2 border-border pl-4 py-2">
+						<p class="text-foreground/90 leading-relaxed">
+							{rationale.problem}
+						</p>
+					</div>
+
+					<!-- Challenge -->
+					<div class="border-l-2 border-border pl-4 py-2">
+						<p class="text-foreground/90 leading-relaxed">
+							{rationale.challenge}
+						</p>
+					</div>
+
+					<!-- Solution -->
+					<div class="border-l-2 border-primary pl-4 py-2">
+						<p class="text-foreground/90 leading-relaxed">
+							{rationale.solution}
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- Technical Highlights -->
+			<section class="mb-16">
+				<div class="flex items-center gap-2 text-muted-foreground mb-6">
+					<span class="text-primary">~/highlights</span>
+				</div>
+
+				<div class="grid gap-8">
+					{highlights.map((highlight, index) => (
+						<div class="group">
+							<!-- Highlight Header -->
+							<div class="flex items-start justify-between gap-4 mb-3">
+								<div>
+									<h3 class="text-lg text-foreground group-hover:text-primary transition-colors">
+										{highlight.title}
+									</h3>
+									<span class="text-xs text-primary font-mono">{highlight.metric}</span>
+								</div>
+								<span class="text-xs text-muted-foreground/60 font-mono">
+									0{index + 1}
+								</span>
+							</div>
+							
+							<!-- Highlight Description -->
+							<p class="text-muted-foreground leading-relaxed mb-4">
+								{highlight.description}
+							</p>
+
+							<!-- Highlight Image -->
+							{highlight.image && (
+								<div class="border border-border rounded bg-card overflow-hidden">
+									<img 
+										src={highlight.image} 
+										alt={highlight.title}
+										class="w-full h-auto"
+									/>
+								</div>
+							)}
+						</div>
+					))}
+				</div>
+			</section>
+
+			<!-- Additional Screenshots -->
+			{project.images.length > 1 && (
+				<section class="mb-16">
+					<div class="flex items-center gap-2 text-muted-foreground mb-6">
+						<span class="text-primary">~/screenshots</span>
+					</div>
+
+					<div class="grid md:grid-cols-2 gap-4">
+						{project.images.slice(1).map((image, index) => (
+							<div class="relative rounded border border-border overflow-hidden bg-card">
+								<img 
+									src={image} 
+									alt={`${project.title} screenshot ${index + 2}`}
+									class="w-full h-auto"
+								/>
+							</div>
+						))}
+					</div>
+				</section>
+			)}
+
+			<!-- Links Section -->
+			<section class="mb-16">
+				<div class="flex items-center gap-2 text-muted-foreground mb-6">
+					<span class="text-primary">~/links</span>
+				</div>
+
+				<div class="flex flex-wrap gap-4">
+					{project.liveUrl && (
+						<a 
+							href={project.liveUrl} 
+							target="_blank" 
+							rel="noreferrer"
+							class="inline-flex items-center gap-2 px-4 py-2 border border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-colors rounded"
+						>
+							<span>View Live Site</span>
+							<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+							</svg>
+						</a>
+					)}
+					{project.githubUrl && (
+						<a 
+							href={project.githubUrl} 
+							target="_blank" 
+							rel="noreferrer"
+							class="inline-flex items-center gap-2 px-4 py-2 border border-border text-muted-foreground hover:text-foreground hover:border-foreground transition-colors rounded"
+						>
+							<span>View Source Code</span>
+							<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+								<path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+							</svg>
+						</a>
+					)}
+				</div>
+			</section>
+
+			<!-- Footer Navigation -->
+			<footer class="border-t border-border pt-8">
+				<div class="flex items-center justify-between">
+					<a href="/" class="text-primary hover:underline">
+						<span class="text-muted-foreground/60">~/</span> back to portfolio
+					</a>
+					<div class="flex items-center gap-4 text-sm">
+						<a href={contacts.github} target="_blank" rel="noreferrer" class="text-muted-foreground hover:text-foreground">
+							github
+						</a>
+						<a href={contacts.linkedin} target="_blank" rel="noreferrer" class="text-muted-foreground hover:text-foreground">
+							linkedin
+						</a>
+						<a href={`mailto:${contacts.email}`} class="text-muted-foreground hover:text-foreground">
+							email
+						</a>
+					</div>
+				</div>
+			</footer>
+		</main>
+	</div>
+</Layout>
+
+<style>
+	html {
+		scroll-behavior: smooth;
+	}
+</style>

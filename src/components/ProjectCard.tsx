@@ -22,9 +22,17 @@ export function ProjectCard({ project }: ProjectCardProps) {
   const hasImages = project.images && project.images.length > 0;
   const hasMultipleImages = project.images && project.images.length > 1;
   const hasTechnicalDetails = project.technicalDetails && project.technicalDetails.length > 0;
+  const hasDetailPage = !!project.detailPage;
 
   const displayDescription = project.tagline || project.description || "";
 
+  const handleCardClick = () => {
+    if (hasDetailPage) {
+      window.location.href = project.detailPage!;
+    } else {
+      setOpen(true);
+    }
+  };
   const nextImage = () => {
     if (project.images) {
       setCurrentImageIndex((prev) => (prev + 1) % project.images!.length);
@@ -43,7 +51,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
     <>
       {/* Project card */}
       <div
-        onClick={() => setOpen(true)}
+        onClick={handleCardClick}
         className="cursor-pointer group border-l-2 border-border pl-4 py-3 transition-all hover:border-primary hover:bg-card/50"
       >
         <div className="space-y-2">
@@ -68,6 +76,17 @@ export function ProjectCard({ project }: ProjectCardProps) {
 
           {/* Links */}
           <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm pt-1">
+            {hasDetailPage && (
+              <span
+                onClick={(e) => {
+                  e.stopPropagation();
+                  window.location.href = project.detailPage!;
+                }}
+                className="text-primary hover:underline underline-offset-2 cursor-pointer"
+              >
+                view details →
+              </span>
+            )}
             {project.liveUrl && (
               <a
                 href={project.liveUrl}
