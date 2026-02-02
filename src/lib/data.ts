@@ -218,7 +218,7 @@ export const projects: Project[] = [
     ],
     images: [],
     summary:
-      "Built a bio-optimization platform to track supplement pharmacokinetics with 1,000+ absorption models and AI-powered research search using quantized LLMs in Web Workers.",
+      "Track your supplements, get warnings about dangerous combinations, and search health research with AI. Built because I was taking too many pills without knowing how they interact.",
     technicalDetails: [
       "The app has a Next.js frontend on Vercel and a Go backend on Fly.io. They share a Postgres database with pgvector extension for 1536-dimensional embeddings and HNSW indexes for semantic search.",
       "The Go microservice performs sub-millisecond pharmacokinetic calculations for 1,000+ supplements. Most follow exponential decay, but supplements like Vitamin C and Magnesium saturate at high doses, requiring different equations solved with the Lambert W function.",
@@ -244,7 +244,7 @@ export const projects: Project[] = [
     ],
     images: ["/projects/panday-1.png", "/projects/panday-2.png"],
     summary:
-      "Led a cross-functional team of 4 developers and 4 designers to build an interactive career roadmap platform for BC skilled trades, featuring D3.js visualizations and AI-powered guidance.",
+      "Shows BC trades apprentices exactly what steps to take to advance their career. Interactive roadmaps, AI chat that answers questions about programs, and a team of 8 shipping it.",
     technicalDetails: [
       "Architected a Redis reverse proxy in Go translating HTTP to TCP to bridge serverless/local protocol mismatches, achieving 100% dev/prod parity across environments using Redis Streams.",
       "The main AI chat uses RAG with official BC program docs chunked and embedded in Postgres with pgvector. When users ask questions, it finds relevant parts and provides sourced answers.",
@@ -289,7 +289,7 @@ export const projects: Project[] = [
     ],
     images: ["/projects/circles-1.png"],
     summary:
-      "Somewhere between Instagram and iMessage. You can share photos, chat in real-time, and see where your friends are. No algorithm, no ads, just your actual friends.",
+      "Private photo sharing and group chat for close friends. Real-time messaging, location sharing, no algorithm. Like a group chat but with photos.",
     technicalDetails: [
       "Real-time stuff uses Pusher. Each person has their own channel for notifications plus a channel for each conversation they're in. This way you only get updates for chats you're actually looking at.",
       "Messages show up instantly before the server confirms them. They go through states: sending, sent, or failed. If something fails you get a retry button. Typing indicators have a 2 second delay before sending and disappear after 3 seconds so they're not annoying.",

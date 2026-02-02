@@ -76,6 +76,17 @@ export function ProjectCard({ project }: ProjectCardProps) {
 
           {/* Links */}
           <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm pt-1">
+            {project.liveUrl && (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className="text-primary hover:underline underline-offset-2 font-medium"
+              >
+                try it →
+              </a>
+            )}
             {hasDetailPage && (
               <span
                 onClick={(e) => {
@@ -84,19 +95,8 @@ export function ProjectCard({ project }: ProjectCardProps) {
                 }}
                 className="text-primary hover:underline underline-offset-2 cursor-pointer"
               >
-                view details →
+                read more
               </span>
-            )}
-            {project.liveUrl && (
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noreferrer"
-                onClick={(e) => e.stopPropagation()}
-                className="text-primary hover:underline underline-offset-2"
-              >
-                {project.liveUrl.replace("https://", "")}
-              </a>
             )}
             <a
               href={project.url}
@@ -105,7 +105,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
               onClick={(e) => e.stopPropagation()}
               className="text-muted-foreground hover:text-foreground hover:underline underline-offset-2"
             >
-              {project.url.replace("https://www.", "").replace("https://", "")}
+              source
             </a>
           </div>
         </div>
@@ -238,9 +238,9 @@ export function ProjectCard({ project }: ProjectCardProps) {
                 href={project.liveUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="text-primary hover:underline"
+                className="text-primary hover:underline font-medium"
               >
-                {project.liveUrl.replace("https://", "")}
+                try it →
               </a>
             )}
             <a
@@ -249,7 +249,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
               rel="noreferrer"
               className="text-muted-foreground hover:text-foreground hover:underline"
             >
-              github
+              view source
             </a>
           </div>
         </DialogContent>
