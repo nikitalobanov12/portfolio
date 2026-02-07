@@ -254,11 +254,11 @@ export const projects: Project[] = [
     ],
   },
   {
-    title: "Dayflow",
+    title: "Aether",
     tagline: "Task manager that converts natural language into scheduled tasks",
-    url: "https://github.com/nikitalobanov12/dayflow",
-    liveUrl: "https://dayflow.ca",
-    detailPage: "/projects/dayflow",
+    url: "https://github.com/nikitalobanov12/aether",
+    liveUrl: "https://aethertask.com",
+    detailPage: "/projects/aether",
     techStack: ["React 19", "Tauri 2.0", "Supabase", "SQLite", "Stripe"],
     images: [],
     summary:
