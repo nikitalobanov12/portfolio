@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { Moon, Sun } from 'lucide-react';
-import { Button } from '@/components/ui/button.tsx';
 
 const STORAGE_KEY = 'theme';
 
@@ -8,7 +7,6 @@ export default function ThemeToggle() {
 	const [theme, setTheme] = useState<'dark' | 'light' | null>(null);
 
 	useEffect(() => {
-		// Read initial theme from DOM (set by inline script in Layout)
 		const isDark = document.documentElement.classList.contains('dark');
 		setTheme(isDark ? 'dark' : 'light');
 	}, []);
@@ -29,28 +27,39 @@ export default function ThemeToggle() {
 		setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
 	};
 
-	// Don't render until we know the theme (prevents hydration mismatch)
 	if (theme === null) {
 		return (
-			<Button variant='ghost' size='icon' className='relative' aria-label='Toggle theme'>
-				<span className='h-4 w-4' />
-			</Button>
+			<button
+				className='p-2 text-muted-foreground hover:text-foreground transition-colors duration-150'
+				aria-label='Toggle theme'
+			>
+				<span className='h-4 w-4 block' />
+			</button>
 		);
 	}
 
 	return (
-		<Button
-			variant='ghost'
-			size='icon'
-			className='relative'
+		<button
+			className='p-2 text-muted-foreground hover:text-foreground transition-colors duration-150'
 			aria-label='Toggle theme'
 			onClick={toggleTheme}
 		>
-			{theme === 'light' ? (
-				<Moon className='h-4 w-4' />
-			) : (
-				<Sun className='h-4 w-4' />
-			)}
-		</Button>
+			<span className='relative block w-4 h-4'>
+				<Moon 
+					className={`h-4 w-4 absolute inset-0 transition-all duration-200 ${
+						theme === 'light' 
+							? 'opacity-100 rotate-0' 
+							: 'opacity-0 rotate-90'
+					}`} 
+				/>
+				<Sun 
+					className={`h-4 w-4 absolute inset-0 transition-all duration-200 ${
+						theme === 'dark' 
+							? 'opacity-100 rotate-0' 
+							: 'opacity-0 -rotate-90'
+					}`} 
+				/>
+			</span>
+		</button>
 	);
 }

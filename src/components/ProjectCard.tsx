@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -33,6 +33,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
       setOpen(true);
     }
   };
+
   const nextImage = () => {
     if (project.images) {
       setCurrentImageIndex((prev) => (prev + 1) % project.images!.length);
@@ -52,39 +53,37 @@ export function ProjectCard({ project }: ProjectCardProps) {
       {/* Project card */}
       <div
         onClick={handleCardClick}
-        className="cursor-pointer group border-l-2 border-border pl-4 py-3 transition-all hover:border-primary hover:bg-card/50"
+        className="cursor-pointer group border-l border-border pl-4 py-4 transition-all duration-150 hover:border-primary"
       >
         <div className="space-y-2">
           {/* Project title */}
-          <span className="text-foreground font-medium group-hover:text-primary transition-colors">
+          <h3 className="text-foreground font-medium group-hover:text-primary transition-colors duration-150">
             {project.title}
-          </span>
+          </h3>
 
           {/* Tagline/Description */}
-          <p className="text-sm text-muted-foreground">{displayDescription}</p>
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            {displayDescription}
+          </p>
 
-          {/* Tech stack */}
+          {/* Tech stack - inline text */}
           {project.techStack && (
-            <div className="flex flex-wrap gap-2 pt-1">
-              {project.techStack.map((tech) => (
-                <span key={tech} className="text-xs text-muted-foreground">
-                  {tech}
-                </span>
-              ))}
-            </div>
+            <p className="text-xs text-muted-foreground pt-1">
+              {project.techStack.join(' · ')}
+            </p>
           )}
 
           {/* Links */}
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm pt-1">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm pt-2">
             {project.liveUrl && (
               <a
                 href={project.liveUrl}
                 target="_blank"
                 rel="noreferrer"
                 onClick={(e) => e.stopPropagation()}
-                className="text-primary hover:underline underline-offset-2 font-medium"
+                className="text-primary hover:text-foreground transition-colors duration-150"
               >
-                try it →
+                try it &rarr;
               </a>
             )}
             {hasDetailPage && (
@@ -93,7 +92,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
                   e.stopPropagation();
                   window.location.href = project.detailPage!;
                 }}
-                className="text-primary hover:underline underline-offset-2 cursor-pointer"
+                className="text-muted-foreground hover:text-foreground transition-colors duration-150 cursor-pointer"
               >
                 read more
               </span>
@@ -103,7 +102,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
               target="_blank"
               rel="noreferrer"
               onClick={(e) => e.stopPropagation()}
-              className="text-muted-foreground hover:text-foreground hover:underline underline-offset-2"
+              className="text-muted-foreground hover:text-foreground transition-colors duration-150"
             >
               source
             </a>
@@ -114,52 +113,40 @@ export function ProjectCard({ project }: ProjectCardProps) {
       {/* Dialog */}
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent className="sm:max-w-2xl max-h-[85vh] overflow-y-auto bg-background border-border">
-          {/* Terminal window header */}
-          <div className="flex items-center gap-2 pb-4 border-b border-border">
-            <div className="flex gap-1.5">
-              <button
-                onClick={() => setOpen(false)}
-                className="w-3 h-3 rounded-full bg-red-500 hover:bg-red-600 flex items-center justify-center group transition-colors"
-              >
-                <span className="text-red-900 text-[8px] font-bold opacity-0 group-hover:opacity-100 transition-opacity">
-                  ×
-                </span>
-              </button>
-              <div className="w-3 h-3 rounded-full bg-yellow-500" />
-              <div className="w-3 h-3 rounded-full bg-green-500" />
+          {/* Clean header with close button */}
+          <div className="flex items-start justify-between pb-4 border-b border-border">
+            <div className="space-y-1">
+              <DialogTitle className="text-xl text-foreground">
+                {project.title}
+              </DialogTitle>
+              {project.tagline && (
+                <p className="text-sm text-muted-foreground">
+                  {project.tagline}
+                </p>
+              )}
             </div>
-            <span className="text-sm text-muted-foreground ml-2">
-              {project.title.toLowerCase().replace(/\s+/g, "-")}
-            </span>
+            <button
+              onClick={() => setOpen(false)}
+              className="p-1 text-muted-foreground hover:text-foreground transition-colors duration-150"
+            >
+              <X size={18} />
+            </button>
           </div>
 
-          <DialogHeader>
-            <DialogTitle className="text-xl text-foreground">
-              {project.title}
-            </DialogTitle>
-
-            {/* Tagline */}
-            {project.tagline && (
-              <p className="text-muted-foreground text-sm">
-                {project.tagline}
-              </p>
-            )}
-
-            {/* Tech stack */}
-            {project.techStack && (
-              <div className="flex flex-wrap gap-2 pt-2">
-                {project.techStack.map((tech) => (
-                  <span key={tech} className="text-xs text-muted-foreground bg-muted px-2 py-1 rounded">
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            )}
+          <DialogHeader className="sr-only">
+            <DialogDescription>Project details for {project.title}</DialogDescription>
           </DialogHeader>
+
+          {/* Tech stack */}
+          {project.techStack && (
+            <p className="text-sm text-muted-foreground pt-2">
+              {project.techStack.join(' · ')}
+            </p>
+          )}
 
           {/* Images */}
           {hasImages && (
-            <div className="relative mt-2">
+            <div className="relative mt-4">
               <div className="overflow-hidden border border-border bg-card rounded">
                 <img
                   src={project.images![currentImageIndex]}
@@ -173,20 +160,20 @@ export function ProjectCard({ project }: ProjectCardProps) {
                     onClick={prevImage}
                     className="absolute left-2 top-1/2 -translate-y-1/2 bg-background/90 p-1.5 text-foreground border border-border transition-colors hover:bg-card rounded"
                   >
-                    <ChevronLeft size={20} />
+                    <ChevronLeft size={18} />
                   </button>
                   <button
                     onClick={nextImage}
                     className="absolute right-2 top-1/2 -translate-y-1/2 bg-background/90 p-1.5 text-foreground border border-border transition-colors hover:bg-card rounded"
                   >
-                    <ChevronRight size={20} />
+                    <ChevronRight size={18} />
                   </button>
                   <div className="absolute bottom-2 left-1/2 flex -translate-x-1/2 gap-1.5">
                     {project.images!.map((_, index) => (
                       <button
                         key={index}
                         onClick={() => setCurrentImageIndex(index)}
-                        className={`h-2 w-2 rounded-full transition-colors ${
+                        className={`h-1.5 w-1.5 rounded-full transition-colors ${
                           index === currentImageIndex
                             ? "bg-primary"
                             : "bg-muted-foreground/50"
@@ -200,7 +187,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
           )}
 
           <DialogDescription asChild>
-            <div className="space-y-6 mt-4">
+            <div className="space-y-6 mt-6">
               {/* Summary */}
               {project.summary && (
                 <p className="text-sm leading-relaxed text-muted-foreground">
@@ -211,7 +198,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
               {/* Technical Details */}
               {hasTechnicalDetails && (
                 <div className="space-y-4">
-                  <h3 className="text-sm font-medium text-foreground border-b border-border pb-2">
+                  <h3 className="text-xs font-medium text-muted-foreground uppercase tracking-widest">
                     Technical Details
                   </h3>
                   {project.technicalDetails.map((paragraph, index) => (
@@ -232,22 +219,22 @@ export function ProjectCard({ project }: ProjectCardProps) {
           </DialogDescription>
 
           {/* Footer with links */}
-          <div className="flex flex-wrap items-center gap-4 pt-4 mt-4 border-t border-border text-sm">
+          <div className="flex flex-wrap items-center gap-4 pt-6 mt-6 border-t border-border text-sm">
             {project.liveUrl && (
               <a
                 href={project.liveUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="text-primary hover:underline font-medium"
+                className="text-primary hover:text-foreground transition-colors duration-150"
               >
-                try it →
+                try it &rarr;
               </a>
             )}
             <a
               href={project.url}
               target="_blank"
               rel="noreferrer"
-              className="text-muted-foreground hover:text-foreground hover:underline"
+              className="text-muted-foreground hover:text-foreground transition-colors duration-150"
             >
               view source
             </a>

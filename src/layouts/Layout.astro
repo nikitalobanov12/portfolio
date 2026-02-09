@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import ThemeToggle from '@/components/theme-toggle.tsx';
 
 interface Props {
 	title?: string;
@@ -15,9 +16,9 @@ const { title = 'Nikita Lobanov', description = 'Nikita Lobanov Portfolio' } = A
 		<meta name='viewport' content='width=device-width, initial-scale=1' />
 		<title>{title}</title>
 		<meta name='description' content={description} />
-			<link rel='icon' type='image/svg+xml' href='/logo.svg' />
-			<link rel='apple-touch-icon' href='/logo.svg' />
-		<meta name='theme-color' content='#282828' />
+		<link rel='icon' type='image/svg+xml' href='/logo.svg' />
+		<link rel='apple-touch-icon' href='/logo.svg' />
+		<meta name='theme-color' content='#1a1614' />
 		<script is:inline>
 			const storedTheme = typeof window !== 'undefined' ? window.localStorage.getItem('theme') : null;
 			const prefersDark = typeof window !== 'undefined' ? window.matchMedia('(prefers-color-scheme: dark)').matches : true;
@@ -31,6 +32,11 @@ const { title = 'Nikita Lobanov', description = 'Nikita Lobanov Portfolio' } = A
 		<slot name='head' />
 	</head>
 	<body class='min-h-screen bg-background text-foreground antialiased'>
+		<!-- Fixed header with theme toggle -->
+		<header class='fixed top-0 right-0 z-50 p-4'>
+			<ThemeToggle client:load />
+		</header>
+		
 		<div class='flex min-h-screen flex-col'>
 			<slot />
 		</div>

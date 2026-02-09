@@ -1,71 +1,62 @@
-@import '@fontsource-variable/roboto-flex';
+@import '@fontsource/geist-mono/400.css';
+@import '@fontsource/geist-mono/500.css';
+@import '@fontsource/geist-sans/400.css';
+@import '@fontsource/geist-sans/500.css';
+@import '@fontsource/geist-sans/600.css';
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-	/* Material Gruvbox Light - Muted, minimal palette */
+	/* Refined Gruvbox Light */
 	:root {
-		--background: 40 23% 97%; /* Warm off-white */
-		--foreground: 20 6% 20%; /* Dark warm gray */
-		--card: 40 18% 93%;
-		--card-foreground: 20 6% 20%;
-		--popover: 40 18% 93%;
-		--popover-foreground: 20 6% 20%;
-		--primary: 80 25% 38%; /* Muted olive green */
-		--primary-foreground: 40 23% 97%;
+		--background: 45 25% 96%;
+		--foreground: 20 12% 18%;
+		--card: 42 20% 92%;
+		--card-foreground: 20 12% 18%;
+		--popover: 42 20% 92%;
+		--popover-foreground: 20 12% 18%;
+		--primary: 80 35% 38%;
+		--primary-foreground: 45 25% 96%;
 		--secondary: 40 15% 88%;
-		--secondary-foreground: 20 6% 20%;
-		--muted: 40 12% 85%;
-		--muted-foreground: 20 6% 45%;
-		--accent: 80 25% 38%;
-		--accent-foreground: 40 23% 97%;
+		--secondary-foreground: 20 12% 18%;
+		--muted: 40 12% 88%;
+		--muted-foreground: 35 10% 50%;
+		--accent: 80 35% 38%;
+		--accent-foreground: 45 25% 96%;
 		--destructive: 0 50% 50%;
-		--destructive-foreground: 40 23% 97%;
-		--border: 40 12% 82%;
-		--input: 40 12% 82%;
-		--ring: 80 25% 38%;
+		--destructive-foreground: 45 25% 96%;
+		--border: 40 15% 85%;
+		--input: 40 15% 85%;
+		--ring: 80 35% 38%;
 		--radius: 0.25rem;
 
-		/* Simplified terminal colors - just primary and muted variations */
-		--terminal-green: 80 25% 38%;
-		--terminal-yellow: 45 30% 45%;
-		--terminal-blue: 200 15% 45%;
-		--terminal-purple: 280 15% 50%;
-		--terminal-aqua: 170 20% 40%;
-		--terminal-orange: 30 40% 50%;
+		--transition-fast: 150ms;
+		--transition-normal: 200ms;
 	}
 
-	/* Material Gruvbox Dark - Muted, minimal palette */
+	/* Refined Gruvbox Dark */
 	.dark {
-		--background: 30 8% 12%; /* Dark warm gray */
-		--foreground: 40 15% 75%; /* Warm light gray */
-		--card: 30 8% 16%;
-		--card-foreground: 40 15% 75%;
-		--popover: 30 8% 16%;
-		--popover-foreground: 40 15% 75%;
-		--primary: 80 35% 55%; /* Brighter olive for dark mode */
-		--primary-foreground: 30 8% 12%;
-		--secondary: 30 6% 22%;
-		--secondary-foreground: 40 15% 75%;
-		--muted: 30 6% 25%;
-		--muted-foreground: 40 10% 55%;
-		--accent: 80 35% 55%;
-		--accent-foreground: 30 8% 12%;
+		--background: 20 10% 9%;
+		--foreground: 40 14% 80%;
+		--card: 25 10% 12%;
+		--card-foreground: 40 14% 80%;
+		--popover: 25 10% 12%;
+		--popover-foreground: 40 14% 80%;
+		--primary: 80 45% 55%;
+		--primary-foreground: 20 10% 9%;
+		--secondary: 30 6% 18%;
+		--secondary-foreground: 40 14% 80%;
+		--muted: 30 6% 20%;
+		--muted-foreground: 30 8% 50%;
+		--accent: 80 45% 55%;
+		--accent-foreground: 20 10% 9%;
 		--destructive: 0 50% 55%;
-		--destructive-foreground: 40 15% 75%;
-		--border: 30 6% 25%;
-		--input: 30 6% 25%;
-		--ring: 80 35% 55%;
-
-		/* Simplified terminal colors - muted versions */
-		--terminal-green: 80 35% 55%;
-		--terminal-yellow: 45 35% 55%;
-		--terminal-blue: 200 20% 55%;
-		--terminal-purple: 280 20% 60%;
-		--terminal-aqua: 170 25% 50%;
-		--terminal-orange: 30 45% 55%;
+		--destructive-foreground: 40 14% 80%;
+		--border: 30 8% 18%;
+		--input: 30 8% 18%;
+		--ring: 80 45% 55%;
 	}
 
 	* {
@@ -78,63 +69,23 @@
 	}
 
 	body {
-		@apply bg-background text-foreground font-mono antialiased;
+		@apply bg-background text-foreground antialiased;
+		font-family: 'Geist Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
 	}
 
-	/* All text uses Roboto Flex for a clean modern feel */
-	h1, h2, h3, h4, h5, h6, p, span, a, li, div {
-		font-family: 'Roboto Flex Variable', ui-sans-serif, system-ui, sans-serif;
+	/* Headings use Geist Sans */
+	h1, h2, h3, h4, h5, h6 {
+		font-family: 'Geist Sans', ui-sans-serif, system-ui, sans-serif;
 	}
 
-	/* Code blocks use system monospace */
+	/* Code blocks use monospace */
 	code, pre, kbd, samp {
-		font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+		font-family: 'Geist Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
 	}
 
 	::selection {
 		background-color: hsl(var(--primary) / 0.3);
 		color: hsl(var(--foreground));
-	}
-
-	/* Terminal cursor blink animation */
-	@keyframes blink {
-		0%, 50% { opacity: 1; }
-		51%, 100% { opacity: 0; }
-	}
-
-	.cursor-blink {
-		animation: blink 1s step-end infinite;
-	}
-
-	/* Typewriter effect */
-	@keyframes typewriter {
-		from { width: 0; }
-		to { width: 100%; }
-	}
-
-	.typewriter {
-		overflow: hidden;
-		white-space: nowrap;
-		animation: typewriter 1s steps(40) forwards;
-	}
-
-	/* Scanline effect for extra terminal feel (subtle) */
-	.scanlines::before {
-		content: "";
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		background: repeating-linear-gradient(
-			0deg,
-			transparent,
-			transparent 1px,
-			hsl(var(--foreground) / 0.03) 1px,
-			hsl(var(--foreground) / 0.03) 2px
-		);
-		pointer-events: none;
-		z-index: 10;
 	}
 }
 
@@ -143,43 +94,64 @@
 		text-wrap: balance;
 	}
 
-	/* Terminal prompt symbol */
-	.prompt::before {
-		content: '>';
-		@apply text-primary mr-2;
+	/* Refined link underline animation */
+	.link-underline {
+		position: relative;
 	}
 
-	/* Terminal comment style */
-	.comment {
-		@apply text-muted-foreground;
+	.link-underline::after {
+		content: '';
+		position: absolute;
+		bottom: -1px;
+		left: 0;
+		width: 0;
+		height: 1px;
+		background-color: currentColor;
+		transition: width var(--transition-fast) ease-out;
 	}
 
-	.comment::before {
-		content: '# ';
+	.link-underline:hover::after {
+		width: 100%;
 	}
 
-	/* Terminal colors */
-	.terminal-green {
-		color: hsl(var(--terminal-green));
+	/* Section label styling */
+	.section-label {
+		font-family: 'Geist Sans', ui-sans-serif, system-ui, sans-serif;
+		font-size: 0.75rem;
+		font-weight: 500;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
 	}
 
-	.terminal-yellow {
-		color: hsl(var(--terminal-yellow));
+	/* Card transition */
+	.card-hover {
+		transition: border-color var(--transition-fast) ease-out;
 	}
 
-	.terminal-blue {
-		color: hsl(var(--terminal-blue));
-	}
-
-	.terminal-purple {
-		color: hsl(var(--terminal-purple));
-	}
-
-	.terminal-aqua {
-		color: hsl(var(--terminal-aqua));
-	}
-
-	.terminal-orange {
-		color: hsl(var(--terminal-orange));
+	.card-hover:hover {
+		border-color: hsl(var(--primary));
 	}
 }
+
+/* Staggered fade-in animation for page load */
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(8px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.animate-fade-in {
+	animation: fadeInUp 0.4s ease-out forwards;
+	opacity: 0;
+}
+
+.animate-delay-1 { animation-delay: 50ms; }
+.animate-delay-2 { animation-delay: 100ms; }
+.animate-delay-3 { animation-delay: 150ms; }
+.animate-delay-4 { animation-delay: 200ms; }
+.animate-delay-5 { animation-delay: 250ms; }

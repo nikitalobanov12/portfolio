@@ -14,10 +14,10 @@ export default {
 			},
 		},
 		extend: {
-		fontFamily: {
-			mono: ['ui-monospace', 'SFMono-Regular', 'SF Mono', 'Menlo', 'Consolas', 'monospace'],
-			sans: ['Roboto Flex Variable', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-		},
+			fontFamily: {
+				mono: ['Geist Mono', 'ui-monospace', 'SFMono-Regular', 'SF Mono', 'Menlo', 'Consolas', 'monospace'],
+				sans: ['Geist Sans', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -48,20 +48,18 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))',
 				},
-				// Gruvbox terminal colors
-				terminal: {
-					green: 'hsl(var(--terminal-green))',
-					yellow: 'hsl(var(--terminal-yellow))',
-					blue: 'hsl(var(--terminal-blue))',
-					purple: 'hsl(var(--terminal-purple))',
-					aqua: 'hsl(var(--terminal-aqua))',
-					orange: 'hsl(var(--terminal-orange))',
-				},
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius))',
 				sm: 'calc(var(--radius))',
+			},
+			transitionDuration: {
+				'fast': '150ms',
+			},
+			letterSpacing: {
+				'tighter': '-0.02em',
+				'widest': '0.1em',
 			},
 		},
 	},
