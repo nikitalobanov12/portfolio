@@ -6,36 +6,46 @@ import { ExperienceCard } from '@/components/ExperienceCard';
 ---
 
 <Layout title='Nikita Lobanov'>
-	<div class='min-h-screen bg-background'>
-		<main class='mx-auto max-w-3xl px-6 py-16 md:py-24'>
+	<div class='min-h-screen bg-background relative'>
+		<!-- Ambient background glows -->
+		<div class='ambient-glow'></div>
+		<div class='ambient-glow-2'></div>
+		
+		<main class='mx-auto max-w-3xl px-6 py-20 md:py-32'>
 			<!-- Hero Section -->
-			<section id='about' class='mb-24 animate-fade-in'>
-				<div class='space-y-6'>
-					<!-- Name -->
-					<h1 class='text-3xl md:text-4xl font-semibold tracking-tighter text-foreground'>
-						{engineer.name}
-					</h1>
+			<section id='about' class='mb-32'>
+				<div class='space-y-8'>
+					<!-- Name with dramatic styling -->
+					<div class='animate-fade-in'>
+						<h1 class='hero-name text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight'>
+							{engineer.name}
+						</h1>
+					</div>
 					
 					<!-- Role & Status -->
-					<div class='space-y-1'>
-						<p class='text-foreground'>{engineer.specialization}</p>
-						<p class='text-muted-foreground text-sm'>{engineer.status}</p>
+					<div class='space-y-2 animate-fade-in animate-delay-1'>
+						<p class='text-lg md:text-xl text-foreground font-medium'>
+							{engineer.specialization}
+						</p>
+						<p class='text-muted-foreground'>
+							{engineer.status}
+						</p>
 					</div>
 
 					<!-- Introduction -->
 					{engineer.introduction && (
-						<p class='text-muted-foreground leading-relaxed max-w-2xl'>
+						<p class='text-muted-foreground leading-relaxed max-w-2xl text-lg animate-fade-in animate-delay-2'>
 							{engineer.introduction}
 						</p>
 					)}
 
 					<!-- Contact Links -->
-					<div class='flex flex-wrap gap-6 pt-2'>
+					<div class='flex flex-wrap gap-8 pt-4 animate-fade-in animate-delay-3'>
 						<a 
 							href={contacts.github} 
 							target='_blank' 
 							rel='noreferrer' 
-							class='text-sm text-muted-foreground hover:text-primary transition-colors duration-150'
+							class='link-slide text-muted-foreground hover:text-primary transition-colors duration-150'
 						>
 							github
 						</a>
@@ -43,26 +53,26 @@ import { ExperienceCard } from '@/components/ExperienceCard';
 							href={contacts.linkedin} 
 							target='_blank' 
 							rel='noreferrer' 
-							class='text-sm text-muted-foreground hover:text-primary transition-colors duration-150'
+							class='link-slide text-muted-foreground hover:text-primary transition-colors duration-150'
 						>
 							linkedin
 						</a>
 						<a 
 							href={`mailto:${contacts.email}`} 
-							class='text-sm text-muted-foreground hover:text-primary transition-colors duration-150'
+							class='link-slide text-muted-foreground hover:text-primary transition-colors duration-150'
 						>
 							{contacts.email}
 						</a>
 					</div>
 
 					<!-- Project Quick Links -->
-					<div class='pt-8'>
-						<div class='h-px bg-border mb-6' />
-						<div class='flex flex-wrap gap-x-5 gap-y-2'>
+					<div class='pt-12 animate-fade-in animate-delay-4'>
+						<div class='divider-animated mb-8'></div>
+						<div class='flex flex-wrap gap-x-8 gap-y-4'>
 							{projects.map(project => (
 								<a 
 									href={project.detailPage || project.liveUrl || project.url} 
-									class='text-sm text-primary hover:text-foreground transition-colors duration-150'
+									class='project-link text-primary hover:text-foreground transition-colors duration-150 font-medium'
 								>
 									{project.title.toLowerCase()}
 								</a>
@@ -73,13 +83,13 @@ import { ExperienceCard } from '@/components/ExperienceCard';
 			</section>
 
 			<!-- Experience Section -->
-			<section id='experience' class='mb-24 animate-fade-in animate-delay-2'>
-				<div class='mb-8'>
+			<section id='experience' class='mb-32 animate-fade-in animate-delay-5'>
+				<div class='mb-10'>
 					<span class='section-label text-muted-foreground'>
 						<span class='text-primary'>~/</span>experience
 					</span>
 				</div>
-				<div class='space-y-1'>
+				<div class='space-y-2'>
 					{experience.map(exp => (
 						<ExperienceCard client:load experience={exp} />
 					))}
@@ -87,8 +97,8 @@ import { ExperienceCard } from '@/components/ExperienceCard';
 			</section>
 
 			<!-- Projects Section -->
-			<section id='projects' class='mb-24 animate-fade-in animate-delay-3'>
-				<div class='mb-8'>
+			<section id='projects' class='mb-32 animate-fade-in animate-delay-6'>
+				<div class='mb-10'>
 					<span class='section-label text-muted-foreground'>
 						<span class='text-primary'>~/</span>projects
 					</span>
@@ -97,8 +107,8 @@ import { ExperienceCard } from '@/components/ExperienceCard';
 			</section>
 
 			<!-- Footer -->
-			<footer class='animate-fade-in animate-delay-4'>
-				<div class='h-px bg-border mb-8' />
+			<footer class='animate-fade-in animate-delay-6'>
+				<div class='divider-animated mb-10'></div>
 				<p class='text-sm text-muted-foreground'>
 					&copy; {new Date().getFullYear()} {engineer.name}
 				</p>

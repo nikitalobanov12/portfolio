@@ -18,7 +18,7 @@ const { title = 'Nikita Lobanov', description = 'Nikita Lobanov Portfolio' } = A
 		<meta name='description' content={description} />
 		<link rel='icon' type='image/svg+xml' href='/logo.svg' />
 		<link rel='apple-touch-icon' href='/logo.svg' />
-		<meta name='theme-color' content='#1a1614' />
+		<meta name='theme-color' content='#171412' />
 		<script is:inline>
 			const storedTheme = typeof window !== 'undefined' ? window.localStorage.getItem('theme') : null;
 			const prefersDark = typeof window !== 'undefined' ? window.matchMedia('(prefers-color-scheme: dark)').matches : true;
@@ -33,7 +33,7 @@ const { title = 'Nikita Lobanov', description = 'Nikita Lobanov Portfolio' } = A
 	</head>
 	<body class='min-h-screen bg-background text-foreground antialiased'>
 		<!-- Fixed header with theme toggle -->
-		<header class='fixed top-0 right-0 z-50 p-4'>
+		<header class='fixed top-0 right-0 z-50 p-6'>
 			<ThemeToggle client:load />
 		</header>
 		

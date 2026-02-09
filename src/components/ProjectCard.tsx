@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import {
   Dialog,
@@ -18,6 +18,7 @@ interface ProjectCardProps {
 export function ProjectCard({ project }: ProjectCardProps) {
   const [open, setOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const cardRef = useRef<HTMLDivElement>(null);
 
   const hasImages = project.images && project.images.length > 0;
   const hasMultipleImages = project.images && project.images.length > 1;
@@ -25,6 +26,23 @@ export function ProjectCard({ project }: ProjectCardProps) {
   const hasDetailPage = !!project.detailPage;
 
   const displayDescription = project.tagline || project.description || "";
+
+  // Track mouse position for glow effect
+  useEffect(() => {
+    const card = cardRef.current;
+    if (!card) return;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const rect = card.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      card.style.setProperty('--mouse-x', `${x}%`);
+      card.style.setProperty('--mouse-y', `${y}%`);
+    };
+
+    card.addEventListener('mousemove', handleMouseMove);
+    return () => card.removeEventListener('mousemove', handleMouseMove);
+  }, []);
 
   const handleCardClick = () => {
     if (hasDetailPage) {
@@ -52,36 +70,37 @@ export function ProjectCard({ project }: ProjectCardProps) {
     <>
       {/* Project card */}
       <div
+        ref={cardRef}
         onClick={handleCardClick}
-        className="cursor-pointer group border-l border-border pl-4 py-4 transition-all duration-150 hover:border-primary"
+        className="cursor-pointer group card-interactive card-glow border-l border-border pl-5 py-5 rounded-r-lg"
       >
-        <div className="space-y-2">
+        <div className="space-y-3">
           {/* Project title */}
-          <h3 className="text-foreground font-medium group-hover:text-primary transition-colors duration-150">
+          <h3 className="text-lg text-foreground font-medium group-hover:text-primary transition-colors duration-150">
             {project.title}
           </h3>
 
           {/* Tagline/Description */}
-          <p className="text-sm text-muted-foreground leading-relaxed">
+          <p className="text-muted-foreground leading-relaxed">
             {displayDescription}
           </p>
 
           {/* Tech stack - inline text */}
           {project.techStack && (
-            <p className="text-xs text-muted-foreground pt-1">
+            <p className="text-sm text-muted-foreground/70 pt-1">
               {project.techStack.join(' · ')}
             </p>
           )}
 
           {/* Links */}
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm pt-2">
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2 pt-3">
             {project.liveUrl && (
               <a
                 href={project.liveUrl}
                 target="_blank"
                 rel="noreferrer"
                 onClick={(e) => e.stopPropagation()}
-                className="text-primary hover:text-foreground transition-colors duration-150"
+                className="link-slide text-primary hover:text-foreground transition-colors duration-150 font-medium"
               >
                 try it &rarr;
               </a>
@@ -92,7 +111,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
                   e.stopPropagation();
                   window.location.href = project.detailPage!;
                 }}
-                className="text-muted-foreground hover:text-foreground transition-colors duration-150 cursor-pointer"
+                className="link-slide text-muted-foreground hover:text-foreground transition-colors duration-150 cursor-pointer"
               >
                 read more
               </span>
@@ -102,7 +121,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
               target="_blank"
               rel="noreferrer"
               onClick={(e) => e.stopPropagation()}
-              className="text-muted-foreground hover:text-foreground transition-colors duration-150"
+              className="link-slide text-muted-foreground hover:text-foreground transition-colors duration-150"
             >
               source
             </a>
@@ -112,22 +131,22 @@ export function ProjectCard({ project }: ProjectCardProps) {
 
       {/* Dialog */}
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="sm:max-w-2xl max-h-[85vh] overflow-y-auto bg-background border-border">
+        <DialogContent className="sm:max-w-2xl max-h-[85vh] overflow-y-auto bg-background/95 backdrop-blur-xl border-border shadow-2xl">
           {/* Clean header with close button */}
           <div className="flex items-start justify-between pb-4 border-b border-border">
             <div className="space-y-1">
-              <DialogTitle className="text-xl text-foreground">
+              <DialogTitle className="text-2xl text-foreground font-semibold">
                 {project.title}
               </DialogTitle>
               {project.tagline && (
-                <p className="text-sm text-muted-foreground">
+                <p className="text-muted-foreground">
                   {project.tagline}
                 </p>
               )}
             </div>
             <button
               onClick={() => setOpen(false)}
-              className="p-1 text-muted-foreground hover:text-foreground transition-colors duration-150"
+              className="p-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-all duration-150"
             >
               <X size={18} />
             </button>
@@ -147,7 +166,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
           {/* Images */}
           {hasImages && (
             <div className="relative mt-4">
-              <div className="overflow-hidden border border-border bg-card rounded">
+              <div className="overflow-hidden border border-border bg-card rounded-lg shadow-lg">
                 <img
                   src={project.images![currentImageIndex]}
                   alt={`${project.title} screenshot ${currentImageIndex + 1}`}
@@ -158,25 +177,25 @@ export function ProjectCard({ project }: ProjectCardProps) {
                 <>
                   <button
                     onClick={prevImage}
-                    className="absolute left-2 top-1/2 -translate-y-1/2 bg-background/90 p-1.5 text-foreground border border-border transition-colors hover:bg-card rounded"
+                    className="absolute left-3 top-1/2 -translate-y-1/2 bg-background/90 backdrop-blur p-2 text-foreground border border-border transition-all hover:bg-card hover:scale-105 rounded-lg shadow-lg"
                   >
                     <ChevronLeft size={18} />
                   </button>
                   <button
                     onClick={nextImage}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 bg-background/90 p-1.5 text-foreground border border-border transition-colors hover:bg-card rounded"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 bg-background/90 backdrop-blur p-2 text-foreground border border-border transition-all hover:bg-card hover:scale-105 rounded-lg shadow-lg"
                   >
                     <ChevronRight size={18} />
                   </button>
-                  <div className="absolute bottom-2 left-1/2 flex -translate-x-1/2 gap-1.5">
+                  <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-2">
                     {project.images!.map((_, index) => (
                       <button
                         key={index}
                         onClick={() => setCurrentImageIndex(index)}
-                        className={`h-1.5 w-1.5 rounded-full transition-colors ${
+                        className={`h-2 w-2 rounded-full transition-all duration-200 ${
                           index === currentImageIndex
-                            ? "bg-primary"
-                            : "bg-muted-foreground/50"
+                            ? "bg-primary scale-125"
+                            : "bg-muted-foreground/50 hover:bg-muted-foreground"
                         }`}
                       />
                     ))}
@@ -190,7 +209,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
             <div className="space-y-6 mt-6">
               {/* Summary */}
               {project.summary && (
-                <p className="text-sm leading-relaxed text-muted-foreground">
+                <p className="leading-relaxed text-muted-foreground">
                   {project.summary}
                 </p>
               )}
@@ -201,17 +220,19 @@ export function ProjectCard({ project }: ProjectCardProps) {
                   <h3 className="text-xs font-medium text-muted-foreground uppercase tracking-widest">
                     Technical Details
                   </h3>
-                  {project.technicalDetails.map((paragraph, index) => (
-                    <p key={index} className="text-sm leading-relaxed text-muted-foreground">
-                      {paragraph}
-                    </p>
-                  ))}
+                  <div className="space-y-3">
+                    {project.technicalDetails.map((paragraph, index) => (
+                      <p key={index} className="leading-relaxed text-muted-foreground">
+                        {paragraph}
+                      </p>
+                    ))}
+                  </div>
                 </div>
               )}
 
               {/* Fallback to description if no summary */}
               {!project.summary && project.description && (
-                <p className="text-sm leading-relaxed text-muted-foreground">
+                <p className="leading-relaxed text-muted-foreground">
                   {project.description}
                 </p>
               )}
@@ -219,13 +240,13 @@ export function ProjectCard({ project }: ProjectCardProps) {
           </DialogDescription>
 
           {/* Footer with links */}
-          <div className="flex flex-wrap items-center gap-4 pt-6 mt-6 border-t border-border text-sm">
+          <div className="flex flex-wrap items-center gap-5 pt-6 mt-6 border-t border-border">
             {project.liveUrl && (
               <a
                 href={project.liveUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="text-primary hover:text-foreground transition-colors duration-150"
+                className="link-slide text-primary hover:text-foreground transition-colors duration-150 font-medium"
               >
                 try it &rarr;
               </a>
@@ -234,7 +255,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
               href={project.url}
               target="_blank"
               rel="noreferrer"
-              className="text-muted-foreground hover:text-foreground transition-colors duration-150"
+              className="link-slide text-muted-foreground hover:text-foreground transition-colors duration-150"
             >
               view source
             </a>
