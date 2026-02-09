@@ -5,8 +5,8 @@ import { contacts } from '@/lib/data';
 // Project Data
 const project = {
 	title: "Stochi",
-	tagline: "Supplement tracking with interaction warnings and pharmacokinetic modeling",
-	role: "Solo Developer & Designer",
+	tagline: "Pharmacokinetic modeling engine for supplement safety and optimization",
+	role: "Solo Developer",
 	duration: "3 months",
 	year: "2025",
 	liveUrl: "https://stochi.vercel.app",
@@ -26,9 +26,9 @@ const project = {
 
 // Rationale sections following the assignment formula
 const rationale = {
-	problem: "Biohackers and health-conscious individuals often take multiple supplements without understanding potential interactions, timing conflicts, or dangerous dosage combinations. Existing resources require manual cross-referencing across fragmented medical databases, leaving users unaware of risks like zinc-induced copper deficiency or iron absorption competition.",
-	challenge: "The platform required modeling complex pharmacokinetic behaviors including saturable absorption (Michaelis-Menten kinetics) for supplements like Vitamin C and Magnesium. Additionally, the system needed to provide instant search without server round-trips while maintaining a comprehensive knowledge base backed by actual research.",
-	solution: "Stochi combines a Go microservice for sub-millisecond pharmacokinetic calculations with a Next.js frontend featuring client-side semantic search using quantized LLMs in Web Workers. The RAG pipeline surfaces research-backed answers while deterministic safety guardrails enforce FDA limits on toxic supplements regardless of AI suggestions."
+	problem: "Supplement users risk dangerous interactions, timing conflicts, and overdoses without reliable safety tools. Existing resources require manual cross-referencing across fragmented databases. Zinc-induced copper deficiency and iron absorption competition go undetected.",
+	challenge: "Modeling complex pharmacokinetic behaviors including saturable absorption (Michaelis-Menten kinetics) for supplements like Vitamin C and Magnesium. Providing instant search without server round-trips while maintaining research-backed accuracy.",
+	solution: "Go microservice performs sub-millisecond pharmacokinetic calculations for 1,000+ supplements. Deterministic safety guardrails enforce FDA limits on toxic compounds regardless of AI suggestions. Client-side semantic search using quantized LLMs eliminates server costs for 90% of queries."
 };
 
 // Technical highlights for showcase sections

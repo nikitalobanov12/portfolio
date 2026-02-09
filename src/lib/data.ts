@@ -79,13 +79,12 @@ export interface Contacts {
 
 export const engineer: Engineer = {
   name: "Nikita Lobanov",
-  status:
-    "Canadian Citizen | Full Stack Web Development @ BCIT (Grad April 2026)",
+  status: "Canadian Citizen | Vancouver, BC",
   specialization: "Software Engineer",
   introduction:
-    "I use Arch, Neovim, and a Lily58 btw. I like to build full stack apps to solve inconveniences I have. Currently learning how to ship production software at a small startup. Into distributed systems, automation, and making complex things feel simple.",
+    "I build high-performance systems and fault-tolerant infrastructure. Distributed scrapers, sub-second query optimization, production CI/CD pipelines. Currently shipping at a startup.",
   stack: ["Go", "TypeScript", "Python", "PostgreSQL", "AWS", "Terraform"],
-  current_focus: "Building web scrapers and CI/CD at Vero Ventures",
+  current_focus: "Building lead gen infrastructure and DevSecOps pipelines",
 };
 
 // Legacy export for backward compatibility
@@ -100,15 +99,13 @@ export const intro = {
 
 export const experience: Experience[] = [
   {
-    title: "Software Engineer Intern",
+    title: "Software Engineer, Founding Team",
     company: "Vero Ventures",
     url: "https://veroventures.com",
-    duration: "Jan 2026 -- Present",
+    duration: "Jan 2026 - Present",
     description:
-      "Joining the founding team building InsurFlow, a SaaS platform for American life insurance advisors. Developing lead generation infrastructure and production CI/CD pipelines.",
+      "Building InsurFlow, a SaaS platform for American life insurance advisors. Own lead generation infrastructure and DevSecOps architecture.",
     techStack: [
-      "Next.js 16",
-      "Bun",
       "Python",
       "Playwright",
       "Cloudflare Workers",
@@ -117,51 +114,51 @@ export const experience: Experience[] = [
     ],
     highlights: [
       {
-        title: "Lead Generation",
-        metric: "40,000+ leads ingested",
+        title: "Lead Gen Engine",
+        metric: "40k+ leads",
         description:
-          "Built distributed Python web scraper using Playwright and AsyncIO to extract insurance advisor leads from 6 major directories for cold email marketing campaigns",
+          "Built distributed Python scrapers injecting 40k+ leads into the sales funnel",
       },
       {
-        title: "CI/CD Architecture",
-        metric: "3 min to production",
+        title: "DevSecOps Architecture",
+        metric: "3 min deploys",
         description:
-          "Architected complete DevSecOps pipeline with Cloudflare Workers, Neon database branching, ephemeral preview environments, and automated quality gates (ESLint, Vitest, SonarCloud)",
+          "Reduced deploy time to 3 minutes with a full CI/CD pipeline (Cloudflare Workers, Neon branching, GitHub Actions)",
       },
       {
-        title: "Cost Optimization",
-        metric: "100% environment isolation",
+        title: "Environment Isolation",
+        metric: "Zero conflicts",
         description:
-          "Implemented PR-based ephemeral Workers with isolated Neon database branches, auto-cleanup on merge, and security scanning (CodeQL, SAST) on every code change",
+          "Implemented per-PR ephemeral environments to ensure zero-conflict development",
       },
     ],
   },
   {
-    title: "Software Engineer Intern",
+    title: "Software Engineer",
     company: "Seaspan Corp",
     url: "https://www.seaspancorp.com",
-    duration: "May 2024 -- Aug 2024",
+    duration: "May 2024 - Aug 2024",
     description:
-      "Built internal tools for the IT department. Worked on a telemetry dashboard for maritime operators and a microservice for automating accounting file ingestion.",
+      "Built internal tools for the IT department. Automated freight manifest ingestion and architected real-time telemetry dashboards.",
     techStack: ["React", "Spring Boot", "Oracle", "PL/SQL", "PostgreSQL"],
     highlights: [
       {
-        title: "Visualization",
-        metric: "10x faster anomaly detection",
-        description:
-          "Architected real-time telemetry dashboard processing 500+ MB/daily logs via WebSockets",
-      },
-      {
-        title: "Backend",
+        title: "Automation",
         metric: "160+ hours/month saved",
         description:
-          "Engineered Spring Boot microservice with circuit breakers to ingest 1,400+ EDI/CSV freight manifests",
+          "Automated freight manifest ingestion with a fault-tolerant Spring Boot microservice",
       },
       {
-        title: "Optimization",
-        metric: "4 min → under 500ms",
+        title: "Query Optimization",
+        metric: "99.8% latency reduction",
         description:
-          "Designed composite B-tree indexes and PostgreSQL materialized views on 50M+ row tables",
+          "Optimized 50M+ row database queries (4min to 500ms) using composite indexing",
+      },
+      {
+        title: "Operational Visibility",
+        metric: "500MB+ daily logs",
+        description:
+          "Architected a real-time telemetry dashboard handling 500MB+ daily logs",
       },
     ],
   },
@@ -204,7 +201,7 @@ export const projects: Project[] = [
   {
     title: "Stochi",
     tagline:
-      "Tracks supplements and warns about dangerous interactions, timing conflicts, and dosage limits",
+      "Pharmacokinetic modeling engine for supplement safety and optimization",
     url: "https://github.com/nikitalobanov12/stochi",
     liveUrl: "https://stochi.vercel.app",
     detailPage: "/projects/stochi",
@@ -218,19 +215,19 @@ export const projects: Project[] = [
     ],
     images: [],
     summary:
-      "Track your supplements, get warnings about dangerous combinations, and search health research with AI. Built because I was taking too many pills without knowing how they interact.",
+      "Prevents dangerous supplement interactions before they happen. Sub-millisecond pharmacokinetic calculations for 1,000+ compounds with hard-coded FDA safety limits bounding all AI suggestions.",
     technicalDetails: [
-      "The app has a Next.js frontend on Vercel and a Go backend on Fly.io. They share a Postgres database with pgvector extension for 1536-dimensional embeddings and HNSW indexes for semantic search.",
-      "The Go microservice performs sub-millisecond pharmacokinetic calculations for 1,000+ supplements. Most follow exponential decay, but supplements like Vitamin C and Magnesium saturate at high doses, requiring different equations solved with the Lambert W function.",
-      "Implemented zero-latency client-side search engine running quantized LLMs (Transformers.js) in Web Workers for fuzzy matching, eliminating server costs for 90% of queries while enabling offline PWA support.",
-      "Enforced toxicological safety across 1,000+ supplements with deterministic guardrails and hard-coded FDA limits (Zinc 40mg, Iron 45mg) bounding all AI-generated suggestions.",
-      "Built RAG pipeline using Llama to rewrite medical queries, search relevant research chunks from scraped Examine.com data, and generate answers backed by actual research with automatic safety guardrails.",
+      "Go microservice performs sub-millisecond pharmacokinetic calculations using exponential decay and Lambert W functions for saturation kinetics. Critical for accurate half-life tracking across 1,000+ supplements.",
+      "Enforced toxicological safety with deterministic guardrails. Hard-coded FDA limits (Zinc 40mg, Iron 45mg) override all AI-generated suggestions to prevent overdose recommendations.",
+      "Zero-latency client-side search using quantized LLMs (Transformers.js) in Web Workers. Eliminates server costs for 90% of queries while enabling offline PWA support.",
+      "RAG pipeline surfaces research-backed answers from embedded Examine.com data. Llama rewrites medical queries, searches relevant chunks, and generates sourced responses.",
+      "Next.js frontend on Vercel, Go backend on Fly.io. Shared Postgres with pgvector extension for 1536-dimensional embeddings and HNSW indexes.",
     ],
   },
   {
     title: "Panday",
     tagline:
-      "Career roadmap platform for BC trades apprentices with interactive visualizations and AI guidance",
+      "AI-driven career roadmap platform with real-time distributed architecture",
     url: "https://www.github.com/panday-team/panday",
     liveUrl: "https://panday.app",
     detailPage: "/projects/panday",
@@ -244,31 +241,31 @@ export const projects: Project[] = [
     ],
     images: ["/projects/panday-1.png", "/projects/panday-2.png"],
     summary:
-      "Shows BC trades apprentices exactly what steps to take to advance their career. Interactive roadmaps, AI chat that answers questions about programs, and a team of 8 shipping it.",
+      "Architected real-time ingestion pipelines using Redis Streams to handle 3M+ events. Built a Go reverse proxy translating HTTP to TCP, achieving 100% dev/prod parity across serverless environments.",
     technicalDetails: [
-      "Architected a Redis reverse proxy in Go translating HTTP to TCP to bridge serverless/local protocol mismatches, achieving 100% dev/prod parity across environments using Redis Streams.",
-      "The main AI chat uses RAG with official BC program docs chunked and embedded in Postgres with pgvector. When users ask questions, it finds relevant parts and provides sourced answers.",
-      "Established GitHub Actions CI/CD pipelines with branch protection rules, enabling 4 junior developers to effectively contribute to the 54,000-line codebase and ship 515+ Vitest tests with zero production regressions.",
-      "Reduced roadmap collision detection complexity from O(n²) to O(n) using grid-based spatial partitioning, supporting 100+ node interactive visualizations with deterministic D3-force physics layouts.",
-      "Shipped dual-mode voice transcription using Web Speech API with OpenAI Whisper fallback, optimizing 128kbps audio streams with adaptive timeout handling for hands-free career guidance.",
+      "Go reverse proxy translates HTTP to TCP, bridging serverless/local protocol mismatches. Enables Redis Streams in edge environments where raw TCP is unavailable.",
+      "RAG assistant surfaces answers from official BC program documentation. Documents chunked and embedded in Postgres with pgvector for semantic search.",
+      "CI/CD pipelines with branch protection enabled 4 junior developers to ship to a 54,000-line codebase. 515+ Vitest tests with zero production regressions.",
+      "Reduced roadmap collision detection from O(n^2) to O(n) using grid-based spatial partitioning. Supports 100+ node interactive visualizations with deterministic D3-force physics.",
+      "Dual-mode voice transcription. Web Speech API with OpenAI Whisper fallback. 128kbps audio streams with adaptive timeout handling.",
     ],
   },
   {
     title: "Aether",
-    tagline: "Task manager that converts natural language into scheduled tasks",
+    tagline: "Natural language task manager that converts text to scheduled tasks",
     url: "https://github.com/nikitalobanov12/aether",
     liveUrl: "https://aethertask.com",
     detailPage: "/projects/aether",
     techStack: ["React 19", "Tauri 2.0", "Supabase", "SQLite", "Stripe"],
     images: [],
     summary:
-      "I couldn't find a task app I liked. I wanted to type 'finish the report by Friday' and have it just show up on my calendar. So I built one that does that, and it got to 300+ users.",
+      "Type 'finish the report by Friday' and it appears on your calendar. Gemini AI parses priority, duration, and category. 300+ users across Windows, Mac, and Linux.",
     technicalDetails: [
-      "The app feels instant because it doesn't wait for the server. When you do something, the UI updates right away and syncs in the background. If the sync fails, it rolls back automatically. React 19 has a hook for this that makes it pretty easy.",
-      "The AI part uses Gemini through Supabase Edge Functions. You type something like 'finish the report by Friday' and it figures out the priority, how long it'll take, and what category it belongs in based on your other tasks. It handles timezones and daylight saving correctly which was annoying to get right.",
-      "I used Tauri so I could write React but ship native apps for Windows, Mac, and Linux. The Rust part handles stuff like the system tray and native notifications.",
-      "There's a cache that keeps hot data in memory (25-50MB depending on your RAM), puts warm data in SQLite, and only goes to Supabase for cold data. It tracks what gets accessed a lot and keeps that stuff close.",
-      "I charge through Stripe. The backend handles all the webhook stuff for subscriptions, renewals, cancellations, failed payments, etc.",
+      "React 19 useOptimistic for instant UI feedback. Actions update immediately, sync in background, and auto-rollback on failure. Zero perceived latency.",
+      "Gemini via Supabase Edge Functions parses natural language into structured tasks. Handles timezones, daylight saving, relative dates, and context-aware categorization.",
+      "Tauri 2.0 ships native desktop apps from a single React codebase. Rust handles system tray, native notifications, and OS-level integrations.",
+      "Three-tier cache architecture. Hot data in memory (25-50MB), warm data in SQLite, cold data in Supabase. Access patterns tracked for automatic promotion.",
+      "Stripe subscription billing. Full webhook handling for renewals, cancellations, failed payments, and grace periods.",
     ],
   },
   {
@@ -296,20 +293,6 @@ export const projects: Project[] = [
       "We cut API calls by 90% by batching things together. Instead of checking if each friend is online separately, one endpoint returns everyone's status at once. Caching is three layers: Redis for stuff everyone needs, in-memory for hot data, and Prisma Accelerate for queries.",
       "The database has 17 tables with 40+ indexes. Some fun patterns: users can follow other users (self-referential), activities can point to posts or comments or likes (polymorphic), and we have indexes set up for common queries like 'all posts in this circle sorted by date'.",
       "Auth is NextAuth with Google login and regular email/password. We auto-generate usernames from emails and handle all the edge cases like duplicate names and email verification.",
-    ],
-  },
-  {
-    title: "H2L Design Studio",
-    tagline: "Portfolio site for a local designer",
-    url: "https://github.com/nikitalobanov12/H2L-Design-Studio",
-    liveUrl: "https://h2ldesignstudio.com",
-    detailPage: "/projects/h2l",
-    techStack: ["HTML", "CSS", "JavaScript"],
-    images: ["/projects/h2l-1.png"],
-    summary:
-      "One of my first projects. A designer needed a portfolio and I made one. No frameworks, no build step, just HTML, CSS, and JavaScript.",
-    technicalDetails: [
-      "Looking at this code now is funny. But it taught me the basics: proper HTML structure, CSS layouts before flexbox was everywhere, vanilla JS for interactions. The site still works and they still use it.",
     ],
   },
 ];

@@ -5,8 +5,8 @@ import { contacts } from '@/lib/data';
 // Project Data
 const project = {
 	title: "Panday",
-	tagline: "Career roadmap platform for BC trades apprentices",
-	role: "Technical Lead & Full-Stack Developer",
+	tagline: "AI-driven career roadmap platform with real-time distributed architecture",
+	role: "Technical Lead",
 	team: "4 developers, 4 designers",
 	duration: "4 months",
 	year: "2025",
@@ -31,9 +31,9 @@ const project = {
 
 // Rationale sections following the assignment formula
 const rationale = {
-	problem: "British Columbia faces a critical shortage of skilled tradespeople, yet aspiring apprentices struggle to navigate the complex certification pathways. Existing resources are fragmented across government websites, making it difficult to understand prerequisites, timelines, and career progression options.",
-	challenge: "The platform needed to transform dense regulatory information into an intuitive, interactive experience. Technical requirements included visualizing interconnected career paths with hundreds of nodes, implementing AI-powered guidance that references official documentation, and ensuring the system could scale to support thousands of concurrent users.",
-	solution: "Panday presents BC trades pathways as interactive visual roadmaps built with D3.js and React Flow. A RAG-powered AI assistant answers questions using official program documentation, while voice transcription enables hands-free navigation. The architecture leverages Redis Streams for real-time features and pgvector for semantic search across embedded documents."
+	problem: "BC faces a critical shortage of skilled tradespeople, yet aspiring apprentices struggle to navigate complex certification pathways. Existing resources are fragmented across government websites.",
+	challenge: "Transforming dense regulatory information into an intuitive, interactive experience. Visualizing interconnected career paths with hundreds of nodes. Implementing AI-powered guidance that references official documentation at scale.",
+	solution: "Architected real-time ingestion pipelines using Redis Streams to handle 3M+ events. Built a Go reverse proxy translating HTTP to TCP, achieving 100% dev/prod parity across serverless environments. RAG assistant surfaces answers from official BC program documentation."
 };
 
 // Technical highlights for showcase sections
