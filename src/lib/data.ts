@@ -81,13 +81,13 @@ export const engineer: Engineer = {
   name: "Nikita Lobanov",
   status: "Canadian Citizen | Vancouver, BC",
   specialization: "Software Engineer",
-	introduction: `I'm a developer in Vancouver. I like building software that feels fast and solves problems I actually have.
+  introduction: `I'm a developer in Vancouver. I like building software that feels fast and solves problems I actually have.
 
-Most of my time right now is spent on Vero Ventures, an InsurTech startup. I handle the infrastructure and lead generation there.
+Most of my time right now is spent on Vero Ventures, where I'm working in a team of 5 developing a SaaS app for insurance advisors.
 
-Before that, I worked on database optimization at Seaspan.
 
-I'm really into systems programming, bio-optimization, and building tools that respect the user's time. I use Arch and Neovim, mostly because I like knowing how my tools work.`,
+
+I'm really into systems programming, Optimizing my health, and building tools that respect the user's time. I use Arch and Neovim mostly because I like having control of how my tools work.`,
   stack: ["Go", "TypeScript", "Python", "PostgreSQL", "AWS", "Terraform"],
   current_focus: "Building lead gen infrastructure and DevSecOps pipelines",
 };
