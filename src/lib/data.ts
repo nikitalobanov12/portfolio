@@ -81,8 +81,13 @@ export const engineer: Engineer = {
   name: "Nikita Lobanov",
   status: "Canadian Citizen | Vancouver, BC",
   specialization: "Software Engineer",
-  introduction:
-    "I build high-performance systems and fault-tolerant infrastructure. Distributed scrapers, sub-second query optimization, production CI/CD pipelines. Currently shipping at a startup.",
+	introduction: `I'm a developer in Vancouver. I like building software that feels fast and solves problems I actually have.
+
+Most of my time right now is spent on Vero Ventures, an InsurTech startup. I handle the infrastructure and lead generation there.
+
+Before that, I worked on database optimization at Seaspan.
+
+I'm really into systems programming, bio-optimization, and building tools that respect the user's time. I use Arch and Neovim, mostly because I like knowing how my tools work.`,
   stack: ["Go", "TypeScript", "Python", "PostgreSQL", "AWS", "Terraform"],
   current_focus: "Building lead gen infrastructure and DevSecOps pipelines",
 };
@@ -252,7 +257,8 @@ export const projects: Project[] = [
   },
   {
     title: "Aether",
-    tagline: "Natural language task manager that converts text to scheduled tasks",
+    tagline:
+      "Natural language task manager that converts text to scheduled tasks",
     url: "https://github.com/nikitalobanov12/aether",
     liveUrl: "https://aethertask.com",
     detailPage: "/projects/aether",
@@ -270,7 +276,8 @@ export const projects: Project[] = [
   },
   {
     title: "Circles",
-    tagline: "Private photo sharing and group chat for close friends without algorithms",
+    tagline:
+      "Private photo sharing and group chat for close friends without algorithms",
     url: "https://github.com/nikitalobanov12/circle",
     liveUrl: "https://circles.nikitalobanov.com",
     detailPage: "/projects/circles",
