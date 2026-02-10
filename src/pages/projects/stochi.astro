@@ -61,23 +61,24 @@ const highlights = [
 ---
 
 <Layout title={`${project.title} | Nikita Lobanov`} description={rationale.problem}>
-	<div class="min-h-screen bg-background">
+	<div class="min-h-screen bg-background relative">
+		<!-- Ambient background glows -->
+		<div class='ambient-glow'></div>
+		<div class='ambient-glow-2'></div>
+
 		<!-- Navigation -->
 		<nav class="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
 			<div class="mx-auto max-w-5xl px-6 py-4">
 				<div class="flex items-center justify-between">
-					<a href="/" class="text-primary hover:underline flex items-center gap-2">
-						<span class="text-muted-foreground">~/</span>
-						<span>back</span>
-					</a>
-					<div class="flex items-center gap-4 text-sm">
+					<a href="/" class="link-slide-green">~/ back</a>
+					<div class="flex items-center gap-6 text-sm">
 						{project.liveUrl && (
-							<a href={project.liveUrl} target="_blank" rel="noreferrer" class="text-primary hover:underline">
+							<a href={project.liveUrl} target="_blank" rel="noreferrer" class="link-slide-green">
 								live site
 							</a>
 						)}
 						{project.githubUrl && (
-							<a href={project.githubUrl} target="_blank" rel="noreferrer" class="text-muted-foreground hover:text-foreground hover:underline">
+							<a href={project.githubUrl} target="_blank" rel="noreferrer" class="link-slide-green">
 								github
 							</a>
 						)}
@@ -203,17 +204,15 @@ const highlights = [
 			<!-- Footer Navigation -->
 			<footer class="border-t border-border pt-8">
 				<div class="flex items-center justify-between">
-					<a href="/" class="text-primary hover:underline">
-						<span class="text-muted-foreground/60">~/</span> back to portfolio
-					</a>
-					<div class="flex items-center gap-4 text-sm">
-						<a href={contacts.github} target="_blank" rel="noreferrer" class="text-muted-foreground hover:text-foreground">
+					<a href="/" class="link-slide-green">~/ back to portfolio</a>
+					<div class="flex items-center gap-6 text-sm">
+						<a href={contacts.github} target="_blank" rel="noreferrer" class="link-slide-green">
 							github
 						</a>
-						<a href={contacts.linkedin} target="_blank" rel="noreferrer" class="text-muted-foreground hover:text-foreground">
+						<a href={contacts.linkedin} target="_blank" rel="noreferrer" class="link-slide-green">
 							linkedin
 						</a>
-						<a href={`mailto:${contacts.email}`} class="text-muted-foreground hover:text-foreground">
+						<a href={`mailto:${contacts.email}`} class="link-slide-green">
 							email
 						</a>
 					</div>
