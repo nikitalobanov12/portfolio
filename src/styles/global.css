@@ -78,6 +78,15 @@
 	body {
 		@apply bg-background text-foreground antialiased;
 		font-family: 'Geist Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+		transition: background-color 400ms ease, color 400ms ease;
+	}
+
+	html {
+		transition: background-color 400ms ease, color 400ms ease;
+	}
+
+	html *, html *::before, html *::after {
+		transition: background-color 400ms ease, border-color 400ms ease, color 400ms ease, fill 400ms ease, stroke 400ms ease;
 	}
 
 	/* Headings use Geist Sans */
