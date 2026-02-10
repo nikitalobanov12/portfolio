@@ -41,43 +41,28 @@ import { ExperienceCard } from '@/components/ExperienceCard';
 
 					<!-- Contact Links -->
 					<div class='flex flex-wrap gap-8 pt-4 animate-fade-in animate-delay-3'>
-						<a 
-							href={contacts.github} 
-							target='_blank' 
-							rel='noreferrer' 
-							class='link-slide text-muted-foreground hover:text-primary transition-colors duration-150'
+						<a
+							href={contacts.github}
+							target='_blank'
+							rel='noreferrer'
+							class='link-slide-green'
 						>
 							github
 						</a>
-						<a 
-							href={contacts.linkedin} 
-							target='_blank' 
-							rel='noreferrer' 
-							class='link-slide text-muted-foreground hover:text-primary transition-colors duration-150'
+						<a
+							href={contacts.linkedin}
+							target='_blank'
+							rel='noreferrer'
+							class='link-slide-green'
 						>
 							linkedin
 						</a>
-						<a 
-							href={`mailto:${contacts.email}`} 
-							class='link-slide text-muted-foreground hover:text-primary transition-colors duration-150'
+						<a
+							href={`mailto:${contacts.email}`}
+							class='link-slide-green'
 						>
 							{contacts.email}
 						</a>
-					</div>
-
-					<!-- Project Quick Links -->
-					<div class='pt-12 animate-fade-in animate-delay-4'>
-						<div class='divider-animated mb-8'></div>
-						<div class='flex flex-wrap gap-x-8 gap-y-4'>
-							{projects.map(project => (
-								<a 
-									href={project.detailPage || project.liveUrl || project.url} 
-									class='project-link text-primary hover:text-foreground transition-colors duration-150 font-medium'
-								>
-									{project.title.toLowerCase()}
-								</a>
-							))}
-						</div>
 					</div>
 				</div>
 			</section>

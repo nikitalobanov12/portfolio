@@ -85,7 +85,7 @@ export const engineer: Engineer = {
 
 Most of my time right now is spent on Vero Ventures, where I'm working in a team of 5 developing a SaaS app for insurance advisors
 
-I like having control of how my tools work, because of this I run Arch Linux, Neovim, and I built a lily58 keyboard which is my whole personality now 😄
+I like having control of how my tools work, because of this I run Arch Linux, Neovim, and I built a lily58 which is my whole personality now :)
 
 Feel free to reach out via Email or LinkedIn`,
   stack: ["Go", "TypeScript", "Python", "PostgreSQL", "AWS", "Terraform"],
