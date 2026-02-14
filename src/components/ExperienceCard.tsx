@@ -15,6 +15,21 @@ interface ExperienceCardProps {
   experience: Experience;
 }
 
+// Parse description to extract link if present
+function parseDescription(description: string) {
+  const linkRegex = /<a\s+href=['"]([^'"]+)['"][^>]*>([^<]+)<\/a>/;
+  const match = description.match(linkRegex);
+
+  if (match) {
+    const [fullMatch, href, text] = match;
+    const beforeText = description.slice(0, description.indexOf(fullMatch));
+    const afterText = description.slice(description.indexOf(fullMatch) + fullMatch.length);
+    return { beforeText, href, text, afterText };
+  }
+
+  return { beforeText: description, href: null, text: null, afterText: null };
+}
+
 export function ExperienceCard({ experience }: ExperienceCardProps) {
   const [open, setOpen] = useState(false);
   const cardRef = useRef<HTMLButtonElement>(null);
@@ -61,9 +76,20 @@ export function ExperienceCard({ experience }: ExperienceCardProps) {
           </p>
 
           {/* Description */}
-          <p className="text-muted-foreground leading-relaxed line-clamp-2">
-            {experience.description}
-          </p>
+          {(() => {
+            const { beforeText, href, text, afterText } = parseDescription(experience.description);
+            return (
+              <p className="text-muted-foreground leading-relaxed line-clamp-2">
+                {beforeText}
+                {href && (
+                  <>
+                    <span className="underline">{text}</span>
+                    {afterText}
+                  </>
+                )}
+              </p>
+            );
+          })()}
 
           {/* Tech Stack - inline text */}
           <p className="text-sm text-muted-foreground/70 pt-1">
@@ -106,9 +132,27 @@ export function ExperienceCard({ experience }: ExperienceCardProps) {
         </DialogHeader>
 
         {/* Description */}
-        <p className="text-muted-foreground leading-relaxed pt-4 text-lg">
-          {experience.description}
-        </p>
+        {(() => {
+          const { beforeText, href, text, afterText } = parseDescription(experience.description);
+          return (
+            <p className="text-muted-foreground leading-relaxed pt-4 text-lg">
+              {beforeText}
+              {href && (
+                <>
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="underline hover:text-primary transition-colors"
+                  >
+                    {text}
+                  </a>
+                  {afterText}
+                </>
+              )}
+            </p>
+          );
+        })()}
 
         {/* Tech Stack */}
         <p className="text-sm text-muted-foreground py-4">
