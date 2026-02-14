@@ -82,13 +82,12 @@ export const engineer: Engineer = {
   status: "Canadian Citizen | Vancouver, BC",
   specialization: "Software Engineer",
   introduction: `
-I'm currently a Computer Science Student at BCIT graduating in April 2026 & looking for new grad opportunities
+I'm currently a Computer Science Student at BCIT graduating in April 2026 & seeking for new grad opportunities
 
-Most of my time right now is spent on Vero Ventures, where I'm working in a team of 5 developing a SaaS app for insurance advisors
+I use arch, btw
 
 Feel free to reach out via Email or LinkedIn
 
-I use arch, btw
 `,
   stack: ["Go", "TypeScript", "Python", "PostgreSQL", "AWS", "Terraform"],
   current_focus: "Building lead gen infrastructure and DevSecOps pipelines",
