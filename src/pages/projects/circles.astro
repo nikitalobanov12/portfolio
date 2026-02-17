@@ -26,43 +26,17 @@ const project = {
 	]
 };
 
-// Rationale sections following the assignment formula
-const rationale = {
-	problem: "Mainstream social platforms optimize for engagement through algorithmic feeds and advertisements, creating environments where sharing personal moments feels performative rather than intimate. Users seeking to share photos and communicate with close friends lack a dedicated space free from algorithmic interference.",
-	challenge: "Building a real-time social application required handling complex state synchronization across multiple users, implementing instant messaging with typing indicators and read receipts, and managing media uploads efficiently. The system needed to scale while maintaining the intimate, ad-free experience.",
-	solution: "Circles provides a focused social space combining photo albums with real-time group chat. Pusher powers instant messaging with dual-channel architecture for conversation-specific and user-wide notifications. A three-layer caching system (Redis, in-memory, Prisma Accelerate) reduces API calls by 90%, while optimistic updates ensure zero perceived latency."
+const story = {
+	whatItIs:
+		"Circles is a private social app for sharing photos and chatting with close friends. I built it for people who want a quieter space than traditional social platforms.",
+	whatIBuilt:
+		"I built the product as a solo project, including auth, media uploads, messaging, and notifications. Messages update in real time with read receipts and typing indicators, and I added caching layers so the app stayed responsive as usage grew.",
+	whyItMatters:
+		"The goal was simple: make sharing with close friends feel easy and low-pressure. It gives people a private place to post and talk without ads, feeds, or algorithmic noise.",
 };
-
-// Technical highlights for showcase sections
-const highlights = [
-	{
-		title: "Real-Time Messaging Architecture",
-		description: "Implemented dual-channel Pusher architecture where each user has a personal notification channel plus dedicated channels for each conversation. Messages appear instantly via optimistic updates with status states (sending → sent → failed) and automatic retry capability.",
-		metric: "Dual-channel · optimistic updates",
-		image: ""
-	},
-	{
-		title: "Three-Layer Caching System",
-		description: "Built a caching architecture combining Redis for shared data, in-memory TTL cache for hot data, and Prisma Accelerate for query optimization. Batch loading patterns check follow status, circle membership, and album likes in single queries, reducing API calls by 90%.",
-		metric: "90% API reduction · 3-layer cache",
-		image: ""
-	},
-	{
-		title: "Complex Data Model",
-		description: "Designed a 17-table PostgreSQL schema with 40+ indexes supporting self-referential relationships (follows), polymorphic notifications (activities), and dual-ownership patterns (albums). Cursor-based pagination handles infinite scroll efficiently.",
-		metric: "17 tables · 40+ indexes",
-		image: ""
-	},
-	{
-		title: "Media Pipeline",
-		description: "Integrated Cloudinary for image uploads with automatic optimization, client-side cropping using canvas APIs, and batch upload support with per-photo status tracking. Album covers support multiple aspect ratios (1:1, 2:3, 16:9) with integrated cropping workflow.",
-		metric: "Batch uploads · auto-optimization",
-		image: ""
-	}
-];
 ---
 
-<Layout title={`${project.title} | Nikita Lobanov`} description={rationale.problem}>
+<Layout title={`${project.title} | Nikita Lobanov`} description={story.whatItIs}>
 	<div class="min-h-screen bg-background relative">
 		<!-- Ambient background glows -->
 		<div class='ambient-glow'></div>
@@ -161,59 +135,30 @@ const highlights = [
 				)}
 			</section>
 
-			<!-- Rationale Section -->
+			<!-- Project Story -->
 			<section class="mb-16">
 				<div class="flex items-center gap-2 text-muted-foreground mb-6">
-					<span class="text-primary">~/rationale</span>
+					<span class="text-primary">~/project-story</span>
 				</div>
 
 				<div class="space-y-6">
 					<div class="border-l-2 border-border pl-4 py-2">
 						<p class="text-foreground/90 leading-relaxed">
-							{rationale.problem}
+							{story.whatItIs}
 						</p>
 					</div>
 
 					<div class="border-l-2 border-border pl-4 py-2">
 						<p class="text-foreground/90 leading-relaxed">
-							{rationale.challenge}
+							{story.whatIBuilt}
 						</p>
 					</div>
 
 					<div class="border-l-2 border-primary pl-4 py-2">
 						<p class="text-foreground/90 leading-relaxed">
-							{rationale.solution}
+							{story.whyItMatters}
 						</p>
 					</div>
-				</div>
-			</section>
-
-			<!-- Technical Highlights -->
-			<section class="mb-16">
-				<div class="flex items-center gap-2 text-muted-foreground mb-6">
-					<span class="text-primary">~/highlights</span>
-				</div>
-
-				<div class="grid gap-8">
-					{highlights.map((highlight, index) => (
-						<div class="group">
-							<div class="flex items-start justify-between gap-4 mb-3">
-								<div>
-									<h3 class="text-lg text-foreground group-hover:text-primary transition-colors">
-										{highlight.title}
-									</h3>
-									<span class="text-xs text-primary font-mono">{highlight.metric}</span>
-								</div>
-								<span class="text-xs text-muted-foreground/60 font-mono">
-									0{index + 1}
-								</span>
-							</div>
-							
-							<p class="text-muted-foreground leading-relaxed">
-								{highlight.description}
-							</p>
-						</div>
-					))}
 				</div>
 			</section>
 

@@ -24,43 +24,24 @@ const project = {
 	images: []
 };
 
-// Rationale sections following the assignment formula
-const rationale = {
-	problem: "Supplement users risk dangerous interactions, timing conflicts, and overdoses without reliable safety tools. Existing resources require manual cross-referencing across fragmented databases. Zinc-induced copper deficiency and iron absorption competition go undetected.",
-	challenge: "Modeling complex pharmacokinetic behaviors including saturable absorption (Michaelis-Menten kinetics) for supplements like Vitamin C and Magnesium. Providing instant search without server round-trips while maintaining research-backed accuracy.",
-	solution: "Go microservice performs sub-millisecond pharmacokinetic calculations for 1,000+ supplements. Deterministic safety guardrails enforce FDA limits on toxic compounds regardless of AI suggestions. Client-side semantic search using quantized LLMs eliminates server costs for 90% of queries."
+const story = {
+	whatItIs:
+		"Stochi is a supplement safety app for people who want to track what they take without guessing. You can log supplements, check interactions, and ask research questions in one place.",
+	whatIBuilt:
+		"I built the full product myself. The Go backend handles interaction and timing checks, the web app handles logging and search, and PostgreSQL stores both user data and research embeddings with pgvector. I also added hard safety limits for risky compounds so the app blocks unsafe recommendations even if an AI answer is wrong.",
+	whyItMatters:
+		"Most supplement tools either feel too simple or too risky. This one gives fast answers, shows the reasoning, and keeps safety rules non-negotiable. That means users can move quickly without trusting black-box output.",
 };
 
-// Technical highlights for showcase sections
-const highlights = [
-	{
-		title: "Pharmacokinetic Modeling Engine",
-		description: "Built a Go microservice performing sub-millisecond calculations for 1,000+ supplements. Most follow exponential decay, but supplements like Vitamin C and Magnesium saturate at high doses, requiring Michaelis-Menten equations solved analytically using the Lambert W function.",
-		metric: "1,000+ supplements · sub-ms calculations",
-		image: ""
-	},
-	{
-		title: "Client-Side AI Search",
-		description: "Implemented zero-latency search using quantized LLMs (Transformers.js) running entirely in Web Workers. This eliminates server costs for 90% of queries while enabling offline PWA support with the all-MiniLM-L6-v2 model (~23MB).",
-		metric: "90% queries offline · 23MB model",
-		image: ""
-	},
-	{
-		title: "RAG Research Pipeline",
-		description: "Built a retrieval-augmented generation system using Llama to rewrite medical queries, search relevant research chunks from scraped Examine.com data stored in pgvector, and generate answers backed by actual citations with automatic safety guardrails.",
-		metric: "1536-dim embeddings · cited answers",
-		image: ""
-	},
-	{
-		title: "Deterministic Safety Layer",
-		description: "Enforced toxicological safety across all supplements with hard-coded FDA limits (Zinc 40mg, Iron 45mg, Vitamin D 10,000 IU) that bound all AI-generated suggestions. Soft limits trigger warnings for low-risk supplements while hard limits cannot be overridden.",
-		metric: "FDA-compliant · hard safety limits",
-		image: ""
-	}
+const buildNarrative = [
+	"People use Stochi by adding their daily supplements, setting timing windows, and running a safety check before they add anything new. The app points out overlaps, unsafe doses, and timing conflicts in plain language so users can make decisions quickly.",
+	"Under the hood, I wrote the core interaction engine in Go to keep checks fast and predictable. I used PostgreSQL for product data and pgvector for research retrieval so the system stays simple to operate without spreading data across multiple services.",
+	"For AI features, I treat model output as assistive, not authoritative. If an answer is uncertain or conflicts with hard safety limits, the app falls back to deterministic rules and explains why. That keeps recommendations useful while avoiding the risk of confident but incorrect suggestions.",
+	"What matters most is trust. People use a supplement app when the decision has real consequences, so the product has to be clear, fast, and safe enough to rely on every day.",
 ];
 ---
 
-<Layout title={`${project.title} | Nikita Lobanov`} description={rationale.problem}>
+<Layout title={`${project.title} | Nikita Lobanov`} description={story.whatItIs}>
 	<div class="min-h-screen bg-background relative">
 		<!-- Ambient background glows -->
 		<div class='ambient-glow'></div>
@@ -145,58 +126,40 @@ const highlights = [
 
 			</section>
 
-			<!-- Rationale Section -->
+			<!-- Project Story -->
 			<section class="mb-16">
 				<div class="flex items-center gap-2 text-muted-foreground mb-6">
-					<span class="text-primary">~/rationale</span>
+					<span class="text-primary">~/project-story</span>
 				</div>
 
 				<div class="space-y-6">
 					<div class="border-l-2 border-border pl-4 py-2">
 						<p class="text-foreground/90 leading-relaxed">
-							{rationale.problem}
+							{story.whatItIs}
 						</p>
 					</div>
 
 					<div class="border-l-2 border-border pl-4 py-2">
 						<p class="text-foreground/90 leading-relaxed">
-							{rationale.challenge}
+							{story.whatIBuilt}
 						</p>
 					</div>
 
 					<div class="border-l-2 border-primary pl-4 py-2">
 						<p class="text-foreground/90 leading-relaxed">
-							{rationale.solution}
+							{story.whyItMatters}
 						</p>
 					</div>
 				</div>
 			</section>
 
-			<!-- Technical Highlights -->
 			<section class="mb-16">
 				<div class="flex items-center gap-2 text-muted-foreground mb-6">
-					<span class="text-primary">~/highlights</span>
+					<span class="text-primary">~/build-details</span>
 				</div>
-
-				<div class="grid gap-8">
-					{highlights.map((highlight, index) => (
-						<div class="group">
-							<div class="flex items-start justify-between gap-4 mb-3">
-								<div>
-									<h3 class="text-lg text-foreground group-hover:text-primary transition-colors">
-										{highlight.title}
-									</h3>
-									<span class="text-xs text-primary font-mono">{highlight.metric}</span>
-								</div>
-								<span class="text-xs text-muted-foreground/60 font-mono">
-									0{index + 1}
-								</span>
-							</div>
-							
-							<p class="text-muted-foreground leading-relaxed">
-								{highlight.description}
-							</p>
-						</div>
+				<div class="space-y-5">
+					{buildNarrative.map((paragraph) => (
+						<p class="text-muted-foreground leading-relaxed max-w-4xl">{paragraph}</p>
 					))}
 				</div>
 			</section>

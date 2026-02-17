@@ -70,6 +70,7 @@ export interface Project {
 export interface Contacts {
   github: string;
   linkedin: string;
+  leetcode: string;
   email: string;
 }
 
@@ -80,13 +81,13 @@ export interface Contacts {
 export const engineer: Engineer = {
   name: "Nikita Lobanov",
   status: "Canadian Citizen | Vancouver, BC",
-  specialization: "Software Engineer",
-  introduction: `
-I'm a Computer Science student at BCIT graduating in April 2026, currently looking for new grad opportunities.
+  specialization:
+    "I’m a full-stack software engineer in Vancouver focused on building and shipping SaaS products.",
+  introduction: `I believe speed is everything when building products, but only when quality is protected. I value shipping quickly, talking to users early, and iterating based on real feedback.
 
-I use arch, btw
+To keep that pace sustainable, I make sure CI/CD pipelines, testing, and guardrails are set up to catch issues as soon as possible and tighten the loop between development and production.
 
-Feel free to reach out via email or LinkedIn 
+I try to understand problems from the systems level up to the product level, and weigh tradeoffs from both technical and business perspectives so the technical choices I make actually make sense for the people using the product.
 `,
   stack: ["Go", "TypeScript", "Python", "PostgreSQL", "AWS", "Terraform"],
   current_focus: "Building systems that move and process data efficiently",
@@ -310,5 +311,6 @@ export const projects: Project[] = [
 export const contacts: Contacts = {
   github: "https://github.com/nikitalobanov12",
   linkedin: "https://linkedin.com/in/nikitalobanov",
+  leetcode: "https://leetcode.com/u/NikitaLobanov/",
   email: "nikita@nikitalobanov.com",
 };

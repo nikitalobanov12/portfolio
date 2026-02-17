@@ -29,37 +29,24 @@ const project = {
 	]
 };
 
-// Rationale sections following the assignment formula
-const rationale = {
-	problem: "BC faces a critical shortage of skilled tradespeople, yet aspiring apprentices struggle to navigate complex certification pathways. Existing resources are fragmented across government websites.",
-	challenge: "Transforming dense regulatory information into an intuitive, interactive experience. Visualizing interconnected career paths with hundreds of nodes. Implementing AI-powered guidance that references official documentation at scale.",
-	solution: "Architected real-time ingestion pipelines using Redis Streams to handle 3M+ events. Built a Go reverse proxy translating HTTP to TCP, achieving 100% dev/prod parity across serverless environments. RAG assistant surfaces answers from official BC program documentation."
+const story = {
+	whatItIs:
+		"Panday helps students figure out trade careers in BC without digging through a dozen government pages. It turns program requirements into an interactive roadmap people can actually follow.",
+	whatIBuilt:
+		"I was the technical lead on a team of 4 developers and 4 designers. I built core backend pieces in Go and Next.js, including the reverse proxy that kept local development and production behavior consistent. I also helped ship the AI assistant and made sure we had test coverage and CI in place as the codebase grew.",
+	whyItMatters:
+		"For students, this saves a lot of confusion and dead ends. For schools and program partners, it makes pathways easier to understand and easier to update as requirements change.",
 };
 
-// Technical highlights for showcase sections
-const highlights = [
-	{
-		title: "Interactive Career Roadmaps",
-		description: "Built a visual navigation system supporting 100+ interconnected career nodes with collision detection optimized from O(n²) to O(n) using grid-based spatial partitioning. The D3-force physics simulation runs 300 iterations to generate deterministic layouts.",
-		metric: "100+ nodes · O(n) collision detection",
-		image: "/projects/panday-roadmap.png"
-	},
-	{
-		title: "RAG-Powered AI Assistant",
-		description: "Implemented semantic search across official BC program documentation using pgvector with 1536-dimensional embeddings and HNSW indexing. The system caches query results with a 5-minute TTL, reducing embedding API calls by 80%.",
-		metric: "80% API cost reduction · sub-second queries",
-		image: "/projects/panday-chat.png"
-	},
-	{
-		title: "Team Leadership & CI/CD",
-		description: "Led a cross-functional team of 4 developers and 4 designers. Established GitHub Actions CI/CD pipelines with branch protection rules, enabling junior developers to contribute to the 54,000-line codebase with 515+ Vitest tests and zero production regressions.",
-		metric: "515+ tests · 54,000 lines · 8-person team",
-		image: "/projects/panday-2.png"
-	}
+const buildNarrative = [
+	"The main product challenge was turning dense, scattered program requirements into something students could actually use. I helped shape the roadmap experience so people could move from 'what do I do next?' to a concrete plan in minutes.",
+	"On the engineering side, I built backend pieces in Go and Next.js and focused on reliability as the project scaled. One key part was a reverse proxy layer that kept local development and production behavior aligned, which reduced surprise bugs and sped up iteration for the team.",
+	"I also worked on the AI assistant flow so answers came from official BC documentation rather than generic responses. We paired that with tests and CI checks so contributors could ship quickly while still catching regressions early.",
+	"The result was a product that was easier for students to trust and easier for the team to maintain. It gave users clearer decisions while giving us a safer path to keep shipping updates.",
 ];
 ---
 
-<Layout title={`${project.title} | Nikita Lobanov`} description={rationale.problem}>
+<Layout title={`${project.title} | Nikita Lobanov`} description={story.whatItIs}>
 	<div class="min-h-screen bg-background relative">
 		<!-- Ambient background glows -->
 		<div class='ambient-glow'></div>
@@ -155,75 +142,44 @@ const highlights = [
 				)}
 			</section>
 
-			<!-- Rationale Section -->
 			<section class="mb-16">
 				<div class="flex items-center gap-2 text-muted-foreground mb-6">
-					<span class="text-primary">~/rationale</span>
+					<span class="text-primary">~/build-details</span>
+				</div>
+				<div class="space-y-5">
+					{buildNarrative.map((paragraph) => (
+						<p class="text-muted-foreground leading-relaxed max-w-4xl">{paragraph}</p>
+					))}
+				</div>
+			</section>
+
+			<!-- Project Story -->
+			<section class="mb-16">
+				<div class="flex items-center gap-2 text-muted-foreground mb-6">
+					<span class="text-primary">~/project-story</span>
 				</div>
 
 				<div class="space-y-6">
 					<!-- Problem/Context -->
 					<div class="border-l-2 border-border pl-4 py-2">
 						<p class="text-foreground/90 leading-relaxed">
-							{rationale.problem}
+							{story.whatItIs}
 						</p>
 					</div>
 
 					<!-- Challenge -->
 					<div class="border-l-2 border-border pl-4 py-2">
 						<p class="text-foreground/90 leading-relaxed">
-							{rationale.challenge}
+							{story.whatIBuilt}
 						</p>
 					</div>
 
 					<!-- Solution -->
 					<div class="border-l-2 border-primary pl-4 py-2">
 						<p class="text-foreground/90 leading-relaxed">
-							{rationale.solution}
+							{story.whyItMatters}
 						</p>
 					</div>
-				</div>
-			</section>
-
-			<!-- Technical Highlights -->
-			<section class="mb-16">
-				<div class="flex items-center gap-2 text-muted-foreground mb-6">
-					<span class="text-primary">~/highlights</span>
-				</div>
-
-				<div class="grid gap-8">
-					{highlights.map((highlight, index) => (
-						<div class="group">
-							<!-- Highlight Header -->
-							<div class="flex items-start justify-between gap-4 mb-3">
-								<div>
-									<h3 class="text-lg text-foreground group-hover:text-primary transition-colors">
-										{highlight.title}
-									</h3>
-									<span class="text-xs text-primary font-mono">{highlight.metric}</span>
-								</div>
-								<span class="text-xs text-muted-foreground/60 font-mono">
-									0{index + 1}
-								</span>
-							</div>
-							
-							<!-- Highlight Description -->
-							<p class="text-muted-foreground leading-relaxed mb-4">
-								{highlight.description}
-							</p>
-
-							<!-- Highlight Image -->
-							{highlight.image && (
-								<div class="border border-border rounded bg-card overflow-hidden">
-									<img 
-										src={highlight.image} 
-										alt={highlight.title}
-										class="w-full h-auto"
-									/>
-								</div>
-							)}
-						</div>
-					))}
 				</div>
 			</section>
 

@@ -21,37 +21,17 @@ const project = {
 	]
 };
 
-// Rationale sections following the assignment formula
-const rationale = {
-	problem: "A local interior designer required an online presence to showcase their portfolio and attract potential clients. Without a website, the business relied solely on word-of-mouth referrals and lacked a professional platform to display completed projects and contact information.",
-	challenge: "The project needed to be completed quickly while maintaining a clean, professional aesthetic that would complement rather than overshadow the designer's work. The solution had to be lightweight, fast-loading, and easy for the client to understand without requiring ongoing technical maintenance.",
-	solution: "A static portfolio website built with vanilla HTML, CSS, and JavaScript demonstrates that effective web development does not always require complex frameworks. The site features a responsive gallery layout, smooth scroll navigation, and contact integration while maintaining fast load times and zero dependencies."
+const story = {
+	whatItIs:
+		"H2L Design Studio is a portfolio site for a local interior designer who needed a clean online presence to show past work and take inquiries.",
+	whatIBuilt:
+		"I built the site with plain HTML, CSS, and JavaScript and focused on fast load times, a simple gallery, and mobile-friendly layouts. I also made sure the client could run it without ongoing technical maintenance.",
+	whyItMatters:
+		"For the client, this turned offline referrals into something people could actually browse and share online. It also became an early project that taught me how to ship useful work quickly with solid fundamentals.",
 };
-
-// Technical highlights for showcase sections
-const highlights = [
-	{
-		title: "Vanilla Web Fundamentals",
-		description: "Built entirely without frameworks or build tools, demonstrating mastery of core web technologies. The project taught proper HTML semantic structure, CSS layouts before modern tooling, and vanilla JavaScript for interactions.",
-		metric: "Zero dependencies · No build step",
-		image: ""
-	},
-	{
-		title: "Responsive Gallery Layout",
-		description: "Implemented a portfolio gallery that adapts gracefully across device sizes using CSS Grid and media queries. Images are optimized for web delivery while maintaining visual quality for showcasing design work.",
-		metric: "Mobile-first · CSS Grid",
-		image: ""
-	},
-	{
-		title: "Production Deployment",
-		description: "The site remains live and actively used by the client years after initial development. This longevity demonstrates the value of simple, maintainable code that continues to serve its purpose without requiring ongoing updates or framework migrations.",
-		metric: "3+ years live · Still in use",
-		image: ""
-	}
-];
 ---
 
-<Layout title={`${project.title} | Nikita Lobanov`} description={rationale.problem}>
+<Layout title={`${project.title} | Nikita Lobanov`} description={story.whatItIs}>
 	<div class="min-h-screen bg-background relative">
 		<!-- Ambient background glows -->
 		<div class='ambient-glow'></div>
@@ -150,59 +130,30 @@ const highlights = [
 				)}
 			</section>
 
-			<!-- Rationale Section -->
+			<!-- Project Story -->
 			<section class="mb-16">
 				<div class="flex items-center gap-2 text-muted-foreground mb-6">
-					<span class="text-primary">~/rationale</span>
+					<span class="text-primary">~/project-story</span>
 				</div>
 
 				<div class="space-y-6">
 					<div class="border-l-2 border-border pl-4 py-2">
 						<p class="text-foreground/90 leading-relaxed">
-							{rationale.problem}
+							{story.whatItIs}
 						</p>
 					</div>
 
 					<div class="border-l-2 border-border pl-4 py-2">
 						<p class="text-foreground/90 leading-relaxed">
-							{rationale.challenge}
+							{story.whatIBuilt}
 						</p>
 					</div>
 
 					<div class="border-l-2 border-primary pl-4 py-2">
 						<p class="text-foreground/90 leading-relaxed">
-							{rationale.solution}
+							{story.whyItMatters}
 						</p>
 					</div>
-				</div>
-			</section>
-
-			<!-- Technical Highlights -->
-			<section class="mb-16">
-				<div class="flex items-center gap-2 text-muted-foreground mb-6">
-					<span class="text-primary">~/highlights</span>
-				</div>
-
-				<div class="grid gap-8">
-					{highlights.map((highlight, index) => (
-						<div class="group">
-							<div class="flex items-start justify-between gap-4 mb-3">
-								<div>
-									<h3 class="text-lg text-foreground group-hover:text-primary transition-colors">
-										{highlight.title}
-									</h3>
-									<span class="text-xs text-primary font-mono">{highlight.metric}</span>
-								</div>
-								<span class="text-xs text-muted-foreground/60 font-mono">
-									0{index + 1}
-								</span>
-							</div>
-							
-							<p class="text-muted-foreground leading-relaxed">
-								{highlight.description}
-							</p>
-						</div>
-					))}
 				</div>
 			</section>
 
