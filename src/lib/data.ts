@@ -105,7 +105,7 @@ export const intro = {
 
 export const experience: Experience[] = [
   {
-    title: "Software Engineer, Founding Team",
+    title: "Software Engineer",
     company: "Vero Ventures",
     url: "https://veroventures.com",
     duration: "Jan 2026 - Present",
