@@ -1,0 +1,198 @@
+\documentclass[a4paper,10pt]{article}
+
+% -------------------- Packages --------------------
+\usepackage[left=0.45in, right=0.45in, top=0.4in, bottom=0.4in]{geometry}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage{pifont}
+\usepackage[default]{roboto}
+\usepackage[T1]{fontenc}
+
+% -------------------- Global style --------------------
+\linespread{0.9}
+\pagestyle{empty}
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+\titleformat{\section}
+  {\vspace{-5pt}\scshape\raggedright\large}
+  {}
+  {0em}
+  {}
+  [\color{black}\titlerule\vspace{-4pt}]
+
+% -------------------- Commands --------------------
+\newcommand{\resumeItem}[1]{%
+  \item\small{#1\vspace{-1pt}}%
+}
+
+\newcommand{\resumeSubheading}[4]{%
+  \vspace{1pt}\item
+  \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+    \textbf{#1} & #2 \\
+    \textit{\small #3} & \textit{\small #4} \\
+  \end{tabular*}\vspace{-6pt}%
+}
+
+\newcommand{\resumeProjectHeading}[2]{%
+  \item
+  \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+    \small #1 & #2 \\
+  \end{tabular*}\vspace{-6pt}%
+}
+
+\newcommand{\resumeItemListStart}{\begin{itemize}[itemsep=2pt]}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-2pt}}
+
+\renewcommand\labelitemi{\ding{108}}
+
+% -------------------- Document --------------------
+\begin{document}
+
+\begin{center}
+  \textbf{\Huge Nikita Lobanov} \\
+  \vspace{4pt}
+  \footnotesize
+  Canadian Citizen $|$ (778) 929-3925 $|$
+  \href{mailto:nikita@nikitalobanov.com}{\underline{nikita@nikitalobanov.com}} $|$
+  \href{https://nikitalobanov.com}{\underline{nikitalobanov.com}} $|$
+  \href{https://github.com/nikitalobanov12}{\underline{github.com/nikitalobanov12}} $|$
+  \href{https://linkedin.com/in/nikitalobanov}{\underline{linkedin.com/in/nikitalobanov}}
+\end{center}
+
+% ==================================================
+\section{Experience}
+\begin{itemize}[leftmargin=0.15in, label={}]
+
+  \resumeSubheading
+    {Vero Ventures}{Jan 2026 -- Present}
+    {Software Engineer}{Vancouver, BC}
+  \resumeItemListStart
+    \resumeItem{Building InsurFlow, a B2B SaaS platform for life insurance advisors to automate prospecting, client workflows, and document-driven sales operations.}
+    \resumeItem{Built a Python + Playwright ingestion pipeline that collected 40,000+ advisor leads in one day across 6 public directories using proxy rotation, concurrency controls, retries, and deduplication.}
+    \resumeItem{Implemented normalization and idempotent write patterns so pipeline reruns and partial failures do not create duplicate or inconsistent records.}
+    \resumeItem{Automated infrastructure and release workflows with Terraform + GitHub Actions, including test gating and environment provisioning to support 10+ deploys/day.}
+    \resumeItem{Reduced integration friction by introducing isolated preview and test environments per change, eliminating repeated ``works on my machine'' release failures.}
+    \resumeItem{Improved deployment confidence with quality gates (linting, E2E checks, migration validation) and release playbooks focused on no customer-visible downtime during release windows.}
+  \resumeItemListEnd
+
+  \resumeSubheading
+    {Seaspan Corp}{May 2024 -- Aug 2024}
+    {Software Development Intern}{Vancouver, BC}
+  \resumeItemListStart
+    \resumeItem{Built internal enterprise tools supporting maritime operations visibility, telemetry analytics, and accounting/logistics workflows.}
+    \resumeItem{Reduced critical report latency by 99.8\% (4 minutes to under 500ms) on 50M+ rows by introducing targeted indexes and materialized views, then validating plans with EXPLAIN.}
+    \resumeItem{Automated validation of 1,400+ freight documents/month via a Java Spring Boot service integrated with Oracle workflows, saving the accounting team 160+ hours/month.}
+    \resumeItem{Built a live operations dashboard ingesting 500MB+ of telemetry daily through WebSockets and streaming aggregation to surface anomalies earlier.}
+    \resumeItem{Strengthened ingestion reliability by implementing PL/SQL error handling patterns that reduced peak write failures by \textasciitilde 15\%.}
+    \resumeItem{Improved service stability with input validation and clear failure reporting patterns, reducing noisy operational incidents and improving triage speed.}
+  \resumeItemListEnd
+
+  \resumeSubheading
+    {\href{https://affistash.com}{\underline{\textbf{Affistash}}}}{Mar 2023 -- Apr 2024}
+    {Full-Stack Developer (Contract)}{Remote}
+  \resumeItemListStart
+    \resumeItem{Joined a founding team of 3 building a B2B SaaS marketplace connecting affiliate marketers with brands.}
+    \resumeItem{Built Redis + Lua sliding-window rate limiting with tiered quotas (30 req/min free, 100 req/min paid), sustaining 99.9\% availability during launch spikes.}
+    \resumeItem{Improved search 20x for 1,000+ brand records by replacing regex filtering with PostgreSQL full-text search + trigram indexes; reduced p95 latency to under 50ms.}
+    \resumeItem{Redesigned batch data processing to run 22\% faster while reducing compute cost by 30\% through improved chunking, concurrency, and retry/idempotency controls.}
+    \resumeItem{Improved API resilience with stricter validation boundaries, clearer error contracts, and safer failure-mode handling across core marketplace flows.}
+  \resumeItemListEnd
+
+\end{itemize}
+
+% ==================================================
+\section{Projects}
+\begin{itemize}[leftmargin=0.15in, label={}]
+
+  \resumeProjectHeading
+    {\textbf{\href{https://github.com/nikitalobanov12/stochi}{\underline{Stochi}}}
+    $|$ \emph{Next.js 16, Go, PostgreSQL, pgvector, Web Workers, Transformers.js}}{Dec 2025 -- Present}
+  \resumeItemListStart
+    \resumeItem{Built a supplement safety + optimization platform that detects interactions, timing conflicts, and dosage ratio issues across 1,000+ compounds.}
+    \resumeItem{Implemented a dedicated Go compute engine for pharmacokinetic timing and interaction checks (sub-millisecond execution), exposed through authenticated APIs used by the Next.js application.}
+    \resumeItem{Implemented support for first-order and Michaelis-Menten kinetics (Lambert W analytical solving) to model absorption and elimination for different supplement classes.}
+    \resumeItem{Designed a research knowledge base using PostgreSQL + pgvector (1536-dimensional embeddings) with semantic retrieval and citation-grounded answer generation.}
+    \resumeItem{Implemented client-side semantic search in Web Workers (Transformers.js), enabling \textasciitilde 90\% of lookups to execute locally for lower latency and lower server cost.}
+    \resumeItem{Added deterministic safety guardrails (FDA/NIH upper limits, timing constraints, ratio boundaries) that bound AI output and prevent unsafe recommendations.}
+    \resumeItem{Deployed a split architecture (frontend on Vercel, compute engine on Fly.io, shared Neon PostgreSQL) to keep compute-heavy analysis isolated and horizontally scalable.}
+  \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\textbf{\href{https://github.com/panday-team/panday}{\underline{Panday}}}
+    $|$ \emph{Next.js, React 19, Go, PostgreSQL, pgvector, Redis Streams, D3.js, React Flow}}{Sep -- Dec 2025}
+  \resumeItemListStart
+    \resumeItem{Led a cross-functional team of 4 developers and 4 designers to build an interactive roadmap + AI assistant for BC trades apprentices navigating certifications and prerequisites.}
+    \resumeItem{Built a RAG pipeline with pgvector and HNSW indexing for sub-second semantic retrieval, reducing embedding API calls by \textasciitilde 80\% via TTL-based query caching.}
+    \resumeItem{Improved chat durability and throughput by buffering persistence through Redis Streams (XREADGROUP/XACK) and adding per-user rate limits for chat and voice endpoints.}
+    \resumeItem{Optimized graph interaction complexity from $O(n^2)$ to $O(n)$ using grid-based spatial partitioning, enabling smooth UX at 100+ roadmap nodes.}
+    \resumeItem{Implemented voice input using Web Speech API with Whisper fallback, including MIME detection, timeout handling, and degraded-network behavior.}
+    \resumeItem{Built protocol-translation infrastructure in Go to resolve local/serverless environment mismatches and improve development/production behavior parity.}
+    \resumeItem{Established CI quality standards with 515 automated tests across \textasciitilde 54,000 LOC, covering RAG, chat APIs, sanitization, validation, and visualization logic.}
+  \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\textbf{Dayflow (Aether)} $|$ \emph{React 19, TypeScript, Supabase, Tauri 2.0, SQLite, Stripe, Gemini}}{2024 -- 2025}
+  \resumeItemListStart
+    \resumeItem{Built a cross-platform task management product (web + desktop for Windows/macOS/Linux) with AI scheduling, recurring workflows, and integrated monetization.}
+    \resumeItem{Implemented AI scheduling with DST-aware timezone handling, hard/soft time constraints, board-context analysis, and preference-driven planning using 70+ user preference fields.}
+    \resumeItem{Built robust client data infrastructure with LRU/TTL query caching, browser state persistence, and cross-tab synchronization to preserve responsiveness and reduce database load.}
+    \resumeItem{Implemented optimistic updates with rollback for Supabase mutations and cache invalidation flows to keep UI and persisted state consistent under failure conditions.}
+    \resumeItem{Designed platform abstraction layers for Tauri/web capability detection, native window controls, and feature fallbacks so one React codebase ships across desktop and browser targets.}
+    \resumeItem{Implemented secure integrations for Google Calendar OAuth/sync and Stripe subscription lifecycle handling (checkout, renewals, failures, cancellation, reactivation).}
+    \resumeItem{Shipped usage-based AI monetization (free tier credits + paid unlimited tier) with request tracking, usage limits, and paywall enforcement.}
+  \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\textbf{Circles} $|$ \emph{Next.js, NextAuth v5, Prisma, PostgreSQL, Redis, Pusher, Cloudinary, Zod}}{2024}
+  \resumeItemListStart
+    \resumeItem{Built a private photo sharing + chat platform centered on close-friend groups, with real-time messaging and role-based circle permissions.}
+    \resumeItem{Designed a scalable social data model (17 interconnected models) covering users, circles, memberships, albums, follows, conversations, activities, and notifications.}
+    \resumeItem{Implemented dual-channel real-time architecture with Pusher (user-scoped + conversation-scoped channels), including typing indicators, read receipts, and unread counters.}
+    \resumeItem{Built optimistic message delivery with retry state transitions (sending/sent/failed), duplicate-event prevention, and cursor-based chat history pagination.}
+    \resumeItem{Implemented secure authentication flows (Google OAuth + credentials) with middleware-based route protection and guest browsing mode for public content discovery.}
+    \resumeItem{Improved performance with multi-layer caching (Redis + in-memory TTL + query shaping), batched loading utilities, and elimination of N+1 patterns in social feed queries.}
+    \resumeItem{Implemented secure media handling via Cloudinary stream uploads, transaction-based permission checks, and client-side image cropping flows for profile and album assets.}
+  \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\textbf{H2L Design Studio Website} $|$ \emph{HTML, CSS, JavaScript}}{2022}
+  \resumeItemListStart
+    \resumeItem{Built and shipped a client marketing site with responsive layouts and performance-focused static delivery.}
+    \resumeItem{Delivered a low-maintenance frontend architecture with clean semantic markup and lightweight JavaScript interactions.}
+  \resumeItemListEnd
+
+\end{itemize}
+
+% ==================================================
+\section{Education}
+\begin{itemize}[leftmargin=0.15in, label={}]
+  \resumeSubheading
+    {British Columbia Institute of Technology}{Expected Apr 2026}
+    {Full Stack Web Development Diploma}{Vancouver, BC}
+  \resumeItem{Leadership \& Community: BCIT Computing Club Member, Peer Mentorship Program}
+
+  \resumeSubheading
+    {Langara College}{Sep 2022 -- Apr 2024}
+    {Associate of Science, Computer Science}{Vancouver, BC}
+\end{itemize}
+
+% ==================================================
+\section{Technical Skills}
+\begin{itemize}[leftmargin=0.15in, label={}]
+  \small{
+    \item{
+      \textbf{Languages}{: Go, TypeScript, Java, Python, SQL (PostgreSQL, Oracle), C, Lua, PL/SQL} \\
+      \textbf{Infrastructure \& Systems}{: Terraform, Docker, Kubernetes, Linux (Arch, Red Hat, Debian), GitHub Actions, Redis Streams, CI/CD} \\
+      \textbf{Backend}{: Node.js, Express, Spring Boot, FastAPI, gRPC, WebSockets, Prisma, Drizzle} \\
+      \textbf{Frontend}{: React 19, Next.js, React Flow, D3.js, Tailwind CSS, Web Workers, shadcn/ui, PWA} \\
+      \textbf{AI/ML \& Data}{: RAG, pgvector, Embeddings, HNSW Indexing, LLM Integration, Transformers.js, Whisper, Gemini} \\
+      \textbf{Cloud \& Platforms}{: AWS (S3, EC2, ECS, RDS, Lambda), Cloudflare Workers, Vercel, Fly.io, Neon, Supabase, Upstash}
+    }
+  }
+\end{itemize}
+
+\end{document}
